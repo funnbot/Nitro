@@ -1,0 +1,40 @@
+{
+  "name": "nitro",
+  "version": "1.0.0",
+  "description": "A discord bot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Funnbot",
+  "license": "MIT",
+  "dependencies": {
+    "Paginate": "0.0.1",
+    "bufferutil": "^2.0.0",
+    "canvas": "^1.6.2",
+    "discord.js": "github:hydrabolt/discord.js",
+    "erlpack": "github:hammerandchisel/erlpack",
+    "ffmpeg": "0.0.4",
+    "is-var-name": "^1.0.0",
+    "jimp": "^0.2.27",
+    "mathjs": "^3.8.1",
+    "moment": "^2.17.1",
+    "node-opus": "^0.2.4",
+    "paginate": "^0.2.0",
+    "pretty-ms": "^2.1.0",
+    "random-number": "0.0.7",
+    "request": "^2.79.0",
+    "sc-stream": "^1.0.0",
+    "slot-machine": "^2.0.0",
+    "soundcloud-audio": "^1.1.0",
+    "soundcloudr": "^1.1.0",
+    "threads": "^0.7.2",
+    "uws": "^0.12.0",
+    "winston": "^2.3.0",
+    "youtube-api": "^2.0.6",
+    "youtube-dl": "^1.11.1",
+    "youtube-info": "^1.1.1",
+    "youtube-search": "^1.0.7",
+    "ytdl-core": "^0.7.24"
+  }
+}
