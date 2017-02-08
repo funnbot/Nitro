@@ -257,6 +257,12 @@ function setHost(id, user, cb) {
     cb(false, user);
 }
 
+function setChannel(id, channel) {
+    if (!sessions[id]) return "No Music"
+    sessions[id].textChannel = channel;
+    return channel
+}
+
 function checkHostPerm(message) {
     let id = message.guild.id
     if (!sessions[id]) return "nm";
@@ -281,6 +287,7 @@ exports.getPlaylist = getPlaylist;
 exports.getHost = getHost;
 exports.setHost = setHost;
 exports.checkHostPerm = checkHostPerm;
+exports.setChannel = setChannel;
 
 
 
