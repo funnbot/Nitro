@@ -3,7 +3,7 @@ exports.run = (message, bot, suffix, args) => {
         message.channel.sendMessage("Restaring Music Module...").then(() => {
             bot.destroy().then(() => {
                 process.exit(1);
-            })
+            }) 
         })
     }
 }
