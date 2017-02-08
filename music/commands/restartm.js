@@ -5,8 +5,9 @@ exports.run = (message, bot, suffix, args) => {
                 process.exit(1);
             }) 
         })
-    }
+    } 
 }
+
 
 exports.conf = {
     userPerm: [],
