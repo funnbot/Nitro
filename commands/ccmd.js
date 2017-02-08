@@ -184,6 +184,8 @@ function advancedCmd(message, trig) {
     message.channel.sendMessage("**The command name was set to `"+trig+"`**\nNext, write the message the bot will respond with when this command is triggered including any functions and variables you wish.\nRefer to the Advanced Command docs here: <https://github.com/funnbot/Nitro-Public/wiki/Advanced-Custom-Commands>.\nOr `cancel` to exit.")
 }
 
+
+
 function shortcutCmd(message, trig) {
     delete dure[message.author.id];
     message.channel.sendMessage('This option is still `wip`');
@@ -202,7 +204,6 @@ exports.convert = (cmd, message, bot) => {
     if (command.type === "advanced") {
         let text = command.msg;
         text = variables(text, message, bot);
-
         message.channel.sendMessage(text, {split:true});
     }
 }

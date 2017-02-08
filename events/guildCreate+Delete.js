@@ -1,6 +1,6 @@
 const bot = require('../bot.js').bot;
 const request = require('request');
-const auth = require('../auth.js');
+const auth = require('../auth.js').auth;
 const config = require('../functions/config');
 
 bot.on('guildCreate', (g) => {
