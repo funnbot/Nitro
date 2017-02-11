@@ -3,7 +3,7 @@ const fs = require('fs');
 let config = {};
 
 exports.load = () => {
-  fs.readdir('../data/config/', (err, files) => {
+  fs.readdir('./data/config/', (err, files) => {
     if (err) return console.log(err);
     files.forEach(f => {
       try {

@@ -1,4 +1,4 @@
-const music = require('../func/music');
+const music = require('../functions/music');
 
 exports.run = (message, bot, suffix, args) => {
     if (!message.mentions.users.first()) return message.channel.sendMessage("You must mention a user to make them the host.");

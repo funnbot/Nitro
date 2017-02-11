@@ -1,4 +1,4 @@
-const music = require('../func/music');
+const music = require('../functions/music');
 
 exports.run = (message, bot, suffix, args) => {
     let can = music.checkHostPerm(message);

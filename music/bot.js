@@ -6,8 +6,8 @@ const bot = new Discord.Client({
     fetchAllMembers: true
   });
 module.exports.bot = bot;
-require('./func/loadCommands').load();
-require('./func/config')
+require('./functions/loadCommands').load();
+require('./functions/config')
 require('./events/message.js');
 
 bot.on('ready', () => {

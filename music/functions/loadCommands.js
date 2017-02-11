@@ -2,7 +2,7 @@ const fs = require('fs');
 var cmds = {}
 
 exports.load = () => {
-  fs.readdir('./commands/', (err, files) => {
+  fs.readdir('./music/commands', (err, files) => {
     if (err) return console.log(err);
     files.forEach(f => {
       try {
