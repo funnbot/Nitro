@@ -6,7 +6,7 @@ const config = require('../functions/config');
 bot.on('guildCreate', (g) => {
     g.defaultChannel.sendMessage("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**")
     request({
-       url: "https://bots.discord.pw/api/bots/245740011268341761/stats",
+       url: "https://bots.discord.pw/api/bots/264087705124601856/stats",
        method: "POST",
        json: true,
        headers: {
@@ -43,7 +43,7 @@ bot.on('guildCreate', (g) => {
 bot.on('guildDelete', (g) => {
     config.guildLeave(g.id);
     request({
-       url: "https://bots.discord.pw/api/bots/245740011268341761/stats",
+       url: "https://bots.discord.pw/api/bots/264087705124601856/stats",
        method: "POST",
        json: true,
        headers: {

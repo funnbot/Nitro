@@ -1,6 +1,6 @@
-const config = require('../functions/config.js');
+const config = require('../app').GuildConfig;
 const bot = require('../bot.js').bot;
-const cmds = require('../functions/loadCommands.js').getCmds();
+const cmds = require('../func/loadCommands.js').getCmds();
 
 bot.on('message', (message) => {
     if (message.author.bot) return;

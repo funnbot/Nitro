@@ -1,4 +1,4 @@
-const music = require('../functions/music')
+const music = require('../func/music')
 
 
 exports.run = (message, bot, suffix, args) => {
