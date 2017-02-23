@@ -12,7 +12,8 @@ exports.run = (message, bot, suffix, args) => {
     return message.channel.sendMessage("Looks like you didnt format setting the prefix correctly,\nThe proper way is: `"+config.getPrefix(message.guild.id)+"setprefix \"newPrefix\"`\n*example: to set the prefix to `nitro, ` use,*\n`"+config.getPrefix(message.guild.id)+"setprefix \"nitro, \"`");
   }
   if (split[1].length > 20) return message.channel.sendMessage("Your prefix can't be longer than 18 characters.")
-  if (/\s+/.test(split[1])) return message.channel.sendMessage("The prefix can bot be ` `")
+  console.log(split[1])
+  if (split[1] == " ") return message.channel.sendMessage("The prefix can not be ` `")
   config.setPrefix(message.guild.id, split[1]);
   message.channel.sendMessage("The prefix for this server has been changed to `"+config.getPrefix(message.guild.id)+"`")
 }
