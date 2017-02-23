@@ -4,7 +4,7 @@ const auth = require('../auth.js').auth;
 const config = require('../functions/config');
 
 bot.on('guildCreate', (g) => {
-    g.defaultChannel.sendMessage("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**")
+    g.defaultChannel.sendMessage("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**\n*More interesting in memes than management? try my other bot: <http://bot.discord.io/mopbot>*")
     request({
        url: "https://bots.discord.pw/api/bots/264087705124601856/stats",
        method: "POST",
