@@ -2,7 +2,9 @@ const profile = require('../functions/profile');
 const bg = require('../functions/bg');
 
 exports.run = (message, bot, suffix, args, send) => {
-    let collect = message.channel.createCollector(m => m.author.id === message.author.id, {time:360000})
+    
+  if (!args[0]) return send("**The available backrounds are: `default`**")
+
 }
 
 exports.conf = {

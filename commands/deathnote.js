@@ -32,6 +32,6 @@ exports.conf = {
   coolDown: 0,
   dm: true,
   category: "Fun",
-  help: "Add a mention to your deathnote :japanese_ogre:",
+  help: "Add a mention to your deathnote",
   args: ""
 }

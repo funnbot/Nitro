@@ -24,6 +24,7 @@
     "pretty-ms": "^2.1.0",
     "random-number": "0.0.7",
     "request": "^2.79.0",
+    "rethinkdb": "^2.3.3",
     "sc-stream": "^1.0.0",
     "slot-machine": "^2.0.0",
     "soundcloud-audio": "^1.1.0",
