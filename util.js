@@ -1,7 +1,3 @@
-const winston = require('winston');
-winston.level = 'debug';
-
-
 let f = {};
 
 f.error = (msg, content, delay) => {
