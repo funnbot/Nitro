@@ -1,11 +1,6 @@
-exports.run = (message, bot, suffix, args) => {
-  let user;
-  if (!message.mentions.users.first()) {
-      user = message.author
-  } else {
-      user = message.mentions.users.first();
-  }
-  let ava = (user.avatarURL !== null) ? user.avatarURL : "https://maxcdn.icons8.com/Share/icon/Logos//discord_logo1600.png"
+exports.run = (message, bot) => {
+  let user = message.mentions.users.first() ? message.mentions.users.first() : message.author
+  let ava = user.displayAvatarURL
   let embed = {
       color:0x542437,
       description:"Here is "+user.username+"'s avatar: *[url]("+ava+")*",

@@ -1,4 +1,4 @@
-const bot = require('../bot.js').bot;
+const bot = require('../bot.js')
 
 exports.Mcheck = (perms, message) => {
   if (perms.length === 0) return {

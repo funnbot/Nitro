@@ -12,7 +12,7 @@ function convertMS(ms) {
   return { d: d, h: h, m: m, s: s };
 };
 
-exports.run = (message, bot, suffix, args) => {
+exports.run = (message, bot) => {
     var cpu = os.loadavg();
     let u = convertMS(bot.uptime);
     let uptime = u.d+" D - "+u.h+" H - "+u.m+" M - "+u.s+" S"

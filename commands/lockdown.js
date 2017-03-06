@@ -1,9 +1,7 @@
-const config = require('../functions/config');
-
-exports.run = (message, bot, suffix, args) => {
-    let num = parseInt(args[0]) || false;
-    let prefix = config.getPrefix(message.guild.id);
-    if (!args[0] || num === false) return message.channel.sendMessage("You can lockdown a channel with:\n" + prefix + "lockdown <seconds>");
+exports.run = (message, bot) => {
+    let num = parseInt(message.args[0]) || false;
+    let prefix = bot.config.getPrefix(message.guild.id);
+    if (!message.args[0] || num === false) return message.channel.sendMessage("You can lockdown a channel with:\n" + prefix + "lockdown <seconds>");
     message.channel.sendMessage("**This channel has been locked down for " + num + " seconds.**\nYou can end lockdown by typing `unlock` in chat or by waiting the alloted time.").then((m) => {
         let before = m.channel.permissionOverwrites.get(message.guild.id);
         if (before.allow & 1 << 11) before = true

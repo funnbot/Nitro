@@ -19,12 +19,12 @@ exports.load = () => {
 exports.reload = (cmd) => {
   try {
     let check = require('../commands/'+cmd);
-    console.log("But i still go though.")
     delete require.cache[require.resolve('../commands/'+cmd)]
     let good = require('../commands/'+cmd);
     cmds[cmd] = {run:good.run, conf:good.conf};
     return {worked:true};
   } catch (err) {
+    delete cmds[cmd]
     return {worked:false, error:err};
   }
 }

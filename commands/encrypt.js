@@ -18,18 +18,18 @@ const en = {
             let first = split[0];
             output += l.slice(1)+first+"ay "
         })
-        return output;
+        return output.toLowerCase();
     }
 }
 
-exports.run = (message, bot, suffix, args, send) => {
-    if (!args[0]) return send("**The available encryptions are: `" + Object.keys(en).join("` ,`") + "` **");
-    if (!en[args[0]]) return send("*`" + args[0] + "` is not an available encryption*\n**The available encryptions are: `" + Object.keys(en).join("` ,`") + "` **");
-    if (!args[1]) return send("**Provide a message to be encrypted in `" + args[0] + "`");
-    let funct = args[0];
-    args.shift();
-    args = args.join(" ");
-    let crypt = en[funct](args);
+exports.run = (message, bot, send) => {
+    if (!message.args[0]) return send("**The available encryptions are: `" + Object.keys(en).join("` ,`") + "` **");
+    if (!en[message.args[0]]) return send("*`" + message.args[0] + "` is not an available encryption*\n**The available encryptions are: `" + Object.keys(en).join("` ,`") + "` **");
+    if (!message.args[1]) return send("**Provide a message to be encrypted in `" + message.args[0] + "`");
+    let funct = message.args[0];
+    message.args.shift();
+    message.args = message.args.join(" ");
+    let crypt = en[funct](message.args);
     send("`" + crypt + "`");
 }
 

@@ -1,29 +1,52 @@
-const fs = require('fs');
+const r = require('rethinkdb')
 
 let config = {};
 
-exports.load = () => {
-  fs.readdir('./data/config/', (err, files) => {
-    if (err) return console.log(err);
-    files.forEach(f => {
-      try {
-        let c = require('../../data/config/' + f);
-        let name = f.slice(0, -5);
-        config[name] = c;
-      } catch (err) {
-        console.log(err);
-      }
-    })
-  })
-}
+r.connect({
+  host: "localhost",
+  port: '28015',
+  db: "Nitro"
+}).then(connection => {
 
-setInterval(() => {
-    exports.load()
-}, 3000)
+  r.table('config').run(connection, (err, table) => {
+
+    table.toArray((err, array) => {
+
+      if (err) return console.log(err)
+
+      array.forEach(p => {
+
+        config[p.id] = p.data.prefix
+
+      })
+
+    })
+
+  })
+
+  r.table('config').changes().run(connection, (err, change) => {
+
+    if (err) return console.log(err)
+
+    change.each((err, row) => {
+
+      if (err) return console.log(err)
+
+      if (row.old_val.data.prefix !== row.new_val.data.prefix) {
+
+        config[row.new_val.id] = row.new_val.data.prefix
+
+      }
+
+    })
+
+  })
+
+}).catch(console.log)
 
 exports.getPrefix = (id) => {
-  if (!!config[id] && !!config[id].prefix) {
-    return config[id].prefix;
+  if (!!config[id]) {
+    return config[id]
   } else {
     return "n!";
   }

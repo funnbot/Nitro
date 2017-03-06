@@ -1,6 +1,4 @@
-const config = require('../functions/config.js');
-
-exports.run = (message, bot, suffix, args) => {
+exports.run = (message, bot) => {
   let split = message.content.split("\"");
   let bool = message.content.replace(/"/g, "");
   if (bool.length === message.content.length-1) {
@@ -9,13 +7,13 @@ exports.run = (message, bot, suffix, args) => {
     bool = true
   }
   if (!split[1] || !bool) {
-    return message.channel.sendMessage("Looks like you didnt format setting the prefix correctly,\nThe proper way is: `"+config.getPrefix(message.guild.id)+"setprefix \"newPrefix\"`\n*example: to set the prefix to `nitro, ` use,*\n`"+config.getPrefix(message.guild.id)+"setprefix \"nitro, \"`");
+    return message.channel.sendMessage("Looks like you didnt format setting the prefix correctly,\nThe proper way is: `"+message.guild.prefix+"setprefix \"newPrefix\"`\n*example: to set the prefix to `nitro, ` use,*\n`"+message.guild.prefix+"setprefix \"nitro, \"`");
   }
-  if (split[1].length > 20) return message.channel.sendMessage("Your prefix can't be longer than 18 characters.")
-  console.log(split[1])
-  if (split[1] == " ") return message.channel.sendMessage("The prefix can not be ` `")
-  config.setPrefix(message.guild.id, split[1]);
-  message.channel.sendMessage("The prefix for this server has been changed to `"+config.getPrefix(message.guild.id)+"`")
+  if (split[1].length > 20) return message.channel.sendMessage("**Invalid Prefix**: Too Long")
+
+  if (/^\s+$/g.test(split[1])) return message.channel.sendMessage("**Invalid Prefix**: Illegal Characters")
+  bot.config.setPrefix(message.guild.id, split[1]);
+  message.channel.sendMessage("**The prefix for this server has been changed to '"+bot.config.getPrefix(message.guild.id)+"'**")
 }
   
 exports.conf = {

@@ -1,10 +1,9 @@
 const Commands = require('../functions/loadCommands.js');
-const config = require('../functions/config.js');
 
 exports.run = (message, bot, suffix, args) => {
   let cmds = Commands.getCmds();
-  let mods = (message.channel.type === "text") ? config.getMod(message.guild.id) : {fun:true, music:true};
-  let prefix = (message.channel.type === "text") ? config.getPrefix(message.guild.id) : "n!";
+  let mods = (message.channel.type === "text") ? message.guild.modules : {fun:true, music:true};
+  let prefix = message.guild.prefix
   let text = {};
   text.start = ['```md', '#The prefix for your server is: ' + prefix];
   let category = ["Uility", "Fun", "Music", "Social","Other", "Module"]

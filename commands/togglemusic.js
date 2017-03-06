@@ -1,7 +1,5 @@
-const config = require('../functions/config');
-
-exports.run = (message, bot, suffix, args) => {
-    let mods = config.getMod(message.guild.id);
+exports.run = (message, bot) => {
+    let mods = message.guild.modules
     if (mods.music) {
         delete mods.music;
         message.channel.sendMessage("**The `music` module has been enabled.**")
@@ -9,7 +7,7 @@ exports.run = (message, bot, suffix, args) => {
         mods.music = true;
         message.channel.sendMessage("**The `music` module has been disabled.**")
     }
-    config.setMod(message.guild.id, mods);
+    bot.config.setMod(message.guild.id, mods);
 }
 
 exports.conf = {

@@ -1,9 +1,8 @@
-const profile = require('../functions/profile');
 const bg = require('../functions/bg');
 
-exports.run = (message, bot, suffix, args, send) => {
+exports.run = (message, bot, send) => {
     
-  if (!args[0]) return send("**The available backrounds are: `default`**")
+  if (!message.args[0]) return send("**The available backrounds are: `default`**")
 
 }
 
@@ -13,6 +12,6 @@ exports.conf = {
   coolDown:0,
   dm:false,
   category:"Social",
-  help:"Set the background for your profile [WIP]",
+  help:"Set the background fosr your profile [WIP]",
   args:"",
 }

@@ -1,17 +1,19 @@
-exports.run = (message, bot, suffix, args, send) => {
-    let num = (!!args[0]) ? parseInt(args[0]) || 20 : 20;
-    console.log(num)
+exports.run = (message, bot, send) => {
+    let num = (!!message.args[0]) ? parseInt(message.args[0]) || 20 : 20;
+    //console.log(num)
     message.channel.fetchMessages({limit:num}).then(msgs => {
       let ms = msgs.filter(m => m.author.id === bot.user.id);
-      message.channel.bulkDelete(ms).then(() => send("**Cleaning up Nitro's messages**"))
+      if (ms.size === 1) { ms.first().delete(); return send("**Cleaning up Nitro's messages**") }
+      if (ms.size < 1) return send("**No messages found to clean**")
+      message.channel.bulkDelete(ms, true).then(() => send("**Cleaning up Nitro's messages**"))
     })
 }
 
 exports.conf = {
   userPerm:["MANAGE_MESSAGES"],
-  botPerm:["SEND_MESSAGES"],
+  botPerm:["SEND_MESSAGES", "MANAGE_MESSAGES"],
   coolDown:0,
-  dm: true,
+  dm: false,
   category:"Utilty",
   help:"Clean messages sent by Nitro",
   args:"",

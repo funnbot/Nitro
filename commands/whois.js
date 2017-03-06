@@ -1,8 +1,5 @@
-exports.run = (message, bot, suffix, args) => {
-  if (!message.mentions.users.first()) {
-    return tro.info(message, "You need to mention someone.")
-  }
-  let user = message.mentions.users.first();
+exports.run = (message, bot) => {
+  let user = message.mentions.users.first() ? message.mentions.users.first() : message.author
   let member = message.guild.member(user);
   let roles = [];
   if (member.roles.size > 0) {

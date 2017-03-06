@@ -1,8 +1,7 @@
-const bot = require('../bot.js').bot;
-const config = require('../functions/config.js');
+const bot = require('../bot.js')
 
 bot.on('guildMemberRemove', (member) => {
-    let acc = config.getAnc(member.guild.id);
+    let acc = bot.config.getAnc(member.guild.id);
     if (!acc.channel) return;
     if (!acc.farewell) return;
     if (!member.guild.channels.has(acc.channel)) return;

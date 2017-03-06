@@ -1,19 +1,18 @@
-const config = require('../functions/config.js');
-
-exports.run = (message, bot, suffix, args) => {
-  let oldRole = config.getAuto(message.guild.id);
-  if (!args[0]) {
+exports.run = (message, bot) => {
+  let oldRole = message.guild.autorole
+  if (!message.args[0]) {
     if (oldRole !== false) {
-      config.setAuto(message.guild.id, false);
-      return tro.succ(message, "Autorole has been disabled.", 10000)
+      bot.config.setAuto(message.guild.id, false);
+      return message.send("**Autorole has been disabled.**")
     } else {
-      return tro.warn(message, 'Please provide a role for autorole.', 5000)
+      return message.send('**Please provide a role for autorole.**')
     }
   }
-  if (!message.guild.roles.exists('name', suffix)) return tro.warn(message, "The role **"+suffix+"** does not exist on this server.", 5000);
-  if (message.guild.roles.find('name', suffix).position > message.guild.member(bot.user).highestRole.position) return tro.warn(message, "I cannot assign a role that is higher than my highest role.", 5000);
-  config.setAuto(message.guild.id, suffix);
-  tro.succ(message, "The role **" +suffix+ "** will now be assigned to users when they join your server.", 10000)
+  if (message.mentions.roles.first()) return message.send("**Type the role name instead of mentioning it**")
+  if (!message.guild.roles.exists('name', message.suffix)) return message.send("The role **"+message.suffix+"** does not exist on this server.");
+  if (message.guild.roles.find('name', message.suffix).position > message.guild.member(bot.user).highestRole.position) return message.send("**I cannot assign a role that is higher than my highest role.**");
+  bot.config.setAuto(message.guild.id, message.suffix);
+  message.send("The role **" +message.suffix+ "** will now be assigned to users when they join your server.")
 }
 
 exports.conf = {

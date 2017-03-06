@@ -1,9 +1,9 @@
-const prof = require('../functions/profile');
 const rn = require('random-number');
 const pretty = require('pretty-ms');
+const prof = require('../bot').profile
 let done = {};
 
-exports.run = (message, bot, suffix, args, send) => {
+exports.run = (message, bot, send) => {
     let id = message.author.id;
     if (!!done[id] && (new Date).getTime() - done[id] < 21600000) {
         let r = (new Date).getTime() - done[id];

@@ -1,12 +1,12 @@
 const fs = require('fs');
 const cmd = require('../functions/loadCommands.js');
 
-exports.run = (message, bot, suffix, args) => {
+exports.run = (message, bot) => {
   fs.readdir('./commands/', (err, files) => {
     if (err) return console.log(err);
     files.forEach(f => {
-      if (args[0] + ".js" === f) {
-        let t = cmd.reload(args[0]);
+      if (message.args[0] + ".js" === f) {
+        let t = cmd.reload(message.args[0]);
         if (!t.worked) {
           message.channel.sendMessage("Errored when reloading command: "+f+"```js\n"+t.error+"```");
         } else {

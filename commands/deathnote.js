@@ -1,7 +1,7 @@
 const Canvas = require('canvas');
 const fs = require('fs');
 
-exports.run = (message, bot, suffix, args) => {
+exports.run = (message, bot) => {
   let user;
   if (message.mentions.users.first()) {
     user = message.mentions.users.first().username;
@@ -11,7 +11,7 @@ exports.run = (message, bot, suffix, args) => {
   let Image = Canvas.Image,
     canvas = new Canvas(520, 283),
     ctx = canvas.getContext('2d');
-  fs.readFile('./data/images/death.jpg', (err, image) => {
+  fs.readFile('./images/death.png', (err, image) => {
     if (err) return console.log(err);
       let img = new Image
       img.src = image;
@@ -32,6 +32,6 @@ exports.conf = {
   coolDown: 0,
   dm: true,
   category: "Fun",
-  help: "Add a mention to your deathnote",
+  help: "Add a user to your deathnote",
   args: ""
 }

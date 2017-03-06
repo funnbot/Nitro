@@ -3,7 +3,8 @@ const bot = require('../bot.js').bot;
 const cmds = require('../functions/loadCommands.js').getCmds();
 
 bot.on('message', (message) => {
-    if (message.author.bot) return;
+
+  if (message.author.bot) return;
   let prefix;
   if (message.channel.type === "text") {
     prefix = config.getPrefix(message.guild.id);
@@ -22,4 +23,5 @@ bot.on('message', (message) => {
   } catch (err) {
     console.log(err);
   }
+  
 })

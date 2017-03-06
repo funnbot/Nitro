@@ -1,9 +1,5 @@
-exports.run = (message, bot, suffix, args) => {
-  let time = (new Date).getTime();
-  message.channel.sendMessage("Pong").then(m => {
-    let t = (new Date).getTime() - time;
-    m.edit("Pong (took: "+t+"ms)")
-  })
+exports.run = (message, bot) => {
+  message.send("Pong! "+bot.ping+"ms")
 }
 
 exports.conf = {

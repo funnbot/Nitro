@@ -11,7 +11,7 @@
   "dependencies": {
     "Paginate": "0.0.1",
     "bufferutil": "^2.0.0",
-    "canvas": "^1.6.2",
+    "canvas": "^1.6.3",
     "discord.js": "github:hydrabolt/discord.js",
     "erlpack": "github:hammerandchisel/erlpack",
     "ffmpeg": "0.0.4",

@@ -1,7 +1,7 @@
 const ci = ["\🔳", "\🔲" ,"\🔳" ,"\🔲"];
 const rn = require('random-number');
 
-exports.run = (message, bot, suffix, args, send) => {
+exports.run = (message, bot, send) => {
     let text = [];
     for (i=0;i<484;i++) {
         let r = rn({min:0, max:3, integer:true});

@@ -1,13 +1,12 @@
+const prof = require('../bot').profile
 const Canvas = require('canvas');
 const fs = require('fs');
 const request = require('request');
 const jimp = require('jimp');
-const prof = require('../functions/profile.js');
-const config = require('../functions/config');
 const pretty = require('pretty-ms');
 const bg = require('../functions/bg');
 
-exports.run = (message, bot, suffix, args) => {
+exports.run = (message, bot) => {
     let time = (new Date).getTime();
     let id = (!message.mentions.users.first()) ? message.author.id : message.mentions.users.first().id;
     let user = (!message.mentions.users.first()) ? message.author : message.mentions.users.first();
@@ -15,12 +14,12 @@ exports.run = (message, bot, suffix, args) => {
     let rank = prof.getRank(id);
     let sent = prof.getSent(id);
     let taco = prof.getMoney(id);
-    let shout = prof.getShout(id, config.getPrefix(message.guild.id));
-    let back = "./data/images/bg/sky.png"//bg[prof.getBg(id)].file;
+    let shout = prof.getShout(id, message.guild.prefix);
+    let back = bg[prof.getBg(id)].file;
     let Image = Canvas.Image,
         canvas = new Canvas(2000, 2000),
         ctx = canvas.getContext('2d');
-    ctx.patternQuality = 'billinear';
+    ctx.patternQuality = 'bilinear';
     ctx.filter = 'bilinear';
     ctx.antialias = 'subpixel';
     ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
@@ -32,7 +31,7 @@ exports.run = (message, bot, suffix, args) => {
         let ground = new Image;
         ground.src = Background;
         ctx.drawImage(ground, 0, 0, 2000, 2000);
-        fs.readFile('./data/images/profile.png', (err, profile) => {
+        fs.readFile('./images/profile.png', (err, profile) => {
             if (err) return console.log(err);
             let that = new Image;
             that.src = profile;
@@ -41,7 +40,7 @@ exports.run = (message, bot, suffix, args) => {
             jimp.read(url, (err, ava) => {
                 ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
                     if (err) return console.log(err);
-                    console.log("really wierd")
+                    
                     //Avatar
                     let Avatar = Canvas.Image;
                     let ava = new Avatar;
@@ -96,7 +95,6 @@ exports.run = (message, bot, suffix, args) => {
                         if (i<4) ctx.fillText(line, 85, 1626 + (i * 100));
                         
                     });
-                    console.log("wierd")
                     canvas.toBuffer((err, buf) => {
                         if (err) return console.log(err);
                         message.channel.sendFile(buf);
@@ -114,7 +112,7 @@ exports.conf = {
     coolDown: 0,
     dm: false,
     category: "Social",
-    help: "Get your profile or a users profile. [WIP]",
+    help: "Get your profile or a users profile.",
     args: "<@mention>",
 }
 

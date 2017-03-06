@@ -1,8 +1,10 @@
-exports.run = (message, bot, suffix, args) => {
+exports.run = (message, bot) => {
   message.channel.sendMessage("Restarting...").then(m => {
-    m.delete();
-    bot.destroy();
-    process.exit(1);
+    m.delete().then(() => {
+      bot.destroy().then(() => {
+        process.exit(1)
+      })
+    })
   })
 }
 

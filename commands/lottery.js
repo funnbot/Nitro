@@ -1,7 +1,7 @@
-const prof = require('../functions/profile');
-const bot = require('../bot.js').bot
 const rn = require('random-number');
 const pretty = require('pretty-ms');
+const bot = require('../bot')
+const prof = bot.profile
 let lot = false;
 
 function go() {
@@ -18,7 +18,11 @@ function go() {
                 }
             }
         });
-        let r = rn({min:0, max:all.length-1, integer:true});
+        let r = rn({
+            min: 0,
+            max: all.length - 1,
+            integer: true
+        });
         let win = all[r];
         members.forEach(m => {
             let mem = store.members[m];
@@ -27,7 +31,7 @@ function go() {
                     user.sendMessage(`:tada:                                                                          :tada:\n                         **Congratulations**                     \n         **You have won the Lottery Jackpot of:**\n                                **$${store.jackpot} :dollar: **\n:tada:                                                                          :tada:`)
                 })
                 let mo = prof.getMoney(m);
-                prof.setMoney(m, mo+store.jackpot);
+                prof.setMoney(m, mo + store.jackpot);
             } else {
                 bot.fetchUser(m).then(user => {
                     user.sendMessage(`:slight_frown: | **You have lost $${mem.tickets*100} in the lottery, better luck next time **| :slight_frown:`)
@@ -47,15 +51,15 @@ bot.setInterval(() => {
     go()
 }, 14400000)
 
-exports.run = (message, bot, suffix, args, send) => {
-    if (!lot) return send("The Lottery Is Not Currently Active");
+exports.run = (message, bot, send) => {
+    if (!lot) return send("**The Lottery Is Not Currently Active**");
     let id = message.author.id;
     let left = (new Date).getTime() - lot.started;
     left = 14400000 - left;
     let k = pretty(left);
-    let num = parseInt(args[0]) || "k";
+    let num = parseInt(message.args[0]) || "k";
     let there = (!lot.members[id] || !lot.members[id].tickets) ? 0 : lot.members[id].tickets;
-    if (!args[0]) return send(`:moneybag: **Lottery** :moneybag:\n**Jackpot:  $${lot.jackpot}**\n**Next Drawing: ${k}**\n**You Have ${there} ticket(s)**\n\n**You can buy tickets with \`n!lottery <amount>\`**\n**Each ticket costs $100**`);
+    if (!message.args[0]) return send(`:moneybag: **Lottery** :moneybag:\n**Jackpot:  $${lot.jackpot}**\n**Next Drawing: ${k}**\n**You Have ${there} ticket(s)**\n\n**You can buy tickets with \`n!lottery <amount>\`**\n**Each ticket costs $100**`);
     if (num > 20) return send("**:arrow_down_small: | You can not buy more than 20 tickets**");
     if (num < 1) return send("**:arrow_up_small: | You must choose a number 1 or higher**");
     if (num === "k") return send("**:1234: | Choose a number between 1 and 20**");

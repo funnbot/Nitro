@@ -1,4 +1,4 @@
-exports.run = (message, bot, suffix, args) => {
+exports.run = (message, bot) => {
         if (!message.mentions.users.first()) return message.channel.sendMessage("Mention a user or multiple users to softban them. Kicks them and deletes all messages they have sent.")
     let ment = message.mentions.users;
     let text = []
@@ -8,7 +8,7 @@ exports.run = (message, bot, suffix, args) => {
             message.channel.sendMessage("Something went wrong when softbanning: "+m.username);          
         } else {
             let id = m.id;
-            message.guild.ban(message.guild.member(m)).then(() => {
+            message.guild.ban(message.guild.member(m), 7).then(() => {
                 message.guild.unban(id).then(() => {
                     text.push(m.username);
                 })          

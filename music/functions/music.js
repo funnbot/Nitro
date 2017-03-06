@@ -1,6 +1,6 @@
 const yt = require('ytdl-core');
 const soundcloudr = require('soundcloudr');
-const auth = require('../../auth').auth;
+const auth = require('../../config');
 const request = require('request');
 const search = require('youtube-search');
 const resolve = require('soundcloud-resolve');

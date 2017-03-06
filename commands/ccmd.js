@@ -1,11 +1,11 @@
-const config = require('../functions/config');
 const Commands = require('../functions/loadCommands.js');
+let bot = require('../bot.js')
 const verify = require('is-var-name');
 const rn = require('random-number');
 let dure = {}
 let images = {};
 
-exports.run = (message, bot, suffix, args, send) => {
+exports.run = (message, bot, send) => {
     if (dure[message.author.id]) return message.channel.sendMessage("You are already using the custom command wizard.");
     dure[message.author.id] = true;
     let collect1 = message.channel.createCollector(m => m.author.id === message.author.id, {
@@ -34,7 +34,7 @@ exports.conf = {
 
 function exist(name, id) {
     let cmd = Commands.getCmds();
-    let cus = config.getCustom(id);
+    let cus = bot.config.getCustom(id);
     if (!!cmd[name] || !!cus[name]) return false;
     if (!verify(name)) return false;
     return true;
@@ -58,26 +58,26 @@ function removeCmd(message) {
     collect.on('message', (m) => {
         if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect.stop(); delete dure[m.author.id];}
         else {
-            let custom = config.getCustom(message.guild.id);
+            let custom = bot.config.getCustom(message.guild.id);
             let cu = Object.keys(custom);
             if (cu.length < 1) m.channel.sendMessage("There are no custom commands on this server.")
             else if (!custom[m.content]) m.channel.sendMessage("That is not a currently available command. Lets try again.")
             else {
                 delete custom[m.content];
-                config.setCustom(m.guild.id, custom);
+                bot.config.setCustom(m.guild.id, custom);
                 m.channel.sendMessage("The command "+m.content+" has been deleted.");
                 delete dure[m.author.id]
                 collect.stop();
             }
         }
     });
-    let custom = config.getCustom(message.guild.id);
+    let custom = bot.config.getCustom(message.guild.id);
     let cu = Object.keys(custom);
     message.channel.sendMessage("**The commands you can remove are:**\n```md\n"+cu.join(", ")+"```\nWrite one below or `cancel`", {split:{prepend:"```md\n", append:"```"}})
 }
 
 function listCmd(message) {
-    let custom = config.getCustom(message.guild.id);
+    let custom = bot.config.getCustom(message.guild.id);
     let cu = Object.keys(custom);
     message.channel.sendMessage("**The commands on this server are:**\n```md\n"+cu.join(", ")+"```", {split:{prepend:"```md\n", append:"```"}});
     delete dure[message.author.id];
@@ -106,10 +106,10 @@ function simpleCmd(message, trig) {
     collect.on('message', (m) => {
         if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect.stop(); delete dure[m.author.id];}
         else {
-            let cmds = config.getCustom(m.guild.id);
+            let cmds = bot.config.getCustom(m.guild.id);
             cmds[trig] = {msg:m.content, type:"simple"};
-            let prefix = config.getPrefix(m.guild.id);
-            config.setCustom(m.guild.id, cmds)
+            let prefix = bot.config.getPrefix(m.guild.id);
+            bot.config.setCustom(m.guild.id, cmds)
             m.channel.sendMessage("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
             collect.stop()
             delete dure[m.author.id]
@@ -126,10 +126,10 @@ function imageCmd(message, trig) {
         else if (m.content === "done") {
             if (images[m.author.id].size < 1) m.channel.sendMessage("You have not added an image yet. Lets try again.")
             else {
-                 let cmds = config.getCustom(m.guild.id);
+                 let cmds = bot.config.getCustom(m.guild.id);
                  cmds[trig] = {msg:images[m.author.id], type:"image"};
-                 let prefix = config.getPrefix(m.guild.id);
-                 config.setCustom(m.guild.id, cmds)
+                 let prefix = bot.config.getPrefix(m.guild.id);
+                 bot.config.setCustom(m.guild.id, cmds)
                  m.channel.sendMessage("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
                  collect.stop()
                  delete dure[m.author.id]
@@ -172,10 +172,10 @@ function advancedCmd(message, trig) {
     collect.on('message', (m) => {
         if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect.stop(); delete dure[m.author.id];}
         else {
-            let cmds = config.getCustom(m.guild.id);
+            let cmds = bot.config.getCustom(m.guild.id);
             cmds[trig] = {msg:m.content, type:"advanced"};
-            let prefix = config.getPrefix(m.guild.id);
-            config.setCustom(m.guild.id, cmds)
+            let prefix = bot.config.getPrefix(m.guild.id);
+            bot.config.setCustom(m.guild.id, cmds)
             m.channel.sendMessage("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
             collect.stop()
             delete dure[m.author.id]
@@ -192,7 +192,7 @@ function shortcutCmd(message, trig) {
 }
 
 exports.convert = (cmd, message, bot) => {
-    let custom = config.getCustom(message.guild.id);
+    let custom = bot.config.getCustom(message.guild.id);
     let command = custom[cmd];
     if (command.type === "simple") {
         return message.channel.sendMessage(command.msg);

@@ -1,9 +1,9 @@
-exports.run = (message, bot, suffix, args) => {
+exports.run = (message, bot) => {
     if (!message.mentions.users.first()) return message.channel.sendMessage("Mention a user or multiple users to ban them.")
     let ment = message.mentions.users;
     let text = []
     ment.forEach(m => {
-        console.log(m)
+
         if (!message.guild.member(m).bannable) {
             message.channel.sendMessage("Something went wrong when banning: "+m.username);          
         } else {
@@ -15,6 +15,7 @@ exports.run = (message, bot, suffix, args) => {
     setTimeout(function() {
         if (text.length === 0) return;
         message.channel.sendMessage(text.join(", ")+" has been banned.", {split:true});
+        console.log(message.guild.name+" Banned "+text.join(", "))
     }, 1000);
 }
 

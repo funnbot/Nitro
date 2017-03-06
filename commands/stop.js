@@ -1,4 +1,4 @@
-exports.run = (message, bot, suffix, args) => {
+exports.run = (message, bot) => {
 }
 
 exports.conf = { 

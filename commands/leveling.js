@@ -1,7 +1,5 @@
-const config = require('../functions/config');
-
-exports.run = (message, bot, suffix, args, send) => {
-    let level = config.getLevel(message.guild.id);
+exports.run = (message, bot, send) => {
+    let level = bot.config.getLevel(message.guild.id);
     if (level) {
         level = false;
         send("**Disabling level up messages in your server**");
@@ -9,7 +7,7 @@ exports.run = (message, bot, suffix, args, send) => {
         level = true;
         send("**Enabling level up messages in your server**");
     }
-    config.setLevel(message.guild.id, level);
+    bot.config.setLevel(message.guild.id, level);
 }
 
 exports.conf = {

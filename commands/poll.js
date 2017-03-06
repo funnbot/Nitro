@@ -1,13 +1,12 @@
-const config = require('../functions/config')
 let poll = {};
 
 
-exports.run = (message, bot, suffix, args, send) => {
-  let prefix = config.getPrefix(message.guild.id);
+exports.run = (message, bot, send) => {
+  let prefix = message.guild.prefix
   let id = message.channel.id;
   if (poll[id]) return send("**:no_entry: | There is already a poll running in this channel.**")
-  if (!args[0]) return send(`**To Create A Poll:**\n\`${prefix}poll <question> |<option1>|<option2>|<opt...\``);
-  let split = args.join(" ").split("|");
+  if (!message.args[0]) return send(`**To Create A Poll:**\n\`${prefix}poll <question> |<option1>|<option2>|<opt...\``);
+  let split = message.args.join(" ").split("|");
   if (!split[0]) return send(`*You must split your question and options with \`|\`\n**To Create A Poll:**\n\`${prefix}poll <question> |<option1>|<option2>|<opt...\``);
   if (!split[1]) return send(`*You must have two or more options to make a poll*\n**To Create A Poll:**\n\`${prefix}poll <question> |<option1>|<option2>|<opt...\``);
   if (!split[2]) return send(`*You must have two or more options to make a poll*\n**To Create A Poll:**\n\`${prefix}poll <question> |<option1>|<option2>|<opt...\``);

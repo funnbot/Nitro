@@ -1,7 +1,5 @@
-const config = require('../functions/config.js');
-
-exports.run = (message, bot, suffix, args) => {
-    let b = config.getBlocked();
+exports.run = (message, bot) => {
+    /*let b = config.getBlocked();
     if (bot.guilds.has(args[0])) {
         if (b.servers[args[0]]) {
             delete b.servers[args[0]];
@@ -21,7 +19,7 @@ exports.run = (message, bot, suffix, args) => {
     } else {
         return message.channel.sendMessage("Not real.")
     }
-    config.setBlocked(b);
+    config.setBlocked(b);*/
 }
 
 exports.conf = {
