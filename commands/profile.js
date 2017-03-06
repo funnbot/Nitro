@@ -15,7 +15,7 @@ exports.run = (message, bot) => {
     let sent = prof.getSent(id);
     let taco = prof.getMoney(id);
     let shout = prof.getShout(id, message.guild.prefix);
-    let back = bg[prof.getBg(id)].file;
+    let back = "./images/bg/default.png"//bg[prof.getBg(id)].file;
     let Image = Canvas.Image,
         canvas = new Canvas(2000, 2000),
         ctx = canvas.getContext('2d');
