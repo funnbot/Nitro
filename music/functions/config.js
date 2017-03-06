@@ -1,11 +1,13 @@
 const r = require('rethinkdb')
+const auth = require('../../config.js')
 
 let config = {};
 
 r.connect({
   host: "localhost",
   port: '28015',
-  db: "Nitro"
+  db: "Nitro",
+  password: auth.rethink
 }).then(connection => {
 
   r.table('config').run(connection, (err, table) => {

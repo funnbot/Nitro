@@ -1,5 +1,5 @@
 const r = require('rethinkdb')
-
+const auth = require('../config')
 
 
 module.exports = () => {
@@ -10,7 +10,8 @@ module.exports = () => {
 
             host: "localhost",
             port: '28015',
-            db: "Nitro"
+            db: "Nitro",
+            password: auth.rethink
 
         }).then(conn => {
 
