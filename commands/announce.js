@@ -63,7 +63,7 @@ exports.run = (message, bot) => {
             message.send("**The farewell message: `"+msg+"` will now be sent in the Join/leave log channel. Make sure you configure that aswell.**");
         }
     } else {
-        message.channel.sendMessage(tro.getSpecialHelp("announce"))
+        message.channel.sendMessage(nu.getSpecialHelp("announce"))
     }
 }
 
