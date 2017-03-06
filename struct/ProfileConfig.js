@@ -19,7 +19,7 @@ class ProfileConfig {
             id,
             data: this.profiles[id]
         }, {
-            conflict: "update"
+            conflict: "replace"
         }).run(this.conn, (err, res) => {
             if (err) console.log(err)
         })
