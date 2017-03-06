@@ -26,6 +26,9 @@ const Bot = () => {
             bot.embed = Discord.RichEmbed
 
             bot.on('ready', () => {
+
+                bot.user.setGame("@Nitro help | "+bot.guilds.size+" guilds")
+
                 if (bot.shard) {
                     console.log("Shard #"+bot.shard.id+" active with "+bot.guilds.size+" guilds")
                 } else {
