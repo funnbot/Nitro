@@ -32,6 +32,8 @@ r.connect({
 
     change.each((err, row) => {
 
+      console.log(row)
+
       if (err) return console.log(err)
 
       if (row.old_val.data.prefix !== row.new_val.data.prefix) {
