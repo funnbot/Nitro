@@ -6,7 +6,7 @@ exports.run = (message, bot) => {
         if (!!acc.channel) {
             message.send("**Join/Leave logs will no longer be sent in <#" + acc.channel + ">**");
                 delete acc.channel;
-                config.setAnc(message.guild.id, acc);
+                bot.config.setAnc(message.guild.id, acc);
         } else {
             let channel;
             if (!message.args[1]) {
@@ -22,7 +22,7 @@ exports.run = (message, bot) => {
                 return message.send("**Failed to resolve a channel from "+message.args[1]+"**")
             }
             acc.channel = channel;
-            config.setAnc(message.guild.id, acc);
+            bot.config.setAnc(message.guild.id, acc);
             message.send("**The Join / Leave logs will be sent to <#"+channel+"> , Make sure you configure the welcome and farewell messages next, or nothing will happen.**")        
         }
         return;
@@ -31,17 +31,17 @@ exports.run = (message, bot) => {
             if (acc.hasOwnProperty("welcome")) {
                 message.send("**The welcome message has been deleted, and it will no longer be sent.**");
                 delete acc.welcome;
-                config.setAnc(message.guild.id, acc);
+                bot.config.setAnc(message.guild.id, acc);
             } else {
                 message.send("**The welcome message is not currently active.**")
             }
             return;
         } else {
-            let msg = suffix.split(" ");
+            let msg = message.suffix.split(" ");
             msg.shift();
             msg = msg.join(" ");
             acc.welcome = msg;
-            config.setAnc(message.guild.id, acc);
+            bot.config.setAnc(message.guild.id, acc);
             message.send("**The welcome message: `"+msg+"` will now be sent in the Join/leave log channel. Make sure you configure that aswell.**");
         }
     } else if (message.args[0] === "farewell") {
@@ -49,17 +49,17 @@ exports.run = (message, bot) => {
             if (acc.hasOwnProperty("farewell")) {
                 message.send("**The farewell message has been deleted, and it will no longer be sent.**");
                 delete acc.farewell;
-                config.setAnc(message.guild.id, acc);
+                bot.config.setAnc(message.guild.id, acc);
             } else {
                 message.send("**The farewell message is not currently active.**")
             }
             return;
         } else {
-            let msg = suffix.split(" ");
+            let msg = message.suffix.split(" ");
             msg.shift();
             msg = msg.join(" ");
             acc.farewell = msg;
-            config.setAnc(message.guild.id, acc);
+            bot.config.setAnc(message.guild.id, acc);
             message.send("**The farewell message: `"+msg+"` will now be sent in the Join/leave log channel. Make sure you configure that aswell.**");
         }
     } else {
