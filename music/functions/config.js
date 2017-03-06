@@ -36,7 +36,7 @@ r.connect({
 
       if (err) return console.log(err)
 
-      if (row.old_val.data.prefix !== row.new_val.data.prefix) {
+      if (!!row.new_val.data && !!row.new_val.data.prefix && !!row.new_val.id) {
 
         config[row.new_val.id] = row.new_val.data.prefix
 
