@@ -15,7 +15,8 @@ exports.run = (message, bot) => {
     let sent = prof.getSent(id);
     let taco = prof.getMoney(id);
     let shout = prof.getShout(id, message.guild.prefix);
-    let back = bg[prof.getBg(id)].file;
+    let get = prof.getBg(id)
+    let back = get === "default" ? bg.default.file : bg[get[0]].fold+"/"+get[1]+".png"
     let Image = Canvas.Image,
         canvas = new Canvas(2000, 2000),
         ctx = canvas.getContext('2d');
@@ -45,7 +46,7 @@ exports.run = (message, bot) => {
                     let Avatar = Canvas.Image;
                     let ava = new Avatar;
                     ava.src = buf;
-                    ctx.drawImage(ava, 126, 126, 536, 536);
+                    ctx.drawImage(ava, 117, 122, 550, 550);
 
                     //Level
                     ctx.font = "bold 286px Helvetica";

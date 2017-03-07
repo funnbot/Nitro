@@ -6,7 +6,7 @@ module.exports = {
   },
   nightsky: {
     file: "./images/bg/nightsky/nightsky.png",
-    fold: "./images/bg/nigthsky"
+    fold: "./images/bg/nightsky"
   },
   cities: {
     file: "./images/bg/cities/cities.png",
