@@ -7,99 +7,108 @@ const pretty = require('pretty-ms');
 const bg = require('../functions/bg');
 
 exports.run = (message, bot) => {
-    let time = (new Date).getTime();
-    let id = (!message.mentions.users.first()) ? message.author.id : message.mentions.users.first().id;
-    let user = (!message.mentions.users.first()) ? message.author : message.mentions.users.first();
-    let lvl = prof.getLvl(id);
-    let rank = prof.getRank(id);
-    let sent = prof.getSent(id);
-    let taco = prof.getMoney(id);
-    let shout = prof.getShout(id, message.guild.prefix);
-    let get = prof.getBg(id)
-    let back = get === "default" ? bg.default.file : bg[get[0]].fold+"/"+get[1]+".png"
-    let Image = Canvas.Image,
-        canvas = new Canvas(2000, 2000),
-        ctx = canvas.getContext('2d');
-    ctx.patternQuality = 'bilinear';
-    ctx.filter = 'bilinear';
-    ctx.antialias = 'subpixel';
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
-    ctx.shadowOffsetY = 2;
-    ctx.shadowBlur = 2;
-    fs.readFile(back, function (err, Background) {
-        if (err) return console.log(err);
-        let BG = Canvas.Image;
-        let ground = new Image;
-        ground.src = Background;
-        ctx.drawImage(ground, 0, 0, 2000, 2000);
-        fs.readFile('./images/profile.png', (err, profile) => {
+    message.channel.sendMessage("**Generating...**").then(gen => {
+
+        let time = (new Date).getTime();
+        let id = (!message.mentions.users.first()) ? message.author.id : message.mentions.users.first().id;
+        let user = (!message.mentions.users.first()) ? message.author : message.mentions.users.first();
+        let lvl = prof.getLvl(id);
+        let rank = prof.getRank(id);
+        let sent = prof.getSent(id);
+        let taco = prof.getMoney(id);
+        let shout = prof.getShout(id, message.guild.prefix);
+        let get = prof.getBg(id)
+        let back = get === "default" ? bg.default.file : bg[get[0]].fold + "/" + get[1] + ".png"
+        let Image = Canvas.Image,
+            canvas = new Canvas(2000, 2000),
+            ctx = canvas.getContext('2d');
+        ctx.patternQuality = 'bilinear';
+        ctx.filter = 'bilinear';
+        ctx.antialias = 'subpixel';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+        ctx.shadowOffsetY = 2;
+        ctx.shadowBlur = 2;
+        fs.readFile(back, function (err, Background) {
             if (err) return console.log(err);
-            let that = new Image;
-            that.src = profile;
-            ctx.drawImage(that, 0, 0, 2000, 2000)
-            let url = (user.displayAvatarURL.slice(0, -10).endsWith('.gif')) ? user.displayAvatarURL.slice(0, -13) + "png" : user.displayAvatarURL;
-            jimp.read(url, (err, ava) => {
-                ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
-                    if (err) return console.log(err);
-                    
-                    //Avatar
-                    let Avatar = Canvas.Image;
-                    let ava = new Avatar;
-                    ava.src = buf;
-                    ctx.drawImage(ava, 117, 122, 550, 550);
-
-                    //Level
-                    ctx.font = "bold 286px Helvetica";
-                    ctx.fillStyle = "#FFFFFF";
-                    ctx.textAlign = "center";
-                    ctx.fillText(lvl, 1625, 520);
-
-                    //Name
-                    ctx.font = "bold 175px Helvetica";
-                    ctx.fillStyle = "#FFFFFF";
-                    ctx.textAlign = "left";
-                    ctx.fillText(user.username, 55, 985);
-
-                    //Sent
-                    let meg;
-                    if (sent > 999 && sent < 1000000) {
-                        let div = sent / 1000;
-                        let round = Math.round(10 * div) / 10;
-                        round += "K";
-                        meg = round;
-                    }
-                    if (sent > 999999) {
-                        let div = sent / 1000000;
-                        let round = Math.round(10 * div) / 10;
-                        round += "M";
-                        meg = round;
-                    }
-                    if (sent < 1000) meg = sent;
-                    ctx.font = "bold 120px Helvetica";
-                    ctx.textAlign = "center";
-                    ctx.fillText(meg, 311, 1415);
-
-                    //Global Rank
-                    ctx.font = "bold 140px Helvetica";
-                    ctx.fillText(rank, 1756, 1390);
-
-                    //Money
-                    ctx.font = "bold 130px Helvetica";
-                    ctx.textAlign = "right";
-                    ctx.fillText(taco, 1928, 1176);
-
-                    //Infobox
-                    ctx.font = "bold 105px Helvetica";
-                    ctx.textAlign = "left";
-                    let lines = wrapText(ctx, shout, 1831)
-                    lines.forEach((line, i) => {
-                        if (i<4) ctx.fillText(line, 85, 1626 + (i * 100));
-                        
-                    });
-                    canvas.toBuffer((err, buf) => {
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 2000, 2000);
+            fs.readFile('./images/profile.png', (err, profile) => {
+                if (err) return console.log(err);
+                let that = new Image;
+                that.src = profile;
+                ctx.drawImage(that, 0, 0, 2000, 2000)
+                let url = (user.displayAvatarURL.slice(0, -10).endsWith('.gif')) ? user.displayAvatarURL.slice(0, -13) + "png" : user.displayAvatarURL;
+                jimp.read(url, (err, ava) => {
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
                         if (err) return console.log(err);
-                        message.channel.sendFile(buf);
-                        message.channel.sendMessage("**Here is " + user.username + "'s Profile**");
+
+                        //Avatar
+                        let Avatar = Canvas.Image;
+                        let ava = new Avatar;
+                        ava.src = buf;
+                        ctx.drawImage(ava, 117, 122, 550, 550);
+
+                        //Level
+                        ctx.font = "bold 286px Helvetica";
+                        ctx.fillStyle = "#FFFFFF";
+                        ctx.textAlign = "center";
+                        ctx.fillText(lvl, 1625, 520);
+
+                        //Name
+                        ctx.font = "bold 175px Helvetica";
+                        ctx.fillStyle = "#FFFFFF";
+                        ctx.textAlign = "left";
+                        ctx.fillText(user.username, 55, 985);
+
+                        //Sent
+                        let meg;
+                        if (sent > 999 && sent < 1000000) {
+                            let div = sent / 1000;
+                            let round = Math.round(10 * div) / 10;
+                            round += "K";
+                            meg = round;
+                        }
+                        if (sent > 999999) {
+                            let div = sent / 1000000;
+                            let round = Math.round(10 * div) / 10;
+                            round += "M";
+                            meg = round;
+                        }
+                        if (sent < 1000) meg = sent;
+                        ctx.font = "bold 120px Helvetica";
+                        ctx.textAlign = "center";
+                        ctx.fillText(meg, 311, 1415);
+
+                        //Global Rank
+                        ctx.font = "bold 140px Helvetica";
+                        ctx.fillText(rank, 1756, 1390);
+
+                        //Money
+                        ctx.font = "bold 130px Helvetica";
+                        ctx.textAlign = "right";
+                        ctx.fillText(taco, 1928, 1176);
+
+                        //Infobox
+                        ctx.font = "bold 105px Helvetica";
+                        ctx.textAlign = "left";
+                        let lines = wrapText(ctx, shout, 1831)
+                        lines.forEach((line, i) => {
+                            if (i < 4) ctx.fillText(line, 85, 1626 + (i * 100));
+
+                        });
+
+                        let canvas2 = new Canvas(400, 400)
+                        let ctx2 = canvas2.getContext('2d')
+
+                        ctx2.drawImage(canvas, 0, 0, 400, 400)
+
+                        canvas2.toBuffer((err, buf) => {
+                            if (err) return console.log(err);
+                            message.channel.sendFile(buf);
+                            gen.edit("**Here is " + user.username + "'s Profile**");
+                        })
                     })
                 })
             })
