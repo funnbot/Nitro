@@ -137,6 +137,22 @@ class GuildConfig {
     this.setObject(id, 'custom', custom)
   }
 
+  getPerms(id) {
+    return this.getString(id, 'perms', {})
+  }
+
+  setPerms(id, perms) {
+    this.setObject(id, 'perms', perms)
+  }
+
+  getFilter(id) {
+    return this.getString(id, 'filter', {})
+  }
+
+  setFilter(id, filter) {
+    this.setObject(id, 'filter', filter)
+  }
+
 }
 
 module.exports = GuildConfig;

@@ -1,3 +1,10 @@
+**In Progress**
+> Customizable Permission System for each command and custom command
+> Custom Command Shortcut System
+> Chat filter to remove unwanted messages
+> (Maybe) Strike system for bad users
+**Finished**
 > Added ChangeLog command to see the recent updates
+> Change your profile background to a fancy scene
 > Completely Rewrote the bots framework.
 > Fixed the uws disconnect issue.

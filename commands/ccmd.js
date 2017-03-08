@@ -77,10 +77,11 @@ function removeCmd(message) {
 }
 
 function listCmd(message) {
+    delete dure[message.author.id];
     let custom = bot.config.getCustom(message.guild.id);
     let cu = Object.keys(custom);
+    if (cu.length < 1) return message.channel.sendMessage("**There are no custom commands on this server**")
     message.channel.sendMessage("**The commands on this server are:**\n```md\n"+cu.join(", ")+"```", {split:{prepend:"```md\n", append:"```"}});
-    delete dure[message.author.id];
 }
 
 function trigger(message, type) {
