@@ -31,6 +31,10 @@ function Message(message) {
 
     message.guild.roleme = bot.config.getRoleMe(id)
 
+    message.guild.perms = bot.config.getPerms(id)
+
+    message.guild.filter = bot.config.getFilter(id)
+
     let nopre = message.content.slice(message.guild.prefix.length)
 
     let split = nopre.split(" ")

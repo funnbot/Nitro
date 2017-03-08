@@ -4,6 +4,7 @@
 > Chat filter to remove unwanted messages
 > (Maybe) Strike system for bad users
 **Finished**
+> Give command, give people money
 > Added ChangeLog command to see the recent updates
 > Change your profile background to a fancy scene
 > Completely Rewrote the bots framework.
