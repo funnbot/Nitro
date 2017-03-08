@@ -1,0 +1,3 @@
+> Added ChangeLog command to see the recent updates
+> Completely Rewrote the bots framework.
+> Fixed the uws disconnect issue.

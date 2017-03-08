@@ -1,5 +1,17 @@
+const fs = require('fs')
+
 exports.run = (message, bot) => {
-  message.send("Pong! "+bot.ping+"ms")
+    fs.readFile('./changelog.txt', (err, txt) => {
+
+      let embed = new bot.embed()
+
+      embed.setDescription(txt)
+
+      embed.setColor("#8fbc8f")
+
+      message.channel.sendEmbed(embed)
+
+    })
 }
 
 exports.conf = {
