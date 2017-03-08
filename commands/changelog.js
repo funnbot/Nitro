@@ -20,6 +20,6 @@ exports.conf = {
   coolDown:0,
   dm:true,
   category:"Other",
-  help:"Ping! Pong!",
+  help:"See the most recent changes to Nitro",
   args:""
 }
