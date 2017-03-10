@@ -41,6 +41,18 @@ bot.on('message', (message) => {
   if (message.channel.type === "text") {
     let custom = message.guild.custom
     if (!!custom[message.command] && !cmds.hasOwnProperty(message.command)) {
+      if (message.guild.perms[message.command]) {
+
+        let customPerms = []
+        Object.keys(message.guild.perms[message.command]).forEach(p => {
+          if (message.guild.perms[message.command][p] === "add") customPerms.push(p)
+        })
+
+        let Ccheck = perm.Mcheck(customPerms, message)
+        if (!Ccheck.has) return message.channel.sendMessage("Uh Oh, I was unable to proceed because you lack the permission(s) `" + Ccheck.miss.join(", ") + "`")
+
+      }
+
       CustomCmds.convert(message.command, message, bot)
     }
   }
@@ -56,7 +68,20 @@ bot.on('message', (message) => {
     if (categ === "Fun" && !!mods.fun) return;
     if (categ === "Music" && !!mods.music) return;
     if (categ === "Social" && !!mods.social) return;
-    let Mcheck = perm.Mcheck(cmds[message.command].conf.userPerm, message);
+
+    let newRoles = cmds[message.command].conf.userPerm.slice(0)
+
+    if (message.guild.perms[message.command]) {
+
+      Object.keys(message.guild.perms[message.command]).forEach(p => {
+        if (message.guild.perms[message.command][p] === "add") newRoles.push(p)
+      })
+
+    }
+
+    console.log(newRoles)
+
+    let Mcheck = perm.Mcheck(newRoles, message);
     let cantGo = false;
     if (!Mcheck.has) {
       cantGo = true;

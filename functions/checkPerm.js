@@ -1,6 +1,11 @@
 const bot = require('../bot.js')
 
 exports.Mcheck = (perms, message) => {
+  let custom = bot.config.getPerms(message.guild.id)
+
+  
+
+
   if (perms.length === 0) return {
     has: true,
     miss: []
