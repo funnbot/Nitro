@@ -47,7 +47,7 @@ function go() {
 
 go()
 
-bot.setInterval(() => {
+setInterval(() => {
     go()
 }, 14400000)
 
