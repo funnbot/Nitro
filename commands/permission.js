@@ -120,7 +120,7 @@ exports.run = (message, bot, send) => {
 
   }
 
-  send("**Changed the permission(s) for the command `" + message.args[0] + "` to:** `" + newPerms.join("` | `") + "`")
+  send("**Changed the permission(s) for the command `" + message.args[0] + "` to:** `" + newPerms.join("` | `") + " `")
 
   bot.config.setPerms(message.guild.id, perms)
 
