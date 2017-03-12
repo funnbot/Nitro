@@ -1,9 +1,9 @@
 exports.run = (message, bot) => {
   let embed = new bot.embed()
-  embed.addField(message.prefix + "purge <int>", "Purge <int> messages. If NaN defaults to 20. Discords API makes it impossible to delete messages older than 14 days.")
-  embed.addField(message.prefix + "purge <int> <@mentions...>", "Purge <int> messages but filter by mentioned users. If no number provided defaults to 20.")
-  embed.addField(message.prefix + "purge <int> -b", "Use the `-b` flag to only purge messages sent by bots.")
-  embed.addField(message.prefix + "purge search <query>", "Search through the past 100 messages and purge those containing <query>")
+  embed.addField(message.guild.prefix + "purge <int>", "Purge <int> messages. If NaN defaults to 20. Discords API makes it impossible to delete messages older than 14 days.")
+  embed.addField(message.guild.prefix + "purge <int> <@mentions...>", "Purge <int> messages but filter by mentioned users. If no number provided defaults to 20.")
+  embed.addField(message.guild.prefix + "purge <int> -b", "Use the `-b` flag to only purge messages sent by bots.")
+  embed.addField(message.guild.prefix + "purge search <query>", "Search through the past 100 messages and purge those containing <query>")
   if (!message.args[0]) return message.send({
     embed
   })
