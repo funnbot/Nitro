@@ -11,7 +11,7 @@ exports.run = (message, bot, send) => {
     let id = message.author.id;
     let money = bot.profile.getMoney(id);
     let bet = parseInt(message.args[0]) || "no";
-    if (bet < 100 || bet > 2000 || bet === "no") return send("**:cherries: | Your bet must be an ammount between $100 and $2000**");
+    if (bet < 100 || bet > 2000 || bet === "no") return send("**:cherries: | Your bet must be an amount between $100 and $2000**");
     if (money < bet) return send("**You cannot afford that bet**")
     let win = run3()
     let did = (win[4] === win[5] && win[5] === win[6]) ? true : false;
