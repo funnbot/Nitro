@@ -6,6 +6,8 @@ exports.run = (message, bot, send) => {
 
   let target = message.mentions.users.first()
 
+  if (target.id === message.author.id) return send("**You can't give youself money :stuck_out_tongue_closed_eyes:")
+
   if (!message.args[1]) return send("**How much money?**")
 
   let num = parseInt(message.args[0]) || parseInt(message.args[1]) || false
