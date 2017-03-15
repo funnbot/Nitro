@@ -31,9 +31,9 @@ bot.on('message', (message) => {
     }
   }
   if (message.content.startsWith('<@264087705124601856>') || message.content.startsWith('<@!264087705124601856>')) {
-    if (!message.args[1]) return;
-    if (message.args[1] === "prefix") return message.channel.sendMessage("**My prefix is " + message.guild.prefix + "**");
-    if (message.args[1] === "help") cmds.help.run(message, bot);
+    if (!message.args[0]) return;
+    if (message.args[0] === "prefix") return message.channel.sendMessage("**My prefix is " + message.guild.prefix + "**");
+    if (message.args[0] === "help") cmds.help.run(message, bot);
   }
   if (!message.content.startsWith(message.guild.prefix)) return;
 
@@ -53,10 +53,23 @@ bot.on('message', (message) => {
 
       }
 
-      CustomCmds.convert(message.command, message, bot)
+      if (custom[message.command].type === "shortcut") {
+        let saved = message.args.slice(0)
+        let cmsg = custom[message.command].msg
+        let split = cmsg.split(" ")
+        message.command = split[0]
+        split = split.slice(1)
+        split.forEach((s, i) => {
+          message.args[i] = s
+        })
+        saved.forEach((s, i) => {
+          message.args[(i+message.args.length)] = s
+        })
+        console.log(split)
+      } else CustomCmds.convert(message.command, message, bot)
     }
   }
-
+  console.log(message.args)
   if (!cmds.hasOwnProperty(message.command)) return;
   //if (suffix.includes("<") && suffix.includes(">")) message.channel.sendMessage("*It looks like you are using the characters < and > in your command. Remember, these are only for refrence on what type of text goes there, not to actually include them.*")
   if (message.channel.type !== "text" && cmds[message.command].conf.dm === false) return message.channel.sendMessage('This command does not work in Direct Messages.');
@@ -78,8 +91,6 @@ bot.on('message', (message) => {
       })
 
     }
-
-    console.log(newRoles)
 
     let Mcheck = perm.Mcheck(newRoles, message);
     let cantGo = false;
