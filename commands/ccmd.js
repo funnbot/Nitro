@@ -188,8 +188,21 @@ function advancedCmd(message, trig) {
 
 
 function shortcutCmd(message, trig) {
+    let collect = message.channel.createCollector(m => m.author.id === message.author.id, {time:3600000})
+    collect.on('message', m => {
+        if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect.stop(); delete dure[m.author.id]}
+        else {
+            let cmds = bot.config.getCustom(m.guild.id)
+            cmds[trig] = {msg:m.content, type: "shortcut"}
+            let prefix = bot.config.getPrefix(m.guild.id)
+            bot.config.setCustom(m.guild.id, cmds)
+            m.channel.sendMessage("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
+            collect.stop()
+            delete dure[m.author.id]
+        }
+    })
     delete dure[message.author.id];
-    message.channel.sendMessage('This option is still `wip`');
+    message.channel.sendMessage('**The command name was set to `'+trig+'`**\nNext, write the command and arguments this shortcut is for.');
 }
 
 exports.convert = (cmd, message, bot) => {
