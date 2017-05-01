@@ -1,24 +1,23 @@
-const music = require('../functions/music.js')
+exports.run = (message, bot, send) => {
+  
+     if (!bot.music.registry.has(message.channel.guild.id)) return send("**There is no music playing**")
 
-exports.run = (message, bot, suffix, args) => {
+    let player = bot.music.registry.get(message.channel.guild.id)
 
-  let can = music.checkHostPerm(message);
-  if (can === "nm") return message.channel.sendMessage("There are no music sessions active.");
-  if (can) {
-    message.channel.sendMessage("Skipping Song")
-    music.skip(message.guild.id);
+    if (player.checkPerm(message)) return
 
-  } else {
-    message.channel.sendMessage("You must be the host of this session or have the `MANAGE_GUILD` permission to use this commmand")
-  }
+    send("**Skipping**")
+
+    player.skip()
+    
 }
 
-exports.conf = { 
-  userPerm: [],
-  botPerm: ["SEND_MESSAGES"],
-  coolDown: 0,
-  dm: false,
-  category: "Music",
-  help: "Skip a currently playing song",
-  args: "",
+exports.conf = {
+  userPerm:[],
+  botPerm:["SEND_MESSAGES"],
+  coolDown:0,
+  dm:true,
+  category:"",
+  help:"",
+  args:"",
 }

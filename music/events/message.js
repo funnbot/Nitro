@@ -1,27 +1,31 @@
-const config = require('../functions/config');
-const bot = require('../bot.js').bot;
-const cmds = require('../functions/loadCommands.js').getCmds();
+const bot = require('../bot')
+const Commands = require('../func/loadCommands')
+const config = require('../func/config')
 
-bot.on('message', (message) => {
+bot.on('messageCreate', message => {
 
-  if (message.author.bot) return;
-  let prefix;
-  if (message.channel.type === "text") {
-    prefix = config.getPrefix(message.guild.id);
-  } else { 
-    prefix = "n!"
-  }
-  let nopre = message.content.slice(prefix.length);
-  let args = nopre.split(" ");
-  if (!message.content.startsWith(prefix)) return;
-  let command = args[0];
-  args.shift();
-  let suffix = args.join(" ");
-  if (!cmds.hasOwnProperty(command)) return;
-  try {
-    cmds[command].run(message, bot, suffix, args, message.channel.send.bind(message.channel))
-  } catch (err) {
-    console.log(err);
-  }
-  
+    if (message.author.bot) return
+    if (!message.channel.guild) return
+
+    message.prefix = config.getPrefix(message.channel.guild.id)
+
+    let cutPrefix = message.content.slice(message.prefix.length)
+    message.args = cutPrefix.split(" ")
+    message.command = message.args[0]
+    message.args = message.args.slice(1)
+    message.suffix = message.args.join(" ")
+
+    let cmds = Commands.getCmds()
+    if (!cmds.hasOwnProperty(message.command)) return
+
+    try {
+
+        cmds[message.command].run(message, bot, message.channel.createMessage.bind(message.channel))
+
+    } catch (err) {
+
+        message.channel.createMessage("```js\n"+err+"```")
+
+    }
+
 })

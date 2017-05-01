@@ -145,7 +145,7 @@ function play(ID, host) {
         bot.channels.get(sessions[ID].voiceChannel).join().then(connection => {
             sessions[ID].connection = connection;
             recurse(ID);
-        });
+        }); 
     }
 }
 

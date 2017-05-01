@@ -1,28 +1,23 @@
-const music = require('../functions/music')
+exports.run = (message, bot, send) => {
+    
+    if (!bot.music.registry.has(message.channel.guild.id)) return message.channel.createMessage("**There is no music playing**")
 
+    let player = bot.music.registry.get(message.channel.guild.id)
 
-exports.run = (message, bot, suffix, args) => {
-  const voiceChannel = message.member.voiceChannel;
-  if (!voiceChannel) {
-    return message.reply(`Please be in a voice channel first!`);
-  }
-  if (music.linkType(suffix) === "nal" || music.linkType(suffix) === "yt-playlist") return message.reply("Please provide a: youtube link, soundcloud link, or soundcloud playlist.");
-  music.addQueue(suffix, message.guild.id, message.channel.id, voiceChannel.id,(err, data) => {
-  console.log(err)
-    if (err) {
-      return message.reply("Please provide a: youtube link, soundcloud link, or soundcloud playlist. Make sure your link is valid.");
-    }
-    message.channel.sendMessage("There are now `"+data+"` song(s) in the playlist.")
-    music.play(message.guild.id, message.author.id);
-  })
+    let num = message.args[0] || 1
+
+    num = nu.range(num, 1, 11)
+
+    player.getQueue(message, num)
+
 }
 
-exports.conf = { 
-  userPerm: [],  
-  botPerm: ["SEND_MESSAGES"],
-  coolDown: 0,
-  dm: false,
-  category: "Music",
-  help: "Queue a soundcloud/youtube link.",
-  args: "<url/query>",
+exports.conf = {
+  userPerm:[],
+  botPerm:["SEND_MESSAGES"],
+  coolDown:0,
+  dm:true,
+  category:"",
+  help:"",
+  args:"",
 }

@@ -23,4 +23,10 @@ f.clean = (content) => {
     return content
 }
 
+f.range = (input, minimum, maximum) => {
+  if (input < minimum) input = minimum
+  if (input > maximum) input = maximum
+  return input
+}
+
 global.nu = f

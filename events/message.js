@@ -65,7 +65,7 @@ bot.on('message', (message) => {
         saved.forEach((s, i) => {
           message.args[(i+message.args.length)] = s
         })
-        console.log(split)
+        //console.log(split)
       } else CustomCmds.convert(message.command, message, bot)
     }
   }

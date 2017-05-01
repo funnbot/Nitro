@@ -1,24 +1,23 @@
-const music = require('../functions/music.js')
+exports.run = (message, bot, send) => {
+  
+    if (!bot.music.registry.has(message.channel.guild.id)) return send("**There is no music playing**")
 
-exports.run = (message, bot, suffix, args) => {
-  let can = music.checkHostPerm(message);
-  if (can === "nm") return message.channel.sendMessage("There are no music sessions active.");
-  if (can) {
-    if (!message.mentions.channels.first()) return message.channel.sendMessage('You must mention a channel to set it.');
-    music.setChannel(message.guild.id, message.mentions.channels.first().id);
-    message.channel.sendMessage("Session channel set to "+message.mentions.channels.first().name)
+    let player = bot.music.registry.get(message.channel.guild.id)
 
-  } else {
-    message.channel.sendMessage("You must be the host of this session or have the `MANAGE_GUILD` permission to use this commmand")
-  }
+    if (player.checkPerm(message)) return
+
+    player.setChannel(message.channel.id)
+
+    send("**Now Playing messages will be sent to this channel**")
+
 }
 
 exports.conf = {
   userPerm:[],
   botPerm:["SEND_MESSAGES"],
   coolDown:0,
-  dm:false,
+  dm:true,
   category:"",
-  help:"Set the channel that next song messages are sent to.",
+  help:"",
   args:"",
 }

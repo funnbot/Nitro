@@ -1,8 +1,9 @@
 **In Progress**
-> Custom Command Shortcut System
+> Brainfuck interpreter
 > Chat filter to remove unwanted messages
 > (Maybe) Strike system for bad users
 **Finished**
+> Custom Command Shortcut System
 > Customizable Permission System for each command and custom command
 > Give command, give people money
 > Added ChangeLog command to see the recent updates

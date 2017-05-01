@@ -1,18 +1,20 @@
-const auth = require('../config.js');
-const Discord = require('discord.js');
-const bot = new Discord.Client({
-  disabledEvents: ["TYPING_START"],
-  messageCacheMaxSize: 50,
-  disableEveryone: true
-});
-module.exports.bot = bot;
-require('./functions/loadCommands').load();
-require('./functions/config')
-require('./events/message.js');
-require('./events/disconnect.js')
+const Eris = require('eris')
+const config = require('../config.js')
+
+const bot = new Eris(config.token)
+
+const music = require('./node-music')
+bot.music = music
+bot.music.registry = new music.Registry()
+
+module.exports = bot
+require('./func/config')
+require('./func/loadCommands').load()
+require('./events/message')
+require('../util')
 
 bot.on('ready', () => {
-  console.log("Music started on shard #" + bot.shard.id)
+    console.log("Music Module Ready")
 })
 
-bot.login(auth.token);
+bot.connect()

@@ -3,6 +3,7 @@ const bot = require('../bot')
 module.exports = (message) => {
 
     if (message.channel.type === "text") {
+        if (message.author.id === bot.user.id) return
         let ad = message.guild.adblock
         if (!!ad.on) {
             if (!ad.ex || !ad.ex.users || !ad.ex.users[message.author.id]) {

@@ -1,23 +1,25 @@
-const music = require('../functions/music.js')
+exports.run = (message, bot, send) => {
+    
+    if (!bot.music.registry.has(message.channel.guild.id)) return send("**There is no paused music**")
 
-exports.run = (message, bot, suffix, args) => {
-  
-  let can = music.checkHostPerm(message);
-  if (can === "nm") return message.channel.sendMessage("There are no music sessions active.");
-  if (can) {
-    message.channel.sendMessage("`Unpausing music...`")
-    music.unpause(message.guild.id)
-  } else {
-    message.channel.sendMessage("You must be the host of this session or have the `MANAGE_GUILD` permission to use this commmand")
-  }
+    let player = bot.music.registry.get(message.channel.guild.id)
+
+    if (!player.checkPerm(message)) return
+
+    if (!player.connection.paused) return send("**The music is already playing**")
+
+    player.resume()
+
+    send("**Resuming Music**")
+
 }
 
-exports.conf = { 
-  userPerm: [],
-  botPerm: ["SEND_MESSAGES"],
-  coolDown: 0,
-  dm: false,
-  category: "Music",
-  help: "Resume paused music.",
-  args: "",
+exports.conf = {
+  userPerm:[],
+  botPerm:["SEND_MESSAGES"],
+  coolDown:0,
+  dm:true,
+  category:"",
+  help:"",
+  args:"",
 }
