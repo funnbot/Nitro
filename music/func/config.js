@@ -22,7 +22,7 @@ r.connect({
 
         if (p.data.prefix) config[p.id].prefix = p.data.prefix
 
-        if (p.data.hasOwnProperty(modules) && p.data.modules.hasOwnProperty(music)) config[p.id].music = p.data.modules.music
+        if (p.data.hasOwnProperty("module") && p.data.modules.hasOwnProperty("music")) config[p.id].music = p.data.modules.music
 
       })
 
