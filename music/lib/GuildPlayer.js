@@ -463,7 +463,7 @@ class GuildPlayer {
             ]
         }
 
-        this.bot.getChannel(this.textChannel).createMessage({embed})
+        message.channel.createMessage({embed})
 
     }
 
