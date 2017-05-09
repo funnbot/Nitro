@@ -24,6 +24,8 @@ bot.on('messageCreate', message => {
 
     } catch (err) {
 
+        console.log(err)
+
         message.channel.createMessage("```js\n"+err+"```")
 
     }
