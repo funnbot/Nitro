@@ -39,7 +39,7 @@ exports.run = (message, bot) => {
                 let that = new Image;
                 that.src = profile;
                 ctx.drawImage(that, 0, 0, 2000, 2000)
-                let url = (user.displayAvatarURL.slice(0, -10).endsWith('.gif')) ? user.displayAvatarURL.slice(0, -13) + "png" : user.displayAvatarURL;
+                let url = user.displayAvatarURL.endsWith(".webp") ? user.displayAvatarURL.slice(0, -5) + ".png" : user.displayAvatarURL;
                 jimp.read(url, (err, ava) => {
                     if (err) return console.log(err);
                     ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
