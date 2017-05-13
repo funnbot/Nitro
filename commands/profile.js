@@ -71,7 +71,7 @@ exports.run = (message, bot) => {
                         ctx.fillText(sent, 311, 1415);
 
                         //Global Rank
-                        ctx.font = "bold 140px Helvetica";
+                        ctx.font = "bold 120px Helvetica";
                         rank = snumber(rank)
                         ctx.fillText(rank, 1756, 1390);
 
