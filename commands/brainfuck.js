@@ -46,22 +46,33 @@ class Interpreter {
 
         this.collector
 
+        this.quitC
+
         this.loop = true
 
     }
 
     async interpret() {
 
+        try {
+            await this.linter()
+        } catch (e) {
+            return this.message.channel.send(e)
+        }
+
+        this.forceQuit()
+
         this.infinity()
 
         while (this.loop) {
 
-            await this.delay()
+            //await this.delay()
 
             if (this.codeCursor >= this.codeSplit.length) {
                 this.loop = false
                 clearTimeout(this.infiniteCheck)
                 if (this.collector && !this.collector.ended) this.collector.stop('end of the line')
+                if (this.quitC && !this.quitC.ended) this.quitC.stop('end of the line')
                 return this.message.channel.sendMessage('**Output:** ' + this.output)
             }
 
@@ -101,6 +112,37 @@ class Interpreter {
             }
 
         }
+    }
+
+    forceQuit() {
+        this.message.channel.send("**Evaluating Code**\nType `quit` to quit.")
+        this.quitC = new Discord.MessageCollector(this.message.channel, (m) => m.author.id === this.message.author.id, {
+            max: 1,
+            maxMatches: 1
+        })
+
+        this.quitC.on('message', (m) => {
+            if (m.content.includes('quit')) {
+                this.message.channel.send('**Force Quitting**')
+                this.codeCursor = this.codeSplit.length + 1
+            }
+        })
+    }
+
+    linter() {
+
+        return new Promise((resolve, reject) => {
+
+            let code = this.code
+
+            let leftB = (code.match(/\[/g) || []).length
+            let rightB = (code.match(/\]/g) || []).length
+
+            if (leftB !== rightB) return reject('**Mismatched Brackets**')
+            else return resolve()
+
+        })
+
     }
 
     infinity() {
