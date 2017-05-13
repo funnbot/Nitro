@@ -46,69 +46,74 @@ class Interpreter {
 
         this.collector
 
+        this.loop = true
+
     }
 
-    interpret() {
-        this._moveCursor(0)
+    async interpret() {
+
+        this.infinity()
+
+        while (this.loop) {
+
+            await this.delay()
+
+            if (this.codeCursor >= this.codeSplit.length) {
+                this.loop = false
+                clearTimeout(this.infiniteCheck)
+                if (this.collector && !this.collector.ended) this.collector.stop('end of the line')
+                return this.message.channel.sendMessage('**Output:** ' + this.output)
+            }
+
+            let input = this.codeSplit[this.codeCursor]
+
+            if (input == "[") {
+                if (this.memory[this.memCursor] != 0) {
+                    this.codeCursor++
+                } else {
+                    this.codeCursor = (this.codeCursor + this.distanceToBracketRight()) + 1
+                }
+            } else if (input == "]") {
+                this.codeCursor = this.distanceToBracketLeft()
+            } else if (input === ">") {
+                this.memCursor = this.memCursor + 1
+                if (this.memCursor > 255) return this.message.channel.send("`MemoryError: Out Of Memory`")
+                this.codeCursor++
+            } else if (input === "<") {
+                this.memCursor = this.memCursor - 1
+                if (this.memCursor < 0) return this.message.channel.send("`MemoryError: Negative Memory Does Not Exist`")
+                this.codeCursor++
+            } else if (input === "+") {
+                this.memory[this.memCursor] = this.memory[this.memCursor] + 1
+                if (this.memory[this.memCursor] > 255) this.memory[this.memCursor] = 0
+                this.codeCursor++
+            } else if (input === "-") {
+                this.memory[this.memCursor] = this.memory[this.memCursor] - 1
+                if (this.memory[this.memCursor] < 0) this.memory[this.memCursor] = 255
+                this.codeCursor++
+            } else if (input === ".") {
+                this.output = this.output + String.fromCharCode(this.memory[this.memCursor])
+                this.codeCursor++
+            } else if (input === ",") {
+                let char = await this._getInput()
+                this.memory[this.memCursor] = char
+                this.codeCursor++
+            }
+
+        }
+    }
+
+    infinity() {
         this.infiniteCheck = setTimeout(() => {
             this.message.channel.send('**Infinite Loop Detected**')
-            this._moveCursor(this.codeSplit.length + 1)
-        }, 120000)
+            this.codeCursor = this.codeSplit.length + 1
+        }, 180000)
     }
 
-    async _moveCursor(newC) {
-
-        this.codeCursor = newC
-
-        if (this.codeCursor >= this.codeSplit.length) {
-            clearTimeout(this.infiniteCheck)
-            this.collector.stop('end of the line')
-            return this.message.channel.sendMessage('**Output:** ' + this.output)
-        }
-
-        let input = this.codeSplit[this.codeCursor]
-
-        if (input == "[") {
-            if (this.memory[this.memCursor] != 0) {
-                return this._moveCursor(this.codeCursor + 1)
-            } else {
-                return this._moveCursor(this.codeCursor + this.distanceToBracketRight() + 1)
-            }
-        }
-        if (input == "]") {
-
-            return this._moveCursor(this.distanceToBracketLeft())
-        }
-        if (input === ">") {
-            this.memCursor = this.memCursor + 1
-            if (this.memCursor > 255) return this.message.channel.send("`MemoryError: Out Of Memory`")
-            return this._moveCursor(this.codeCursor + 1)
-        }
-        if (input === "<") {
-            this.memCursor = this.memCursor - 1
-            if (this.memCursor < 0) return this.message.channel.send("`MemoryError: Negative Memory Does Not Exist`")
-            return this._moveCursor(this.codeCursor + 1)
-        }
-        if (input === "+") {
-            this.memory[this.memCursor] = this.memory[this.memCursor] + 1
-            if (this.memory[this.memCursor] > 255) this.memory[this.memCursor] = 0
-            return this._moveCursor(this.codeCursor + 1)
-        }
-        if (input === "-") {
-            this.memory[this.memCursor] = this.memory[this.memCursor] - 1
-            if (this.memory[this.memCursor] < 0) this.memory[this.memCursor] = 255
-            return this._moveCursor(this.codeCursor + 1)
-        }
-        if (input === ".") {
-            this.output = this.output + String.fromCharCode(this.memory[this.memCursor])
-            return this._moveCursor(this.codeCursor + 1)
-        }
-        if (input === ",") {
-            let char = await this._getInput()
-            this.memory[this.memCursor] = char
-            return this._moveCursor(this.codeCursor + 1)
-        }
-
+    delay() {
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(), 1)
+        })
     }
 
     _getInput() {
@@ -116,7 +121,9 @@ class Interpreter {
         return new Promise((resolve, reject) => {
             this.message.channel.sendMessage("**Awaiting Input...**")
             this.collector = new Discord.MessageCollector(this.message.channel, (m) => m.author.id === this.message.author.id, {
-                time: 60000, max:1, maxMatches:1
+                time: 60000,
+                max: 1,
+                maxMatches: 1
             })
 
             this.collector.on('message', (m) => {
