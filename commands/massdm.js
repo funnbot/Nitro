@@ -1,6 +1,7 @@
 const util = require('util');
 
 exports.run = (message, bot) => {
+  if (!message.suffix) return message.channel.send("I can not send an empty message")
   let users = message.guild.members
   message.channel.send("Mass DM'ing your members. (This may take a bit)")
   users.forEach(u => {
