@@ -5,6 +5,7 @@ const request = require('request');
 const jimp = require('jimp');
 const pretty = require('pretty-ms');
 const bg = require('../functions/bg');
+const snumber = require('short-number')
 
 exports.run = (message, bot) => {
     message.channel.sendMessage("**Generating...**").then(gen => {
@@ -64,26 +65,14 @@ exports.run = (message, bot) => {
                         ctx.fillText(user.username, 55, 985);
 
                         //Sent
-                        let meg;
-                        if (sent > 999 && sent < 1000000) {
-                            let div = sent / 1000;
-                            let round = Math.round(10 * div) / 10;
-                            round += "K";
-                            meg = round;
-                        }
-                        if (sent > 999999) {
-                            let div = sent / 1000000;
-                            let round = Math.round(10 * div) / 10;
-                            round += "M";
-                            meg = round;
-                        }
-                        if (sent < 1000) meg = sent;
+                        sent = snumber(sent)
                         ctx.font = "bold 120px Helvetica";
                         ctx.textAlign = "center";
-                        ctx.fillText(meg, 311, 1415);
+                        ctx.fillText(sent, 311, 1415);
 
                         //Global Rank
                         ctx.font = "bold 140px Helvetica";
+                        rank = snumber(rank)
                         ctx.fillText(rank, 1756, 1390);
 
                         //Money
