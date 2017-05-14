@@ -64,9 +64,11 @@ class Interpreter {
 
         this.infinity()
 
+        await this.delay()
+
         while (this.loop) {
 
-            //await this.delay()
+            await this.delay()
 
             if (this.codeCursor >= this.codeSplit.length) {
                 this.loop = false
@@ -88,11 +90,11 @@ class Interpreter {
                 this.codeCursor = this.distanceToBracketLeft()
             } else if (input === ">") {
                 this.memCursor = this.memCursor + 1
-                if (this.memCursor > 255) return this.message.channel.send("`MemoryError: Out Of Memory`")
+                if (this.memCursor > 255) return this.codeCursor = this.codeSplit.length + 1, this.message.channel.send("`MemoryError: Out Of Memory`")
                 this.codeCursor++
             } else if (input === "<") {
                 this.memCursor = this.memCursor - 1
-                if (this.memCursor < 0) return this.message.channel.send("`MemoryError: Negative Memory Does Not Exist`")
+                if (this.memCursor < 0) return this.codeCursor = this.codeSplit.length + 1, this.message.channel.send("`MemoryError: Negative Memory Does Not Exist`")
                 this.codeCursor++
             } else if (input === "+") {
                 this.memory[this.memCursor] = this.memory[this.memCursor] + 1
@@ -116,10 +118,7 @@ class Interpreter {
 
     forceQuit() {
         this.message.channel.send("**Evaluating Code**\nType `quit` to quit.")
-        this.quitC = new Discord.MessageCollector(this.message.channel, (m) => m.author.id === this.message.author.id, {
-            max: 1,
-            maxMatches: 1
-        })
+        this.quitC = new Discord.MessageCollector(this.message.channel, (m) => m.author.id === this.message.author.id)
 
         this.quitC.on('message', (m) => {
             if (m.content.includes('quit')) {
