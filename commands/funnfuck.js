@@ -123,8 +123,6 @@ class Interpreter {
 
         this.codeSplit = Comp.compile()
 
-        console.log(this.codeSplit)
-
         try {
             await this.linter()
         } catch (e) {
