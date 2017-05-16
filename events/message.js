@@ -46,6 +46,7 @@ bot.on('message', (message) => {
         let customPerms = []
         Object.keys(message.guild.perms[message.command]).forEach(p => {
           if (message.guild.perms[message.command][p] === "add") customPerms.push(p)
+          if (message.guild.perms[message.command][p] === "delete") customPerms.splice(customPerms.indexOf(p), 1)
         })
 
         let Ccheck = perm.Mcheck(customPerms, message)
@@ -69,7 +70,6 @@ bot.on('message', (message) => {
       } else CustomCmds.convert(message.command, message, bot)
     }
   }
-  console.log(message.args)
   if (!cmds.hasOwnProperty(message.command)) return;
   //if (suffix.includes("<") && suffix.includes(">")) message.channel.sendMessage("*It looks like you are using the characters < and > in your command. Remember, these are only for refrence on what type of text goes there, not to actually include them.*")
   if (message.channel.type !== "text" && cmds[message.command].conf.dm === false) return message.channel.sendMessage('This command does not work in Direct Messages.');
@@ -88,6 +88,7 @@ bot.on('message', (message) => {
 
       Object.keys(message.guild.perms[message.command]).forEach(p => {
         if (message.guild.perms[message.command][p] === "add") newRoles.push(p)
+        if (message.guild.perms[message.command][p] === "delete") newRoles.splice(newRoles.indexOf(p), 1)
       })
 
     }
