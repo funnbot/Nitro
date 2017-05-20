@@ -8,11 +8,11 @@ exports.run = (message, bot) => {
         else if (before.deny & 1 << 10) before = false
         else before = null
         message.channel.overwritePermissions(message.guild.id, {
-            SEND_MESSAGES: false
+            READ_MESSAGES: false
         }).then(() => {
             let timer = setTimeout(function () {
                 m.channel.overwritePermissions(message.guild.id, {
-                    SEND_MESSAGES: before
+                    READ_MESSAGES: before
                 }).then(() => {
                     m.channel.sendMessage("**The hiding has ended**");
                 });
@@ -23,7 +23,7 @@ exports.run = (message, bot) => {
             collect.on('message', (msg) => {
                 if (msg.content === "unlock") {
                     m.channel.overwritePermissions(message.guild.id, {
-                        SEND_MESSAGES: before
+                        READ_MESSAGES: before
                     }).then(() => {
                         clearTimeout(timer);
                         m.channel.sendMessage("**The hiding has ended**");
@@ -40,6 +40,6 @@ exports.conf = {
     coolDown: 0,
     dm: true,
     category: "Utility",
-    help: "Lockdown a channel for a set ammount of seconds.",
+    help: "Hide a channel for a number of seconds",
     args: "<seconds>",
 }
