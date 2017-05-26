@@ -34,6 +34,8 @@ r.connect({
 
       if (err) return console.log(err)
 
+      console.log(row)
+
       config[row.new_val.id] = row.new_val.data
 
     })
