@@ -8,10 +8,9 @@ exports.Mcheck = (message) => {
     if (custom[message.command]) {
         Object.keys(custom[message.command]).forEach(p => {
             let perm = custom[message.command][p]
-            if (perm === "add") perms.push[p]
+            if (perm === "add") perms.push(p)
         })
     }
-    console.log(custom)
     if (perms.length === 0) return false
     let can = {
         has: true,
