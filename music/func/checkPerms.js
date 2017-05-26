@@ -11,7 +11,7 @@ exports.Mcheck = (message) => {
             if (perm === "ADD") perms.push[p]
         })
     }
-    console.log(perms)
+    console.log(custom)
     if (perms.length === 0) return false
     let can = {
         has: true,
