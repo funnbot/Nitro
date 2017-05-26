@@ -11,6 +11,7 @@ exports.Mcheck = (message) => {
             if (perm === "ADD") perms.push[p]
         })
     }
+    console.log(perms)
     if (perms.length === 0) return false
     let can = {
         has: true,
@@ -19,7 +20,8 @@ exports.Mcheck = (message) => {
     perms.forEach(p => {
 
         let cp = convert(p)
-        let perm = message.channel.permissionOverwrites.has(cp)
+        console.log(cp)
+        perm = cp !== false ? message.channel.permissionOverwrites.has(cp) : false
         if (!perm && message.author.id !== message.guild.owner.user.id && message.author.id !== "163735744995655680") {
             can.has = false;
             can.miss.push(p);
