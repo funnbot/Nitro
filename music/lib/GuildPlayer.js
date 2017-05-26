@@ -372,6 +372,8 @@ class GuildPlayer {
 
         if (this.connection.playing) {
 
+            console.log('made it this far')
+
             this.connection.pause()
 
             return true
