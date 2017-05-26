@@ -18,11 +18,7 @@ r.connect({
 
       array.forEach(p => {
 
-        config[p.id] = {}
-
-        if (p.data.prefix) config[p.id].prefix = p.data.prefix
-
-        if (p.data.hasOwnProperty("module") && p.data.modules.hasOwnProperty("music")) config[p.id].music = p.data.modules.music
+        config[p.id] = p.data
 
       })
 
@@ -37,14 +33,8 @@ r.connect({
     change.each((err, row) => {
 
       if (err) return console.log(err)
-      
-      if (!config[w])
 
-      if (!!row.new_val.data && !!row.new_val.data.prefix && !!row.new_val.id) {
-
-        config[row.new_val.id] = row.new_val.data.prefix
-
-      }
+      config[row.new_val.id] = row.new_val.data
 
     })
 
@@ -61,9 +51,17 @@ exports.getPrefix = (id) => {
 }
 
 exports.getMusic = (id) => {
-  if (!!config[id] && !!config[id].music) {
-    return config[id].music
+  if (!!config[id] && !!config[id].modules && !!config[id].modules.music) {
+    return true
   } else {
     return false;
+  }
+}
+
+exports.getPerms = (id) => {
+  if (!!config[id] && !!config[id].perms) {
+    return config[id].perms
+  } else {
+    return {};
   }
 }
