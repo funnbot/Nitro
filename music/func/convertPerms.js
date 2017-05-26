@@ -31,31 +31,3 @@ const convert = {
     MANAGE_WEBHOOKS: "manageWebhooks",
     MANAGE_EMOJIS: "manageEmojis",
 }
-
-
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
- 
- 
-
- 
-
-
-
-
-
-
-
-
-ADD_REACTIONS (add new reactions to messages)
-VIEW_AUDIT_LOG
