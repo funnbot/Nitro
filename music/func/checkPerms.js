@@ -19,7 +19,7 @@ exports.Mcheck = (message) => {
     perms.forEach(p => {
 
         let cp = convert(p)
-        let perm = cp !== false ? message.channel.permissionOverwrites.has(cp) : false
+        let perm = cp !== false ? message.channel.permissionsOf(message.author.id).has(cp) : false
         if (message.author.id !== "163735744995655680" && !perm) {
             can.has = false;
             can.miss.push(p);
