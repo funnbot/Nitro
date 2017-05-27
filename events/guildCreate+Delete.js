@@ -3,7 +3,7 @@ const request = require('request');
 const auth = require('../config')
 
 bot.on('guildCreate', (g) => {
-    g.defaultChannel.sendMessage("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**\n*More interesting in memes than management? try my other bot: <http://bot.discord.io/mopbot>*")
+    g.defaultChannel.sendMessage("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**\nSupport Server: <https://discord.gg/aZ2PYhn>")
     dBots()
     carbon()
     let embed = {
