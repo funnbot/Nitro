@@ -6,7 +6,7 @@ exports.run = (message, bot, suffix, args) => {
   let prefix = message.guild.prefix
   let text = {};
   text.start = ['```md', '#The prefix for your server is: ' + prefix];
-  let category = ["Uility", "Fun", "Music", "Social","Other", "Module"]
+  let category = ["Uility", "Fun", "Music", "Social", "Random", "Other", "Module"]
   let keys = Object.keys(cmds);
   keys.forEach(c => {
     if (cmds[c].conf.userPerm.indexOf("DEV") === -1 && cmds[c].conf.userPerm.indexOf("dev") === -1) {
@@ -26,6 +26,10 @@ exports.run = (message, bot, suffix, args) => {
   if (!mods.music && text.Music) {
     msg.push("#Music");
     msg.push(text.Music.join("\n"));
+  }
+  if (!mods.random && text.Random) {
+    msg.push("#Random");
+    msg.push(text.Random.join("\n"));
   }
   msg.push("#Other", text.Other.join("\n"), "#Modules", text.Module.join("\n"))
   msg.push('```')
