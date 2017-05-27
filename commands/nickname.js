@@ -19,7 +19,7 @@ exports.conf = {
   userPerm:[],
   botPerm:["SEND_MESSAGES", "MANAGE_NICKNAMES"],
   coolDown:0,
-  dm:true,
+  dm:false,
   category:"Fun",
   help:"Change *your* nickname using emojis and other special characters",
   args:"",

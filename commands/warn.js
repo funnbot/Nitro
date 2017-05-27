@@ -26,10 +26,10 @@ exports.run = (message, bot, send) => {
 }
 
 exports.conf = {
-    userPerm: [],
+    userPerm: ["MANAGE_MESSAGES"],
     botPerm: ["SEND_MESSAGES"],
     coolDown: 0,
-    dm: true,
+    dm: false,
     category: "Utility",
     help: "Warn a user.",
     args: "",
