@@ -8,7 +8,7 @@ exports.run = (message, bot, send) => {
     if (!!done[id] && (new Date).getTime() - done[id] < 21600000) {
         let r = (new Date).getTime() - done[id];
         r = 21600000 - r;
-        send('**:atm: | Daily :dollar: reshreshes in '+pretty(r, {verbose:true})+'**');
+        send('**:atm: | Daily :dollar: refreshes in '+pretty(r, {verbose:true})+'**');
     } else {
         let r = rn({min:45, max:208, integer:true});
         let money = prof.getMoney(id);
