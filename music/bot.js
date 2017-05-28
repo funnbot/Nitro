@@ -1,7 +1,7 @@
 const Eris = require('eris')
 const config = require('../config.js')
 
-const bot = new Eris(config.token)
+const bot = new Eris(config.token, {maxShards: config.shard, messageLimit: 10})
 
 const music = require('./node-music')
 bot.music = music
