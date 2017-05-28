@@ -396,6 +396,18 @@ class GuildPlayer {
 
     }
 
+    remove(index) {
+
+        this.playlist.splice(index, 1)
+
+    }
+
+    getArray() {
+
+        return this.playlist
+
+    }
+
     skip() {
 
         this.connection.stopPlaying()
