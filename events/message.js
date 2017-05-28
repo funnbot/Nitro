@@ -18,7 +18,7 @@ bot.on('message', (message) => {
   if (message.author.bot) return;
 
   //Stored Messages
-  store.add(message, bot.user.id)
+  //store.add(message, bot.user.id)
 
   //let blocked = config.getBlocked();
   //if (blocked.users[message.author.id]) return;
