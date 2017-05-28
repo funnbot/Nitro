@@ -18,12 +18,7 @@ module.exports = () => {
 
             let connection = conn
 
-            r.tableCreate('messages').run(connection, (err, res) => {
-                if (err) return console.log(err)
-                store.connect(conn)
-            })
-
-            
+            store.connect(conn)
 
             loadConfig(connection, (err, config) => {
 
@@ -32,8 +27,12 @@ module.exports = () => {
                 loadProfile(connection, (err, profile) => {
 
                     if (err) return reject(err)
-                    
-                    return resolve({connection, config, profile})
+
+                    return resolve({
+                        connection,
+                        config,
+                        profile
+                    })
 
                 })
             })
