@@ -30,6 +30,7 @@
     "soundcloud-audio": "^1.1.0",
     "soundcloud-resolve": "^1.0.2",
     "soundcloudr": "^1.1.0",
+    "string-similarity": "^1.2.0",
     "threads": "^0.7.2",
     "uws": "^0.12.0",
     "winston": "^2.3.0",

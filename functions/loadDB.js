@@ -1,5 +1,6 @@
 const r = require('rethinkdb')
 const auth = require('../config')
+const store = require('./storeMessages')
 
 
 module.exports = () => {
@@ -16,6 +17,13 @@ module.exports = () => {
         }).then(conn => {
 
             let connection = conn
+
+            r.tableCreate('messages').run(connection, (err, res) => {
+                if (err) return console.log(err)
+                store.connect(conn)
+            })
+
+            
 
             loadConfig(connection, (err, config) => {
 

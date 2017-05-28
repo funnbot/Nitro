@@ -57,6 +57,18 @@ class ProfileConfig {
         return place
     }
 
+    addMoney(id, money) {
+        let cur = this.Get(id, 'money', 0)
+        cur = cur + money
+        this.Set(id, 'money', cur)
+    }
+
+    subMoney(id, money) {
+        let cur = this.Get(id, 'money', 0)
+        cur = cur - money
+        this.Set(id, 'money', cur)
+    }
+
     getSent(id) {
         return this.Get(id, 'sent', 0)
     }

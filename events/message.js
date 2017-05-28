@@ -5,6 +5,7 @@ const cmds = require('../functions/loadCommands.js').getCmds()
 const help = require('../commands/help.js')
 const CustomCmds = require('../commands/ccmd')
 const Adblock = require('../functions/adblock')
+const store = require('../functions/storeMessages')
 
 bot.on('message', (message) => {
 
@@ -15,6 +16,9 @@ bot.on('message', (message) => {
   Adblock(message)
 
   if (message.author.bot) return;
+
+  //Stored Messages
+  store.add(message, bot.user.id)
 
   //let blocked = config.getBlocked();
   //if (blocked.users[message.author.id]) return;
