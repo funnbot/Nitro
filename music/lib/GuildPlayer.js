@@ -10,6 +10,7 @@ const SoundcloudSong = require('./SoundCloudSong')
 const node_music = require('../node-music')
 const queueGen = require('./GenerateQueue')
 const pretty = require('pretty-ms')
+const request = require('request')
 
 class GuildPlayer {
 
@@ -107,6 +108,8 @@ class GuildPlayer {
 
                     let playlist = []
 
+                    res = res.video
+
                     res.forEach(tr => {
 
                         let song = new YoutubeSong({
@@ -129,7 +132,7 @@ class GuildPlayer {
 
                     return resolve(playlist)
 
-                })
+                }).catch(err => reject(err))
 
             }
         })
@@ -276,9 +279,9 @@ class GuildPlayer {
 
                 request.get(`https://www.youtube.com/list_ajax?style=json&action_get_list=1&list=${id}`, (err, res, body) => {
 
-                    body = JSON.parse(body)
+                    if (!body) return reject("Bad id: "+id)
 
-                    if (!body || !body.id) return reject("Bad ID: " + id)
+                    body = JSON.parse(body)
 
                     return resolve(body)
 
