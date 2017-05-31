@@ -6,6 +6,7 @@ const help = require('../commands/help.js')
 const CustomCmds = require('../commands/ccmd')
 const Adblock = require('../functions/adblock')
 const store = require('../functions/storeMessages')
+const log = require('../functions/log')
 
 bot.on('message', (message) => {
 
@@ -23,6 +24,10 @@ bot.on('message', (message) => {
   //let blocked = config.getBlocked();
   //if (blocked.users[message.author.id]) return;
   //if (message.channel.type === "text" && blocked.servers[message.guild.id]) return;
+
+  //log
+  if (message.channel.type === "dm") log.dm(message)
+  else log.g(message)
 
   //stat
   let lvl = bot.profile.getLvl(message.author.id);
