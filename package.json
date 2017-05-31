@@ -12,7 +12,7 @@
     "Paginate": "0.0.1",
     "bufferutil": "^2.0.0",
     "canvas": "^1.6.3",
-    "discord.js": "github:hydrabolt/discord.js",
+    "discord.js": "^11.1.0",
     "erlpack": "github:hammerandchisel/erlpack",
     "ffmpeg": "0.0.4",
     "is-var-name": "^1.0.0",
