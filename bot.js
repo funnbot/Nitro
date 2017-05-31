@@ -16,6 +16,8 @@ Bot().then(bot => {
 
     require('./events/disconnect')
 
+    require('./events/modlog')
+
     require('./functions/loadCommands').load()
 
     require('./util')
