@@ -2,6 +2,7 @@ const bot = require('../bot')
 const moment = require('moment')
 
 exports.fire = (msg, message) => {
+    if (message.author.bot) return 
     if (message.channel.type === "dm") return
     if (message.author.bot) return
     let channel = message.guild.channels.find(c => c.topic === 'nitro-modlog')
