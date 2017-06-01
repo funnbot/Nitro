@@ -25,10 +25,6 @@ bot.on('message', (message) => {
   //if (blocked.users[message.author.id]) return;
   //if (message.channel.type === "text" && blocked.servers[message.guild.id]) return;
 
-  //log
-  if (message.channel.type === "dm") log.dm(message)
-  else log.g(message)
-
   //stat
   let lvl = bot.profile.getLvl(message.author.id);
   bot.profile.addMsg(message.author.id);
@@ -73,13 +69,18 @@ bot.on('message', (message) => {
           message.args[i] = s
         })
         saved.forEach((s, i) => {
-          message.args[(i+message.args.length)] = s
+          message.args[(i + message.args.length)] = s
         })
         //console.log(split)
       } else CustomCmds.convert(message.command, message, bot)
     }
   }
   if (!cmds.hasOwnProperty(message.command)) return;
+
+  //log
+  if (message.channel.type === "dm") log.dm(message)
+  else log.g(message)
+
   //if (suffix.includes("<") && suffix.includes(">")) message.channel.sendMessage("*It looks like you are using the characters < and > in your command. Remember, these are only for refrence on what type of text goes there, not to actually include them.*")
   if (message.channel.type !== "text" && cmds[message.command].conf.dm === false) return message.channel.sendMessage('This command does not work in Direct Messages.');
   let stop = false
