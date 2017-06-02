@@ -1,9 +1,9 @@
 exports.run = (message, bot) => {
-    if (!message.args[0]) return message.channel.sendMessage("Ban a user by their ID. Use for people who are not currently in your server.");
+    if (!message.args[0]) return message.channel.send("Ban a user by their ID. Use for people who are not currently in your server.");
     message.guild.ban(message.args[0]).then(() => {
-        message.channel.sendMessage("Banning the ID `"+message.args[0]+"`")
+        message.channel.send("Banning the ID `"+message.args[0]+"`")
     }).catch(err => {
-        message.channel.sendMessage("The ID `"+message.args[0]+"` is not a valid user.");
+        message.channel.send("The ID `"+message.args[0]+"` is not a valid user.");
     })
 }
 

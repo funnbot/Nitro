@@ -28,13 +28,13 @@ function go() {
             let mem = store.members[m];
             if (m === win) {
                 bot.fetchUser(m).then(user => {
-                    user.sendMessage(`:tada:                                                                          :tada:\n                         **Congratulations**                     \n         **You have won the Lottery Jackpot of:**\n                                **$${store.jackpot} :dollar: **\n:tada:                                                                          :tada:`)
+                    user.send(`:tada:                                                                          :tada:\n                         **Congratulations**                     \n         **You have won the Lottery Jackpot of:**\n                                **$${store.jackpot} :dollar: **\n:tada:                                                                          :tada:`)
                 })
                 let mo = prof.getMoney(m);
                 prof.setMoney(m, mo + store.jackpot);
             } else {
                 bot.fetchUser(m).then(user => {
-                    user.sendMessage(`:slight_frown: | **You have lost $${mem.tickets*100} in the lottery, better luck next time **| :slight_frown:`)
+                    user.send(`:slight_frown: | **You have lost $${mem.tickets*100} in the lottery, better luck next time **| :slight_frown:`)
                 })
             }
         })

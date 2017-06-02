@@ -2,10 +2,10 @@ exports.run = (message, bot) => {
     let mods = message.guild.modules
     if (mods.social) {
         delete mods.social;
-        message.channel.sendMessage("**The `social` module has been enabled.**")
+        message.channel.send("**The `social` module has been enabled.**")
     } else {
         mods.social = true;
-        message.channel.sendMessage("**The `social` module has been disabled.**")
+        message.channel.send("**The `social` module has been disabled.**")
     }
     bot.config.setMod(message.guild.id, mods);
 }

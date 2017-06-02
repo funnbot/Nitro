@@ -1,6 +1,6 @@
 exports.run = (message, bot, suffix, args) => {
     if (message.author.id === "163735744995655680") {
-        message.channel.sendMessage("Restaring Music Module...").then(() => {
+        message.channel.send("Restaring Music Module...").then(() => {
             bot.destroy().then(() => {
                 process.exit(1);
             }) 

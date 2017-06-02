@@ -2,14 +2,14 @@ const music = require('../functions/music.js')
 
 exports.run = (message, bot, suffix, args) => {
   let can = music.checkHostPerm(message);
-  if (can === "nm") return message.channel.sendMessage("There are no music sessions active.");
+  if (can === "nm") return message.channel.send("There are no music sessions active.");
   if (can) {
-    if (!message.mentions.channels.first()) return message.channel.sendMessage('You must mention a channel to set it.');
+    if (!message.mentions.channels.first()) return message.channel.send('You must mention a channel to set it.');
     music.setChannel(message.guild.id, message.mentions.channels.first().id);
-    message.channel.sendMessage("Session channel set to "+message.mentions.channels.first().name)
+    message.channel.send("Session channel set to "+message.mentions.channels.first().name)
 
   } else {
-    message.channel.sendMessage("You must be the host of this session or have the `MANAGE_GUILD` permission to use this commmand")
+    message.channel.send("You must be the host of this session or have the `MANAGE_GUILD` permission to use this commmand")
   }
 }
 

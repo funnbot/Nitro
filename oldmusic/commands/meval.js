@@ -10,10 +10,10 @@ exports.run = (message, bot, suffix, args) => {
             if (inspect.length > 1900) {
                 inspect = inspect.substr(0, 1900);
             }
-            message.channel.sendMessage("**Input**\n" + suffix + "\n\n**Output**\n```js\n" + inspect + "```")
+            message.channel.send("**Input**\n" + suffix + "\n\n**Output**\n```js\n" + inspect + "```")
                 .then(m => m.delete(20000)).catch(console.log);
         } catch (err) {
-            message.channel.sendMessage("**```prolog\nError:\n\n" + err + "```**")
+            message.channel.send("**```prolog\nError:\n\n" + err + "```**")
                 .then(m => m.delete(20000)).catch(console.log);
         }
     }

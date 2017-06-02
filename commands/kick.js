@@ -1,19 +1,19 @@
 exports.run = (message, bot) => {
-  if (!message.mentions.users.first()) return message.channel.sendMessage("**Mention a user or multiple users to kick them.**")
+  if (!message.mentions.users.first()) return message.channel.send("**Mention a user or multiple users to kick them.**")
     let ment = message.mentions.users;
     let text = []
     ment.forEach(m => {
         if (!message.guild.member(m).kickable) {
-            message.channel.sendMessage("**Something went wrong when kicking:* "+m.username);          
+            message.channel.send("**Something went wrong when kicking:* "+m.username);          
         } else {
             message.guild.member(m).kick().then(() => {
                 text.push(m.username)
-            }).catch(err => message.channel.sendMessage("**Something went wrong when kicking:** "+m.username))
+            }).catch(err => message.channel.send("**Something went wrong when kicking:** "+m.username))
         }
     });
     setTimeout(function() {
         if (text.length === 0) return;
-        message.channel.sendMessage(text.join(", ")+" **has been kicked.**", {split:true});
+        message.channel.send(text.join(", ")+" **has been kicked.**", {split:true});
     }, 1000);
 }
 

@@ -32,12 +32,12 @@ bot.on('message', (message) => {
   if (lvl !== newlvl && message.channel.type === "text") {
     let level = message.guild.level
     if (level) {
-      message.channel.sendMessage("**:arrow_double_up: | " + message.author.username + " leveled up to level " + newlvl + "**")
+      message.channel.send("**:arrow_double_up: | " + message.author.username + " leveled up to level " + newlvl + "**")
     }
   }
   if (message.content.startsWith('<@264087705124601856>') || message.content.startsWith('<@!264087705124601856>')) {
     if (!message.args[0]) return;
-    if (message.args[0] === "prefix") return message.channel.sendMessage("**My prefix is " + message.guild.prefix + "**");
+    if (message.args[0] === "prefix") return message.channel.send("**My prefix is " + message.guild.prefix + "**");
     if (message.args[0] === "help") cmds.help.run(message, bot);
   }
   if (!message.content.startsWith(message.guild.prefix)) return;
@@ -55,7 +55,7 @@ bot.on('message', (message) => {
         })
 
         let Ccheck = perm.Mcheck(customPerms, message)
-        if (!Ccheck.has) return message.channel.sendMessage("Uh Oh, I was unable to proceed because you lack the permission(s) `" + Ccheck.miss.join(", ") + "`")
+        if (!Ccheck.has) return message.channel.send("Uh Oh, I was unable to proceed because you lack the permission(s) `" + Ccheck.miss.join(", ") + "`")
 
       }
 
@@ -81,8 +81,8 @@ bot.on('message', (message) => {
   if (message.channel.type === "dm") log.dm(message)
   else log.g(message)
 
-  //if (suffix.includes("<") && suffix.includes(">")) message.channel.sendMessage("*It looks like you are using the characters < and > in your command. Remember, these are only for refrence on what type of text goes there, not to actually include them.*")
-  if (message.channel.type !== "text" && cmds[message.command].conf.dm === false) return message.channel.sendMessage('This command does not work in Direct Messages.');
+  //if (suffix.includes("<") && suffix.includes(">")) message.channel.send("*It looks like you are using the characters < and > in your command. Remember, these are only for refrence on what type of text goes there, not to actually include them.*")
+  if (message.channel.type !== "text" && cmds[message.command].conf.dm === false) return message.channel.send('This command does not work in Direct Messages.');
   let stop = false
   if (message.channel.type === "text") {
     //Modules
@@ -108,13 +108,13 @@ bot.on('message', (message) => {
     let cantGo = false;
     if (!Mcheck.has) {
       cantGo = true;
-      message.channel.sendMessage("Uh Oh, I was unable to proceed because you lack the permission(s) `" + Mcheck.miss.join(", ") + "`")
+      message.channel.send("Uh Oh, I was unable to proceed because you lack the permission(s) `" + Mcheck.miss.join(", ") + "`")
     }
     if (cantGo) return stop = true;
     let Bcheck = perm.Bcheck(cmds[message.command].conf.botPerm, message);
     if (!Bcheck.has) {
       cantGo = true;
-      message.channel.sendMessage("Uh Oh, I was unable to proceed because I (the bot) lack the permission(s) `" + Bcheck.miss.join(", ") + "`")
+      message.channel.send("Uh Oh, I was unable to proceed because I (the bot) lack the permission(s) `" + Bcheck.miss.join(", ") + "`")
     }
     if (cantGo) return stop = true;
   } else {

@@ -1,5 +1,5 @@
 exports.run = (message, bot) => {
-    message.channel.sendMessage(message.suffix, {disableEveryone:true})
+    message.channel.send(message.suffix, {disableEveryone:true})
 }
 
 exports.conf = {

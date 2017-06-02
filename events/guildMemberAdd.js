@@ -17,5 +17,5 @@ bot.on('guildMemberAdd', (member) => {
     msg = msg.replace(/{member}/g, member);
     msg = msg.replace(/{name}/g, member.user.username);
     msg = msg.replace(/{total}/g, member.guild.members.size);
-    bot.channels.get(acc.channel).sendMessage(msg, {split:true}).catch(err => console.log(err));
+    bot.channels.get(acc.channel).send(msg, {split:true}).catch(err => console.log(err));
 })

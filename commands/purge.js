@@ -16,7 +16,7 @@ function purgeSearch(message, bot) {
 
     let query = message.args.slice(1).join(" ")
 
-    message.channel.sendMessage("`Collecting...`").then(top => {
+    message.channel.send("`Collecting...`").then(top => {
 
         message.channel.fetchMessages({limit:100}).then(msgs => {
 
@@ -39,7 +39,7 @@ function purgeSearch(message, bot) {
 
 function purge(message, bot) {
 
-    message.channel.sendMessage("`Collecting...`").then(top => {
+    message.channel.send("`Collecting...`").then(top => {
 
         let num = message.args[0] || "no"
         if (num === "no") return message.send("`Not a valid number`")

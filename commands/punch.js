@@ -19,7 +19,7 @@ exports.run = (message, bot) => {
                 image.composite(target, 400, 40);
                 image.getBuffer(jimp.AUTO, (err, buff) => {
                     if (err) return console.log(err);
-                    message.channel.sendMessage(`**${message.author.username}** *sucker punches* **${message.mentions.users.first().username}**`);
+                    message.channel.send(`**${message.author.username}** *sucker punches* **${message.mentions.users.first().username}**`);
                     message.channel.sendFile(buff);
                 })
             })

@@ -8,11 +8,11 @@ exports.run = (message, bot) => {
       if (toeval.length > 1900) {
         toeval = toeval.substr(0, 1900);
       }
-      message.channel.sendMessage("**Input**\n" + message.suffix + "\n\n**Output**\n```js\n" + toeval + "```")
+      message.channel.send("**Input**\n" + message.suffix + "\n\n**Output**\n```js\n" + toeval + "```")
         .then(m => m.delete(20000)).catch(console.log);
     } catch (err) {
       console.log(err)
-      message.channel.sendMessage("**```prolog\nError:\n\n" + err + "```**")
+      message.channel.send("**```prolog\nError:\n\n" + err + "```**")
         .then(m => m.delete(20000)).catch(console.log);
     }
 

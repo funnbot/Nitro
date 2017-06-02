@@ -6,7 +6,7 @@ exports.run = (message, bot) => {
       description:"Here is "+user.username+"'s avatar: *[url]("+ava+")*",
       image:{url:ava}
   }
-  message.channel.sendMessage("", {embed});
+  message.channel.send("", {embed});
 }
 
 exports.conf = {

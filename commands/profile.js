@@ -8,7 +8,7 @@ const bg = require('../functions/bg');
 const snumber = require('short-number')
 
 exports.run = (message, bot) => {
-    message.channel.sendMessage("**Generating...**").then(gen => {
+    message.channel.send("**Generating...**").then(gen => {
 
         let time = (new Date).getTime();
         let id = (!message.mentions.users.first()) ? message.author.id : message.mentions.users.first().id;

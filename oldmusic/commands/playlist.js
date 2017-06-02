@@ -7,7 +7,7 @@ exports.run = (message, bot, suffix, args) => {
         let embed = {
             description:playlist
         }
-        message.channel.sendMessage("", {embed})
+        message.channel.send("", {embed})
     });
 }
 

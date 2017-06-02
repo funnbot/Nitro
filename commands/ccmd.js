@@ -6,7 +6,7 @@ let dure = {}
 let images = {};
 
 exports.run = (message, bot, send) => {
-    if (dure[message.author.id]) return message.channel.sendMessage("You are already using the custom command wizard.");
+    if (dure[message.author.id]) return message.channel.send("You are already using the custom command wizard.");
     dure[message.author.id] = true;
     let collect1 = message.channel.createCollector(m => m.author.id === message.author.id, {
         time: 3600000
@@ -15,8 +15,8 @@ exports.run = (message, bot, send) => {
         if (m.content === "add") {addCmd(m); collect1.stop();}
         else if (m.content === "remove") {removeCmd(m); collect1.stop();}
         else if (m.content === "list") {listCmd(m); collect1.stop();}
-        else if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect1.stop(); delete dure[m.author.id];}
-        else m.channel.sendMessage("**InvalidArgument: try `add`, `remove`, `list`, or `cancel`**")
+        else if (m.content === "cancel") {m.channel.send("Cancelled"); collect1.stop(); delete dure[m.author.id];}
+        else m.channel.send("**InvalidArgument: try `add`, `remove`, `list`, or `cancel`**")
     })
     send("**Welcome to the Custom Command Wizard**,\nCustom commands give you almost direct access to the JS environment and the discord.js library.\nType the following options below: `add`, `remove`, or `list` to start an action.\nYou can exit the wizard at anytime with `cancel`.");
 
@@ -47,8 +47,8 @@ function addCmd(message) {
         else if (m.content === "image") {trigger(m, "image"); collect2.stop();}
         else if (m.content === "advanced") {trigger(m, "advanced"); collect2.stop();}
         else if (m.content === "shortcut") {trigger(m, "shortcut"); collect2.stop();}
-        else if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect2.stop(); delete dure[m.author.id];}
-        else m.channel.sendMessage("**InvalidArgument: try `simple`, `image`, `advanced`, `shortcut`,or `cancel`**")
+        else if (m.content === "cancel") {m.channel.send("Cancelled"); collect2.stop(); delete dure[m.author.id];}
+        else m.channel.send("**InvalidArgument: try `simple`, `image`, `advanced`, `shortcut`,or `cancel`**")
     });
     message.channel.send("**What type of command do you want to create**\n`simple` - Simple commands are just plain text, nothing else,\n`image` - Image commands will upload a provided image,\n`advanced` - Advanced commands allow you to utilitize the full extent of Nitro's custom commands.\n`shortcut` - Shortcut's allow you to assign alias's for existing commands, and include arguments.");
 }
@@ -56,16 +56,16 @@ function addCmd(message) {
 function removeCmd(message) {
     let collect = message.channel.createCollector(m => m.author.id === message.author.id, {time:3600000});
     collect.on('message', (m) => {
-        if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect.stop(); delete dure[m.author.id];}
+        if (m.content === "cancel") {m.channel.send("Cancelled"); collect.stop(); delete dure[m.author.id];}
         else {
             let custom = bot.config.getCustom(message.guild.id);
             let cu = Object.keys(custom);
-            if (cu.length < 1) m.channel.sendMessage("There are no custom commands on this server.")
-            else if (!custom[m.content]) m.channel.sendMessage("That is not a currently available command. Lets try again.")
+            if (cu.length < 1) m.channel.send("There are no custom commands on this server.")
+            else if (!custom[m.content]) m.channel.send("That is not a currently available command. Lets try again.")
             else {
                 delete custom[m.content];
                 bot.config.setCustom(m.guild.id, custom);
-                m.channel.sendMessage("The command "+m.content+" has been deleted.");
+                m.channel.send("The command "+m.content+" has been deleted.");
                 delete dure[m.author.id]
                 collect.stop();
             }
@@ -73,23 +73,23 @@ function removeCmd(message) {
     });
     let custom = bot.config.getCustom(message.guild.id);
     let cu = Object.keys(custom);
-    message.channel.sendMessage("**The commands you can remove are:**\n```md\n"+cu.join(", ")+"```\nWrite one below or `cancel`", {split:{prepend:"```md\n", append:"```"}})
+    message.channel.send("**The commands you can remove are:**\n```md\n"+cu.join(", ")+"```\nWrite one below or `cancel`", {split:{prepend:"```md\n", append:"```"}})
 }
 
 function listCmd(message) {
     delete dure[message.author.id];
     let custom = bot.config.getCustom(message.guild.id);
     let cu = Object.keys(custom);
-    if (cu.length < 1) return message.channel.sendMessage("**There are no custom commands on this server**")
-    message.channel.sendMessage("**The commands on this server are:**\n```md\n"+cu.join(", ")+"```", {split:{prepend:"```md\n", append:"```"}});
+    if (cu.length < 1) return message.channel.send("**There are no custom commands on this server**")
+    message.channel.send("**The commands on this server are:**\n```md\n"+cu.join(", ")+"```", {split:{prepend:"```md\n", append:"```"}});
 }
 
 function trigger(message, type) {
     let collect = message.channel.createCollector(m => m.author.id === message.author.id, {time:3600000});
     collect.on('message', (m) => {
-        if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect.stop(); delete dure[m.author.id];}
+        if (m.content === "cancel") {m.channel.send("Cancelled"); collect.stop(); delete dure[m.author.id];}
         else {
-            if (!exist(m.content, m.guild.id)) message.channel.sendMessage("That trigger already exists, or is not a valid command name. Lets try again.")
+            if (!exist(m.content, m.guild.id)) message.channel.send("That trigger already exists, or is not a valid command name. Lets try again.")
             else {
                 if (type === "simple") simpleCmd(m, m.content);
                 if (type === "advanced") advancedCmd(m, m.content);
@@ -99,39 +99,39 @@ function trigger(message, type) {
             }
         }
     })
-    message.channel.sendMessage("**Choose the trigger (AKA command name) for the custom command**\nWrite the trigger for this custom command below, without the bot's prefix.\nI'll make sure it does not conflict with an existing command.")
+    message.channel.send("**Choose the trigger (AKA command name) for the custom command**\nWrite the trigger for this custom command below, without the bot's prefix.\nI'll make sure it does not conflict with an existing command.")
 }
 
 function simpleCmd(message, trig) {
     let collect = message.channel.createCollector(m => m.author.id === message.author.id, {time:3600000});
     collect.on('message', (m) => {
-        if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect.stop(); delete dure[m.author.id];}
+        if (m.content === "cancel") {m.channel.send("Cancelled"); collect.stop(); delete dure[m.author.id];}
         else {
             let cmds = bot.config.getCustom(m.guild.id);
             cmds[trig] = {msg:m.content, type:"simple"};
             let prefix = bot.config.getPrefix(m.guild.id);
             bot.config.setCustom(m.guild.id, cmds)
-            m.channel.sendMessage("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
+            m.channel.send("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
             collect.stop()
             delete dure[m.author.id]
         }
     })
-    message.channel.sendMessage("**The command name was set to `"+trig+"`**\nNext, write the message the bot will respond with when this command is triggered.\nOr `cancel` to exit.")
+    message.channel.send("**The command name was set to `"+trig+"`**\nNext, write the message the bot will respond with when this command is triggered.\nOr `cancel` to exit.")
 }
 
 function imageCmd(message, trig) {
     let collect = message.channel.createCollector(m => m.author.id === message.author.id, {time:3600000});
     images[message.author.id] = [];
     collect.on('message', (m) => {
-        if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect.stop(); delete dure[m.author.id]; delete images[m.author.id]}
+        if (m.content === "cancel") {m.channel.send("Cancelled"); collect.stop(); delete dure[m.author.id]; delete images[m.author.id]}
         else if (m.content === "done") {
-            if (images[m.author.id].size < 1) m.channel.sendMessage("You have not added an image yet. Lets try again.")
+            if (images[m.author.id].size < 1) m.channel.send("You have not added an image yet. Lets try again.")
             else {
                  let cmds = bot.config.getCustom(m.guild.id);
                  cmds[trig] = {msg:images[m.author.id], type:"image"};
                  let prefix = bot.config.getPrefix(m.guild.id);
                  bot.config.setCustom(m.guild.id, cmds)
-                 m.channel.sendMessage("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
+                 m.channel.send("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
                  collect.stop()
                  delete dure[m.author.id]
                  delete images[m.author.id]
@@ -141,48 +141,48 @@ function imageCmd(message, trig) {
             let attach = (!!m.attachments.first()) ? m.attachments.first() : false;
             let embed = (!!m.embeds[0]) ? m.embeds[0] : false;
             if (attach) {
-                if (!attach.height) m.channel.sendMessage("That attachment is not a valid image. Lets try again.")
+                if (!attach.height) m.channel.send("That attachment is not a valid image. Lets try again.")
                 else {
-                    if (images[m.author.id].size > 24) m.channel.sendMessage("You can not upload more than 25 images. Write `done` to finish the command.")
+                    if (images[m.author.id].size > 24) m.channel.send("You can not upload more than 25 images. Write `done` to finish the command.")
                     else {
                         images[m.author.id].push(attach.url);
-                        m.channel.sendMessage("**Successfully added image**\nYou can continue to add images so that when the command is run, it will choose a random image to upload, or write `done` to finish the command.")
+                        m.channel.send("**Successfully added image**\nYou can continue to add images so that when the command is run, it will choose a random image to upload, or write `done` to finish the command.")
                     }
                 }
             }
             else if (embed) {
-                if (embed.type !== "image") m.channel.sendMessage("That url is not a valid image. Lets try again")
+                if (embed.type !== "image") m.channel.send("That url is not a valid image. Lets try again")
                 else {
-                    if (images[m.author.id].size > 24) m.channel.sendMessage("You can not upload more than 25 images. Write `done` to finish the command.")
+                    if (images[m.author.id].size > 24) m.channel.send("You can not upload more than 25 images. Write `done` to finish the command.")
                     else {
                         images[m.author.id].push(embed.url);
-                        m.channel.sendMessage("**Successfully added image**\nYou can continue to add images so that when the command is run, it will choose a random image to upload, or write `done` to finish the command.")
+                        m.channel.send("**Successfully added image**\nYou can continue to add images so that when the command is run, it will choose a random image to upload, or write `done` to finish the command.")
                     }
                 }
             }
             else {
-                m.channel.sendMessage("Invalid Image Type: Upload an image or send an image url.")
+                m.channel.send("Invalid Image Type: Upload an image or send an image url.")
             }
         }
     })
-    message.channel.sendMessage("**The command name was set to `"+trig+"`**\nNext, upload an image or send an image url.\nOr `cancel` to exit.")
+    message.channel.send("**The command name was set to `"+trig+"`**\nNext, upload an image or send an image url.\nOr `cancel` to exit.")
 }
 
 function advancedCmd(message, trig) {
     let collect = message.channel.createCollector(m => m.author.id === message.author.id, {time:3600000});
     collect.on('message', (m) => {
-        if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect.stop(); delete dure[m.author.id];}
+        if (m.content === "cancel") {m.channel.send("Cancelled"); collect.stop(); delete dure[m.author.id];}
         else {
             let cmds = bot.config.getCustom(m.guild.id);
             cmds[trig] = {msg:m.content, type:"advanced"};
             let prefix = bot.config.getPrefix(m.guild.id);
             bot.config.setCustom(m.guild.id, cmds)
-            m.channel.sendMessage("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
+            m.channel.send("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
             collect.stop()
             delete dure[m.author.id]
         }
     })
-    message.channel.sendMessage("**The command name was set to `"+trig+"`**\nNext, write the message the bot will respond with when this command is triggered including any functions and variables you wish.\nRefer to the Advanced Command docs here: <https://github.com/funnbot/Nitro-Public/wiki/Advanced-Custom-Commands>.\nOr `cancel` to exit.")
+    message.channel.send("**The command name was set to `"+trig+"`**\nNext, write the message the bot will respond with when this command is triggered including any functions and variables you wish.\nRefer to the Advanced Command docs here: <https://github.com/funnbot/Nitro-Public/wiki/Advanced-Custom-Commands>.\nOr `cancel` to exit.")
 }
 
 
@@ -190,26 +190,26 @@ function advancedCmd(message, trig) {
 function shortcutCmd(message, trig) {
     let collect = message.channel.createCollector(m => m.author.id === message.author.id, {time:3600000})
     collect.on('message', m => {
-        if (m.content === "cancel") {m.channel.sendMessage("Cancelled"); collect.stop(); delete dure[m.author.id]}
+        if (m.content === "cancel") {m.channel.send("Cancelled"); collect.stop(); delete dure[m.author.id]}
         else {
             let cmds = bot.config.getCustom(m.guild.id)
             cmds[trig] = {msg:m.content, type: "shortcut"}
             let prefix = bot.config.getPrefix(m.guild.id)
             bot.config.setCustom(m.guild.id, cmds)
-            m.channel.sendMessage("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
+            m.channel.send("Your command has been created and can be triggered with `"+prefix+""+trig+"`");
             collect.stop()
             delete dure[m.author.id]
         }
     })
     delete dure[message.author.id];
-    message.channel.sendMessage('**The command name was set to `'+trig+'`**\nNext, write the command and arguments this shortcut is for.');
+    message.channel.send('**The command name was set to `'+trig+'`**\nNext, write the command and arguments this shortcut is for.');
 }
 
 exports.convert = (cmd, message, bot) => {
     let custom = bot.config.getCustom(message.guild.id);
     let command = custom[cmd];
     if (command.type === "simple") {
-        return message.channel.sendMessage(command.msg);
+        return message.channel.send(command.msg);
     }
     if (command.type === "image") {
         let num = rn({min:0, max:command.msg.length-1, integer:true});
@@ -218,7 +218,7 @@ exports.convert = (cmd, message, bot) => {
     if (command.type === "advanced") {
         let text = command.msg;
         text = variables(text, message, bot);
-        message.channel.sendMessage(text, {split:true});
+        message.channel.send(text, {split:true});
     }
 }
 

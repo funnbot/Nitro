@@ -2,10 +2,10 @@ exports.run = (message, bot) => {
     let mods = message.guild.modules
     if (mods.random) {
         delete mods.random;
-        message.channel.sendMessage("**The `random` module has been enabled.**")
+        message.channel.send("**The `random` module has been enabled.**")
     } else {
         mods.random = true;
-        message.channel.sendMessage("**The `random` module has been disabled.**")
+        message.channel.send("**The `random` module has been disabled.**")
     }
     bot.config.setMod(message.guild.id, mods);
 }

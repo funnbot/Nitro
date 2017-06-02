@@ -8,9 +8,9 @@ exports.run = (message, bot) => {
       if (message.args[0] + ".js" === f) {
         let t = cmd.reload(message.args[0]);
         if (!t.worked) {
-          message.channel.sendMessage("Errored when reloading command: "+f+"```js\n"+t.error+"```");
+          message.channel.send("Errored when reloading command: "+f+"```js\n"+t.error+"```");
         } else {
-          message.channel.sendMessage("Reload successful");
+          message.channel.send("Reload successful");
         }
         return;
       }

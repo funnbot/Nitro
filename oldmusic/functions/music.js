@@ -157,7 +157,7 @@ function recurse(id) {
         return;
     }
     let track = sessions[id].playlist[0];
-    bot.channels.get(sessions[id].textChannel).sendMessage("Now Playing: " + track.name + " - " + track.user);
+    bot.channels.get(sessions[id].textChannel).send("Now Playing: " + track.name + " - " + track.user);
     convertToStream(track.stream, track.type, (err, stream) => {
         sessions[id].dispatcher = sessions[id].connection.playStream(stream);
         //sessions[id].loop = setTimeout(function () {

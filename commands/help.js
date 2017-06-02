@@ -33,8 +33,8 @@ exports.run = (message, bot, suffix, args) => {
   }
   msg.push("#Other", text.Other.join("\n"), "#Modules", text.Module.join("\n"))
   msg.push('```')
-  if (message.channel.type === "text") message.channel.sendMessage("**Sliding Into Your DM's**").then(m => m.delete(3000))
-  message.author.sendMessage(msg.join("\n"), {
+  if (message.channel.type === "text") message.channel.send("**Sliding Into Your DM's**").then(m => m.delete(3000))
+  message.author.send(msg.join("\n"), {
     split: {
       append: "```",
       prepend: "```md\n"

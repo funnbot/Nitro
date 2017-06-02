@@ -32,7 +32,7 @@ exports.run = (message, bot, send) => {
     num++
   })
   let text = "__**" + poll[id].question + "**__\n\n*You can vote with `" + prefix + "vote <optionNum>`*\n\n**" + ar.join("\n") + "**\n\n*The creator of this poll or a server admin can end the poll early by typing `endpoll` in chat. Otherwise it will go for 2 minutes.*"
-  message.channel.sendMessage(text, {
+  message.channel.send(text, {
     split: true
   });
   let collect = message.channel.createCollector(m => {
@@ -50,19 +50,19 @@ exports.run = (message, bot, send) => {
       else return;
     } else {
       m.delete()
-      if (poll[id].voted[m.author.id]) return m.channel.sendMessage("**You have already voted.**");
+      if (poll[id].voted[m.author.id]) return m.channel.send("**You have already voted.**");
       let sp = m.content.split(" ");
-      if (!sp[1]) return m.channel.sendMessage("**Provide the option number you are voting on**");
+      if (!sp[1]) return m.channel.send("**Provide the option number you are voting on**");
       let tot = Object.keys(poll[id].opt).length;
       let num = parseInt(sp[1]) || 0;
-      if (num < 1 || num > tot) return m.channel.sendMessage("**The option number must be between 1 and " + tot + "**");
+      if (num < 1 || num > tot) return m.channel.send("**The option number must be between 1 and " + tot + "**");
       poll[id].voted[m.author.id] = true;
       poll[id].opt[num.toString()].votes++
     }
   });
   collect.on('end', (col, reas) => {
-    if (reas === "time" && col.size < 1) return message.channel.sendMessage("**The poll has ended without any votes.**")
-    else if (reas === "early" && col.size < 2) return message.channel.sendMessage("**The poll has ended without any votes.**")
+    if (reas === "time" && col.size < 1) return message.channel.send("**The poll has ended without any votes.**")
+    else if (reas === "early" && col.size < 2) return message.channel.send("**The poll has ended without any votes.**")
     else done(col.first());
   });
 }
@@ -82,7 +82,7 @@ function done(message) {
     num++
   });
   let text = "*Here are the results:*\n\n__**" + poll[id].question + "**__\n\n" + arr.join("\n");
-  message.channel.sendMessage(text);
+  message.channel.send(text);
   return delete poll[id];
 }
 

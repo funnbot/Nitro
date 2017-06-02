@@ -27,7 +27,7 @@ exports.run = (message, bot, send) => {
   bot.profile.setMoney(user.id, newMoney)
   bot.profile.setMoney(target.id, newTargetMoney)
 
-  message.channel.sendMessage("**"+target.username+" has received "+num+" :dollar:**")
+  message.channel.send("**"+target.username+" has received "+num+" :dollar:**")
 
 }
 

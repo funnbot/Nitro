@@ -12,7 +12,7 @@ exports.run = (message, bot, suffix, args) => {
     if (err) {
       return message.reply("Please provide a: youtube link, soundcloud link, or soundcloud playlist. Make sure your link is valid.");
     }
-    message.channel.sendMessage("There are now `"+data+"` song(s) in the playlist.")
+    message.channel.send("There are now `"+data+"` song(s) in the playlist.")
     music.play(message.guild.id, message.author.id);
   })
 }

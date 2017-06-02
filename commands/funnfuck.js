@@ -156,7 +156,7 @@ class Interpreter {
         clearTimeout(this.infiniteCheck)
         if (this.collector && !this.collector.ended) this.collector.stop('end of the line')
         if (this.quitC && !this.quitC.ended) this.quitC.stop('end of the line')
-        this.message.channel.sendMessage('**Output:** ' + this.output)
+        this.message.channel.send('**Output:** ' + this.output)
     }
 
     forceQuit() {
@@ -209,7 +209,7 @@ class Interpreter {
     _getInput(type) {
 
         return new Promise((resolve, reject) => {
-            this.message.channel.sendMessage("**Awaiting Input...**")
+            this.message.channel.send("**Awaiting Input...**")
             this.collector = new Discord.MessageCollector(this.message.channel, (m) => m.author.id === this.message.author.id, {
                 time: 60000,
                 max: 1,

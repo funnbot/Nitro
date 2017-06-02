@@ -37,9 +37,9 @@ exports.run = (message, bot) => {
         })
         collector.on('end', (collected, reason) => {
             if (reason === "time") {
-                message.channel.sendMessage("The 30 seconds are up, the correct answer was: " + quiz[0].answer)
+                message.channel.send("The 30 seconds are up, the correct answer was: " + quiz[0].answer)
             } else {
-                message.channel.sendMessage("**Correct!** " + reason[0] + " has answered the question. Heres $100!")
+                message.channel.send("**Correct!** " + reason[0] + " has answered the question. Heres $100!")
                 bot.profile.addMoney(reason[1], 100)
             }
         })

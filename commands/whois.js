@@ -57,7 +57,7 @@ exports.run = (message, bot) => {
       inline: true
     }]
   }
-  message.channel.sendMessage("", {
+  message.channel.send("", {
     embed
   });
 }

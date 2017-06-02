@@ -1,5 +1,5 @@
 exports.run = (message, bot) => {
-    message.channel.sendMessage("¯\\_(ツ)_/¯").then(m => {
+    message.channel.send("¯\\_(ツ)_/¯").then(m => {
         setTimeout(() => {
             m.edit("¯\\\\\\-(ツ)-/¯").then(ms => {
                 setTimeout(() => {

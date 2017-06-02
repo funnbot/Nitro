@@ -1,6 +1,6 @@
 exports.run = (message, bot) => {
     if (!message.args[0]) {
-        return message.channel.sendMessage(nu.getSpecialHelp("adblock"));
+        return message.channel.send(nu.getSpecialHelp("adblock"));
     }
     let ad = message.guild.adblock
     let prefix = message.guild.prefix

@@ -57,7 +57,7 @@ exports.run = (message, bot) => {
             }
         ]
     }
-    message.channel.sendMessage("", {embed});
+    message.channel.send("", {embed});
 }
 
 exports.conf = {

@@ -22,7 +22,7 @@ module.exports = (message) => {
                             message.delete();
                             message.send("**AdBlock**: " + message.author + ", Please Do Not Advertise.")
                             if (!!ad.notify) {
-                                bot.users.get(message.guild.owner.id).sendMessage("*The user:* **" + message.author.username + "** *Has Advertised in the channel:* **" + message.channel.name + "** *of the server* **" + message.guild.name + "** *With the message:* \n`" + message.content + "`")
+                                bot.users.get(message.guild.owner.id).send("*The user:* **" + message.author.username + "** *Has Advertised in the channel:* **" + message.channel.name + "** *of the server* **" + message.guild.name + "** *With the message:* \n`" + message.content + "`")
                             }
                         }
                     }

@@ -5,7 +5,7 @@ exports.run = (message, bot) => {
     let text = (keys.length === 0) ? "**There are no tags on this server.**" : "**The tags on this server are:**\n"+keys.join(", ");
     let owned = (filter.length === 0) ? "**"+message.author.username+" does not own any tags**" : "**"+message.author.username+" owns the tags:**\n"+filter.join(", ");
     let msg = (keys.length === 0) ? text : text+"\n"+owned;
-    message.channel.sendMessage(msg);
+    message.channel.send(msg);
 }
 
 exports.conf = {

@@ -6,7 +6,7 @@ exports.run = (message, bot) => {
   if (message.mentions.users.first()) {
     user = message.mentions.users.first().username;
   } else {
-    return message.channel.sendMessage("You need to mention a user.");
+    return message.channel.send("You need to mention a user.");
   }
   let Image = Canvas.Image,
     canvas = new Canvas(520, 283),
@@ -20,7 +20,7 @@ exports.run = (message, bot) => {
       ctx.fillText(user, 275, 80)
       canvas.toBuffer((err, buff) => {
         if (err) return console.log(err);
-        message.channel.sendMessage("**" + message.author.username + "** *has added*  **" + user + "** *to their death note*")
+        message.channel.send("**" + message.author.username + "** *has added*  **" + user + "** *to their death note*")
         message.channel.sendFile(buff)
       })
   })

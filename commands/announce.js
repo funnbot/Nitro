@@ -1,7 +1,7 @@
 exports.run = (message, bot) => {
     let acc = message.guild.announce
     if (!message.args[0]) {
-        message.channel.sendMessage(nu.getSpecialHelp("announce"))
+        message.channel.send(nu.getSpecialHelp("announce"))
     } else if (message.args[0] === "channel") {
         if (!!acc.channel) {
             message.send("**Join/Leave logs will no longer be sent in <#" + acc.channel + ">**");
@@ -63,7 +63,7 @@ exports.run = (message, bot) => {
             message.send("**The farewell message: `"+msg+"` will now be sent in the Join/leave log channel. Make sure you configure that aswell.**");
         }
     } else {
-        message.channel.sendMessage(nu.getSpecialHelp("announce"))
+        message.channel.send(nu.getSpecialHelp("announce"))
     }
 }
 

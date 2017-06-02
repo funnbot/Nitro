@@ -3,7 +3,7 @@ const request = require('request');
 exports.run = (message, bot) => {
   var r = request.get('http://thecatapi.com/api/images/get.php/gif.php?type=gif', function(err, res, body) {
      if (err) {
-      message.channel.sendMessage("Service Offline");
+      message.channel.send("Service Offline");
       return;
      }
      message.channel.sendFile(r.uri.href);

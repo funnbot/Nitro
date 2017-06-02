@@ -3,7 +3,7 @@ const request = require('request');
 const auth = require('../config')
 
 bot.on('guildCreate', (g) => {
-    g.defaultChannel.sendMessage("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**\nSupport Server: <https://discordapp.com/invite/aZ2PYhn>")
+    g.defaultChannel.send("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**\nSupport Server: <https://discordapp.com/invite/aZ2PYhn>")
     dBots()
     carbon()
     let embed = {
@@ -28,7 +28,7 @@ bot.on('guildCreate', (g) => {
             icon_url: bot.user.avatarURL
         }
     }
-    bot.channels.get('269248681126002698').sendMessage("", {
+    bot.channels.get('269248681126002698').send("", {
         embed
     });
 })
@@ -59,7 +59,7 @@ bot.on('guildDelete', (g) => {
             icon_url: bot.user.avatarURL
         }
     }
-    bot.channels.get('269248681126002698').sendMessage("", {
+    bot.channels.get('269248681126002698').send("", {
         embed
     }).catch(console.log);
 })

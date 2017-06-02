@@ -2,10 +2,10 @@ exports.run = (message, bot) => {
     let mods = message.guild.modules
     if (mods.music) {
         delete mods.music;
-        message.channel.sendMessage("**The `music` module has been enabled.**")
+        message.channel.send("**The `music` module has been enabled.**")
     } else {
         mods.music = true;
-        message.channel.sendMessage("**The `music` module has been disabled.**")
+        message.channel.send("**The `music` module has been disabled.**")
     }
     bot.config.setMod(message.guild.id, mods);
 }

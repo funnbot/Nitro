@@ -3,13 +3,13 @@ const music = require('../functions/music.js')
 exports.run = (message, bot, suffix, args) => {
 
   let can = music.checkHostPerm(message);
-  if (can === "nm") return message.channel.sendMessage("There are no music sessions active.");
+  if (can === "nm") return message.channel.send("There are no music sessions active.");
   if (can) {
-    message.channel.sendMessage("Skipping Song")
+    message.channel.send("Skipping Song")
     music.skip(message.guild.id);
 
   } else {
-    message.channel.sendMessage("You must be the host of this session or have the `MANAGE_GUILD` permission to use this commmand")
+    message.channel.send("You must be the host of this session or have the `MANAGE_GUILD` permission to use this commmand")
   }
 }
 

@@ -7,7 +7,7 @@ exports.run = (message, bot) => {
   } catch (err) {
     repo = err
   }
-  message.channel.sendMessage("**Input**\n```js\n" + message.suffix + "```\n**Output**\n```js\n" + repo + "```")
+  message.channel.send("**Input**\n```js\n" + message.suffix + "```\n**Output**\n```js\n" + repo + "```")
 }
 
 exports.conf = {
