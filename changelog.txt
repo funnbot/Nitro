@@ -1,8 +1,8 @@
 **In Progress**
-> Brainfuck interpreter
-> Chat filter to remove unwanted messages
-> (Maybe) Strike system for bad users
+> Remaking the money System
 **Finished**
+> Remove from queue by index command
+> Music is now better
 > Custom Command Shortcut System
 > Customizable Permission System for each command and custom command
 > Give command, give people money
@@ -10,3 +10,5 @@
 > Change your profile background to a fancy scene
 > Completely Rewrote the bots framework.
 > Fixed the uws disconnect issue.
+Do you want to decide what shows up here? Join our server: <https://discordapp.com/invite/aZ2PYhn>
+Or help pay for the server to keep Nitro alive: <https://www.patreon.com/user?u=4661783>
