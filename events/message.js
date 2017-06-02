@@ -40,7 +40,10 @@ bot.on('message', (message) => {
     if (message.args[0] === "prefix") return message.channel.send("**My prefix is " + message.guild.prefix + "**");
     if (message.args[0] === "help") cmds.help.run(message, bot);
   }
+
   if (!message.content.startsWith(message.guild.prefix)) return;
+
+  if (message.channel.type === "text" && !message.channel.permissionsFor(message.guild.member(bot.user)).has("SEND_MESSAGES")) return message.author.send("**I lack the permission to send messages in this channel.**")
 
   //Custom Commands
   if (message.channel.type === "text") {
