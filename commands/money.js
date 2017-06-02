@@ -9,7 +9,7 @@ exports.conf = {
   botPerm: ["SEND_MESSAGES"],
   coolDown: 0,
   dm: true,
-  category: "Fun",
+  category: "Social",
   help: "Get your current balance",
   args: "",
 }

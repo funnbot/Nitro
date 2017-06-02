@@ -57,6 +57,15 @@ class ProfileConfig {
         return place
     }
 
+    leaderboard(bot) {
+        let keys = Object.keys(this.profiles)
+        let sort = keys.sort((a, b) => {
+            return (!this.profiles[b].money ? 0 : this.profiles[b].money) - (!this.profiles[a].money ? 0 : this.profiles[a].money)
+        })
+        sort = sort.filter(i => bot.users.get(i) ? true : false)
+        return sort.slice(0, 10)
+    }
+
     addMoney(id, money) {
         let cur = this.Get(id, 'money', 0)
         cur = cur + money
