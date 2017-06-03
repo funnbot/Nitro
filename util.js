@@ -2,9 +2,9 @@ let f = {};
 
 f.log = (m) => {
   if (m.guild !== null) {
-  console.log(new Date() + " [" + m.guild.name + ": " + m.channel.name + "] <" + m.author.username + "> " + m.content);
+    console.log(new Date() + " [" + m.guild.name + ": " + m.channel.name + "] <" + m.author.username + "> " + m.content);
   } else {
-    console.log(new Date() + " ["+m.author.username+"] " + m.content)
+    console.log(new Date() + " [" + m.author.username + "] " + m.content)
   }
 }
 
@@ -18,9 +18,9 @@ f.removeA = (array, search_term) => {
 }
 
 f.clean = (content) => {
-    content = content.replace(/`/g, '')
-    content = content.replace(/\*/g, '')
-    return content
+  content = content.replace(/`/g, '')
+  content = content.replace(/\*/g, '')
+  return content
 }
 
 f.range = (input, minimum, maximum) => {

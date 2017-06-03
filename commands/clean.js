@@ -14,7 +14,7 @@ exports.conf = {
   botPerm:["SEND_MESSAGES", "MANAGE_MESSAGES"],
   coolDown:0,
   dm: false,
-  category:"Utilty",
+  category:"Utility",
   help:"Clean messages sent by Nitro",
   args:"",
 }

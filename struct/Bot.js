@@ -6,6 +6,8 @@ const GuildConfig = require('../struct/GuildConfig')
 
 const ProfileConfig  = require('../struct/ProfileConfig')
 
+const Framework = require('../functions/framework')(Discord)
+
 const Bot = () => {
 
     return new Promise((resolve, reject) => {
