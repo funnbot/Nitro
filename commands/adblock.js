@@ -39,7 +39,7 @@ exports.run = (message, bot) => {
                 ad.ex.roles[role.id] = "yes";
                 message.send("**All members with the role `" + role.name + "` are exempt from AdBlock.**")
             } else {
-                message.send("**Could not parse a user or role from `" + args[1]) + "`**";
+                message.send("**Could not parse a user or role from `" + message.args[1]) + "`**";
             }
         } else if (message.args[1] === "remove") {
             if (!message.args[2]) {
@@ -62,7 +62,7 @@ exports.run = (message, bot) => {
                     tro.error(message, "That role is not currently excempt from AdBlock.");
                 }
             } else {
-                message.send("**Could not parse a user or role from `" + args[2] + "`**");
+                message.send("**Could not parse a user or role from `" + message.args[2] + "`**");
             }
         } else if (message.args[1] === "list") {
             if (!ad.ex && !ad.ex.users && !ad.ex.roles) {
