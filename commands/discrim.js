@@ -1,8 +1,8 @@
 exports.run = (message, bot, send) => {
 
     if (message.args[0].length !== 4) return send("Discriminators are 4 numbers")
-    let disc = parseInt(message.args[0]) || "bad"
-    if (disc.toString().length !== 4) return send("Discriminators are 4 numbers")
+    let disc = message.args[0].replace(/[^0123456789]/g, "")
+    if (disc.length !== 4) return send("Discriminators are 4 numbers")
 
     bot.shard.broadcastEval("this.users.findAll('discriminator', '" + disc + "').map(u => u.username)").then(ret => {
         for (i=0;i<ret.length-1;i++) {
