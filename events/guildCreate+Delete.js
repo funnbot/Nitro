@@ -6,7 +6,7 @@ bot.on('guildCreate', (g) => {
     g.defaultChannel.send("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**\nSupport Server: <https://discordapp.com/invite/aZ2PYhn>")
     dBots()
     carbon()
-    let embed = {
+    /*let embed = {
         title: "Added To: " + g.name + " (ID: " + g.id + ")",
         color: 0x02FF99,
         fields: [{
@@ -30,7 +30,7 @@ bot.on('guildCreate', (g) => {
     }
     bot.channels.get('269248681126002698').send("", {
         embed
-    });
+    });*/
 })
 
 bot.on('guildDelete', (g) => {

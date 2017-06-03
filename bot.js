@@ -14,8 +14,6 @@ Bot().then(bot => {
 
     require('./events/guildMemberRemove')
 
-    require('./events/disconnect')
-
     require('./events/modlog')
 
     require('./functions/loadCommands').load()
