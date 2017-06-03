@@ -39,7 +39,7 @@ exports.run = (message, bot) => {
                 ad.ex.roles[role.id] = "yes";
                 message.send("**All members with the role `" + role.name + "` are exempt from AdBlock.**")
             } else {
-                message.send("**Could not parse a user or role from `" + message.args[1]) + "`**";
+                message.send("**Could not parse a user or role from `" + message.args[2] + "`**");
             }
         } else if (message.args[1] === "remove") {
             if (!message.args[2]) {

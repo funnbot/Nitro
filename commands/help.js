@@ -1,8 +1,8 @@
 const Commands = require('../functions/loadCommands.js');
 
-exports.run = (message, bot, suffix, args) => {
+exports.runs = (message, bot, suffix, args) => {
   let cmds = Commands.getCmds();
-  let mods = (message.channel.type === "text") ? message.guild.modules : {fun:true, music:true};
+  let mods = (message.channel.type === "text") ? message.guild.modules : {};
   let prefix = message.guild.prefix
   let text = {};
   text.start = ['```md', '#The prefix for your server is: ' + prefix];
@@ -42,6 +42,33 @@ exports.run = (message, bot, suffix, args) => {
   })
 }
 
+exports.run = (message, bot, send) => {
+  let cmds = Commands.getCmds()
+  let mods = message.guild.modules
+  let prefix = message.guild.prefix
+  let temp = {}
+  let fields = []
+  forEach(cmds, (c, k) => {
+    if (!temp.hasOwnProperty(c.conf.category)) temp[c.conf.category] = []
+    temp[c.conf.category].push(prefix + k + " - " + c.conf.help)
+  })
+  forEach(temp, (c, k) => {
+    fields.push({
+      name: k,
+      value: c.join('\n'),
+      inline: true
+    })
+  })
+  let embed = {
+    fields,
+    color: 0x155CA8
+  }
+  if (message.channel.type === "text") message.channel.send("**Sliding Into Your DM's**").then(m => m.delete(3000))
+  message.author.send('', {
+    embed
+  })
+}
+
 exports.conf = {
   userPerm: [],
   botPerm: [],
@@ -50,4 +77,12 @@ exports.conf = {
   category: "Other",
   help: "Get a list of Nitro's commands.",
   args: ""
+}
+
+let forEach = function (obj, loop) {
+  let a = Object.keys(obj)
+  for (i = 0; i < a.length; i++) {
+    loop(obj[a[i]], a[i])
+  }
+  return
 }
