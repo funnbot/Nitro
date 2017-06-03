@@ -1,7 +1,7 @@
 exports.run = (message, bot, send) => {
   let user = (!message.mentions.users.first()) ? message.author : message.mentions.users.first();
   let mon = bot.profile.getMoney(user.id);
-  send("**:atm: | " + user.username + " has " + mon + " :dollar:**")
+  send("**:atm: | " + user.username + " has " + mon + " :donut:**")
 }
 
 exports.conf = {
