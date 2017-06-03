@@ -14,7 +14,7 @@ require('./events/message')
 require('../util')
 
 bot.on('ready', () => {
-    console.log("Music Module Ready")
+    console.log("Music Module Ready On "+bot.shards.size+" Shards")
 })
 
 bot.connect()
