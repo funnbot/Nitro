@@ -31,7 +31,7 @@ const Bot = () => {
 
                 if (bot.shard) {
                     console.log("Shard #"+bot.shard.id+" active with "+bot.guilds.size+" guilds")
-                    bot.user.setGame("@Nitro help | Shard " + bot.shard.id + "/" + bot.shard.count)
+                    bot.user.setGame("@Nitro help | Shard " + (bot.shard.id + 1) + "/" + bot.shard.count)
                 } else {
                     console.log("Shard #0 active with "+bot.guilds.size+" guilds")
                     bot.user.setGame("@Nitro help | "+bot.guilds.size+" guilds")
