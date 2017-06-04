@@ -8,7 +8,7 @@ exports.run = (message, bot) => {
   })
 
   if (!message.args[0]) {
-    return message.send("**The Available roles are:**\n` "+roles.join(", ")+"`\n\n*Admins:*\n**You can add or remove an option from roleme with:**\n`"+prefix+"roleme add <role>` *or* `"+prefix+"roleme remove <role>`");
+    return message.send("**The Available roles are:**\n` " + (roles.length !== 0 ? roles.join(", ") : "\u200B ")+"`\n\n*Admins:*\n**You can add or remove an option from roleme with:**\n`" + prefix + "roleme add <role>` *or* `" + prefix + "roleme remove <role>`");
   }
 
   if (message.args[0] === "add") {
@@ -27,7 +27,7 @@ exports.run = (message, bot) => {
           if (roles.indexOf(name) === -1) {
             roles.push(name);
             bot.config.setRoleMe(message.guild.id, roles);
-            message.send("The role "+name+" has been added to roleme.")
+            message.send("The role " + name + " has been added to roleme.")
           } else {
             message.send("That role is already added to roleme.");
           }
@@ -38,7 +38,7 @@ exports.run = (message, bot) => {
         message.send("I cannot assign users a role that is higher than mine.");
       }
     } else {
-      message.send("The role "+name+" does not exist on this server.");
+      message.send("The role " + name + " does not exist on this server.");
     }
     return;
   }
@@ -56,9 +56,9 @@ exports.run = (message, bot) => {
     if (roles.indexOf(name) > -1) {
       roles = nu.removeA(roles, name);
       bot.config.setRoleMe(message.guild.id, roles);
-      message.send("The role "+name+" has been removed from roleme");
+      message.send("The role " + name + " has been removed from roleme");
     } else {
-      message.send("The role "+name+" is not currently added to roleme.")
+      message.send("The role " + name + " is not currently added to roleme.")
     }
     return;
   }
@@ -66,33 +66,33 @@ exports.run = (message, bot) => {
   if (message.member.roles.exists('name', role)) {
     if (roles.indexOf(role) > -1) {
       if (message.guild.member(bot.user).highestRole.position > message.guild.roles.find('name', role).position) {
-        message.send("Removing role "+role);
+        message.send("Removing role " + role);
         message.member.removeRole(message.guild.roles.find('name', role));
       } else {
         message.send("I cannot remove this role because it has been moved above my highest role");
       }
     } else {
-      message.send("The role you wish to remove is not about of the roleme config.")
+      message.send("The role you wish to remove is not apart of the roleme config.")
     }
     return;
   }
   if (roles.indexOf(role) === -1) {
-    return message.send("**The Available roles are:**\n`"+roles.join(", ")+"`\n\n*Admins:*\n**You can add or remove an option from roleme with:**\n`"+prefix+"roleme add <role>` *or* `"+prefix+"roleme remove <role>`");
+    return message.send("**The Available roles are:**\n` " + (roles.length !== 0 ? roles.join(", ") : "\u200B ")+"`\n\n*Admins:*\n**You can add or remove an option from roleme with:**\n`" + prefix + "roleme add <role>` *or* `" + prefix + "roleme remove <role>`");
   }
   if (message.guild.member(bot.user).highestRole.position > message.guild.roles.find('name', role).position) {
     message.member.addRole(message.guild.roles.find('name', role));
-    message.send("You have been given the role: "+role+"\nYou can use `"+prefix+"roleme "+role+"` at anytime to remove this role.");
+    message.send("You have been given the role: " + role + "\nYou can use `" + prefix + "roleme " + role + "` at anytime to remove this role.");
   } else {
     message.send("I cannot assign you this role because it has been moved above my highest role.")
   }
 }
 
 exports.conf = {
-  userPerm:[],
-  botPerm:["SEND_MESSAGES", "MANAGE_ROLES_OR_PERMISSIONS"],
-  coolDown:0,
-  dm:false,
-  category:"Utility",
-  help:"Give yourself one of the available Role Me roles.",
-  args:"<role>"
+  userPerm: [],
+  botPerm: ["SEND_MESSAGES", "MANAGE_ROLES_OR_PERMISSIONS"],
+  coolDown: 0,
+  dm: false,
+  category: "Utility",
+  help: "Give yourself one of the available Role Me roles.",
+  args: "<role>"
 }

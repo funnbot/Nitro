@@ -1,7 +1,7 @@
 exports.run = (message, bot) => {
     let acc = message.guild.announce
     if (!message.args[0]) {
-        message.channel.send(nu.getSpecialHelp("announce"))
+        message.channel.send(nu.getSpecialHelp("announce", message.guild.prefix))
     } else if (message.args[0] === "channel") {
         if (!!acc.channel) {
             message.send("**Join/Leave logs will no longer be sent in <#" + acc.channel + ">**");

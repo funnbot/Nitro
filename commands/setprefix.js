@@ -11,6 +11,7 @@ exports.run = (message, bot) => {
   }
   if (split[1].length > 20) return message.channel.send("**Invalid Prefix**: Too Long")
 
+  if (split[1].startsWith(" ")) return message.channel.send("**Invalid Prefix**: Illegal Characters")
   if (/^\s+$/g.test(split[1])) return message.channel.send("**Invalid Prefix**: Illegal Characters")
   bot.config.setPrefix(message.guild.id, split[1]);
   message.channel.send("**The prefix for this server has been changed to '"+bot.config.getPrefix(message.guild.id)+"'**")
