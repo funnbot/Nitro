@@ -1,7 +1,10 @@
 const request = require("request")
 const sim = require('string-similarity')
+let cur = {}
 
-exports.run = (message, bot) => {
+exports.run = (message, bot, send) => {
+    if (cur[message.channel.id]) return send("**Wait for the current trivia game to complete**")
+    cur[message.channel.id] = true
     let qr = request("http://jservice.io/api/random", function (err, res, body) {
         if (err) return console.log(err);
         let quiz = JSON.parse(body)
@@ -36,6 +39,7 @@ exports.run = (message, bot) => {
             }
         })
         collector.on('end', (collected, reason) => {
+            delete cur[message.channel.id]
             if (reason === "time") {
                 message.channel.send("The 30 seconds are up, the correct answer was: " + quiz[0].answer)
             } else {
