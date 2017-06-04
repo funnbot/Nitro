@@ -1,3 +1,6 @@
+console.log("Blooping...")
+let start = (new Date()).getTime()
+
 const Discord = require('discord.js')
 
 const loadDB = require('../functions/loadDB')
@@ -29,7 +32,10 @@ const Bot = () => {
 
             bot.on('ready', () => {
 
+                console.log("Bloop took: " + ((new Date).getTime() - start) + "MS")
+
                 if (bot.shard) {
+                    
                     console.log("Shard #"+bot.shard.id+" active with "+bot.guilds.size+" guilds")
                     bot.user.setGame("@Nitro help | Shard " + (bot.shard.id + 1) + "/" + bot.shard.count)
                 } else {
