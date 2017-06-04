@@ -42,11 +42,11 @@ exports.run = (message, bot, send) => {
   }, {
     time: 180000
   });
-  collect.on('message', (m) => {
+  collect.on('collect', (m) => {
     let id = m.channel.id;
     if (m.content === "endpoll") {
       if (poll[id].auth === m.author.id) return collect.stop('early')
-      else if (m.channel.permissionsFor(m.member).hasPermission("MANAGE_CHANNELS")) return collect.stop('early')
+      else if (m.channel.permissionsFor(m.member).has("MANAGE_CHANNELS")) return collect.stop('early')
       else return;
     } else {
       m.delete()
@@ -91,7 +91,7 @@ exports.conf = {
   botPerm: ["SEND_MESSAGES"],
   coolDown: 0,
   dm: false,
-  category: "Fun",
+  category: "Utility",
   help: "Create a poll",
   args: "",
 }

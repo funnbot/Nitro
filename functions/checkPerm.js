@@ -17,7 +17,7 @@ exports.Mcheck = (perms, message) => {
         can.miss.push(p);
       } 
     } else {
-      let perm = message.channel.permissionsFor(message.member).hasPermission(p);
+      let perm = message.channel.permissionsFor(message.member).has(p);
       if (!perm && message.author.id !== message.guild.owner.user.id && message.author.id !== "163735744995655680") {
         can.has = false;
         can.miss.push(p);
@@ -37,7 +37,7 @@ exports.Bcheck = (perms, message) => {
     miss: []
   };
   perms.forEach(p => {
-    let perm = message.channel.permissionsFor(message.guild.member(bot.user)).hasPermission(p);
+    let perm = message.channel.permissionsFor(message.guild.member(bot.user)).has(p);
     if (!perm) {
       can.has = false;
       can.miss.push(p);

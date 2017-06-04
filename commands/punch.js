@@ -5,7 +5,6 @@ exports.run = (message, bot) => {
     let authorURL = message.author.displayAvatarURL.endsWith(".webp") ? message.author.displayAvatarURL.slice(0, -5) + ".png" : message.author.displayAvatarURL;
     let targetPerson = message.mentions.users.first()
     let targetURL = targetPerson.displayAvatarURL.endsWith(".webp") ? targetPerson.displayAvatarURL.slice(0, -5) + ".png" : targetPerson.displayAvatarURL;
-    targetURL = targetURL.slice(0, -10)
     jimp.read("https://image.freepik.com/free-icon/person-fight-punch_318-29637.jpg", (err, image) => {
         if (err) return console.log(err);
         jimp.read(authorURL, (err, author) => {
@@ -32,7 +31,7 @@ exports.conf = {
     botPerm: ["SEND_MESSAGES"],
     coolDown: 0,
     dm: true,
-    category: "Random",
+    category: "Fun",
     help: "Sucker punch a user",
     args: "",
 }

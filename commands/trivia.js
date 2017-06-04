@@ -29,7 +29,7 @@ exports.run = (message, bot) => {
             time: 30000,
         });
 
-        collector.on('message', (m) => {
+        collector.on('collect', (m) => {
             let same = sim.compareTwoStrings(quiz[0].answer.toLowerCase(), m.content.toLowerCase())
             if (same > .65) {
                 collector.stop([m.author.username, m.author.id]);

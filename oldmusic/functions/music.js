@@ -267,7 +267,7 @@ function checkHostPerm(message) {
     let id = message.guild.id
     if (!sessions[id]) return "nm";
     if (!!sessions[id].host && sessions[id].host === message.author.id) return true;
-    if (message.channel.permissionsFor(message.member).hasPermission("MANAGE_GUILD")) return true;
+    if (message.channel.permissionsFor(message.member).has("MANAGE_GUILD")) return true;
     return false;
 }
 

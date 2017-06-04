@@ -12,7 +12,7 @@ exports.run = (message, bot) => {
   }
 
   if (message.args[0] === "add") {
-    if (!message.channel.permissionsFor(message.member).hasPermission("MANAGE_GUILD")) {
+    if (!message.channel.permissionsFor(message.member).has("MANAGE_GUILD")) {
       return message.send("You need the `MANAGE_GUILD` permission to manage roleme.");
     }
     if (!message.args[1]) {
@@ -44,7 +44,7 @@ exports.run = (message, bot) => {
   }
 
   if (message.args[0] === "remove") {
-    if (!message.channel.permissionsFor(message.member).hasPermission("MANAGE_GUILD")) {
+    if (!message.channel.permissionsFor(message.member).has("MANAGE_GUILD")) {
       return message.send("You need the `MANAGE_GUILD` permission to manage roleme.");
     }
     if (!message.args[1]) {

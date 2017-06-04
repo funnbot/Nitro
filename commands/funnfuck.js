@@ -14,7 +14,7 @@ exports.conf = {
     coolDown: 0,
     dm: true,
     category: "Fun",
-    help: "A New Lang k",
+    help: "A Wierd brainfuck derivative",
     args: "",
 }
 
