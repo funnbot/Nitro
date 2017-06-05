@@ -20,8 +20,6 @@ class ProfileConfig {
 
                 if (err) return console.log(err)
 
-                console.log(row)
-
                 if (!row.new_val) return
                 
                 this.profiles[row.new_val.id] = row.new_val.data
