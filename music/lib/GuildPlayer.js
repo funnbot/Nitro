@@ -367,7 +367,7 @@ class GuildPlayer {
 
         this.connection.stopPlaying()
 
-        this.bot.leaveVoiceChannel(this.bot.getChannel(this.voiceChannel))
+        this.bot.leaveVoiceChannel(this.voiceChannel)
 
     }
 
