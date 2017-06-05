@@ -25,7 +25,7 @@ exports.conf = {
     botPerm: ["SEND_MESSAGES"],
     coolDown: 0,
     dm: true,
-    category: "Random",
+    category: "Fun",
     help: "Create a Custom Cards Against Humanity Question and Anwser Card.",
     args: "",
 }

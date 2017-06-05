@@ -22,7 +22,7 @@ exports.conf = {
   botPerm:["SEND_MESSAGES", "KICK_MEMBERS"],
   coolDown:0,
   dm:true,
-  category:"Utility",
+  category:"Moderation",
   help:"Kick a user.",
   args:"",
 }

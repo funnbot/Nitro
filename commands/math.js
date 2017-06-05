@@ -15,7 +15,7 @@ exports.conf = {
   botPerm: ["SEND_MESSAGES"],
   coolDown: 0,
   dm: true,
-  category: "Fun",
+  category: "Other",
   help: "Do some math.",
   args: "",
 }

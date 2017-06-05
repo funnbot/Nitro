@@ -26,7 +26,7 @@ exports.conf = {
   botPerm:["SEND_MESSAGES", "BAN_MEMBERS"],
   coolDown:0,
   dm:true,
-  category:"Utility",
+  category:"Moderation",
   help:"Bans and unbans (a) user(s) to delete their messages.",
   args:"<@mention>",
 }

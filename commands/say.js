@@ -7,7 +7,7 @@ exports.conf = {
   botPerm:["SEND_MESSAGES"],
   coolDown:0,
   dm: false,
-  category:"Fun",
+  category:"Utility",
   help:"Make Nitro say a message",
   args:"",
 }

@@ -8,7 +8,7 @@ exports.conf = {
     botPerm: ["SEND_MESSAGES"],
     coolDown: 0,
     dm: false,
-    category: "Random",
+    category: "Fun",
     help: "Burn a user.",
     args: "",
 }

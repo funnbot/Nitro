@@ -39,7 +39,7 @@ exports.conf = {
     botPerm: ["SEND_MESSAGES", "MANAGE_CHANNELS"],
     coolDown: 0,
     dm: true,
-    category: "Utility",
+    category: "Moderation",
     help: "Lockdown a channel for a set ammount of seconds.",
     args: "<seconds>",
 }

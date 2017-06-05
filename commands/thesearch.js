@@ -21,7 +21,7 @@ exports.conf = {
   botPerm: ["SEND_MESSAGES"],
   coolDown: 0,
   dm: false,
-  category: "Random",
+  category: "Fun",
   help: "The search continues meme.",
   args: "",
 }

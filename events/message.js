@@ -94,7 +94,6 @@ bot.on('message', (message) => {
     if (categ === "Fun" && !!mods.fun) return;
     if (categ === "Music" && !!mods.music) return;
     if (categ === "Social" && !!mods.social) return;
-    if (categ === "Random" && !!mods.random) return;
 
     let newRoles = cmds[message.command].conf.userPerm.slice(0)
 

@@ -21,7 +21,7 @@ exports.conf = {
     botPerm: ["SEND_MESSAGES"],
     coolDown: 0,
     dm: true,
-    category: "Fun",
+    category: "Utility",
     help: "Search youtube for a video",
     args: "",
 }

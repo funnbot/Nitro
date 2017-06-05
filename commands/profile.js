@@ -13,6 +13,7 @@ exports.run = (message, bot) => {
         let time = (new Date).getTime();
         let id = (!message.mentions.users.first()) ? message.author.id : message.mentions.users.first().id;
         let user = (!message.mentions.users.first()) ? message.author : message.mentions.users.first();
+        if (user.bot) return gen.edit("**Bots do not have profiles**")
         let lvl = prof.getLvl(id);
         let rank = prof.getRank(id);
         let sent = prof.getSent(id);

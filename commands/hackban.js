@@ -12,7 +12,7 @@ exports.conf = {
   botPerm:["SEND_MESSAGES", "BAN_MEMBERS"],
   coolDown:0,
   dm:true,
-  category:"Utility",
+  category:"Moderation",
   help:"Ban a user by their ID, even if they haven't joined your server.",
   args:"<id>",
 }

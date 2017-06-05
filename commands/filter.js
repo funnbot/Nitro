@@ -6,8 +6,8 @@ exports.conf = {
   userPerm:[],
   botPerm:["SEND_MESSAGES"],
   coolDown:0,
-  dm:true,
+  dm:false,
   category:"Filter",
-  help:"Change keyword filter settings",
+  help:"Change keyword filter settings - Coming Soon",
   args:"",
 }

@@ -1,5 +1,5 @@
 exports.run = (message, bot, send) => {
-
+    if (!message.args[0]) message.args[0] = message.author.discriminator
     if (message.args[0].length !== 4) return send("Discriminators are 4 numbers")
     let disc = message.args[0].replace(/[^0123456789]/g, "")
     if (disc.length !== 4) return send("Discriminators are 4 numbers")

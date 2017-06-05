@@ -30,7 +30,7 @@ exports.conf = {
     botPerm: ["SEND_MESSAGES"],
     coolDown: 0,
     dm: false,
-    category: "Utility",
+    category: "Moderation",
     help: "Warn a user.",
     args: "",
 }

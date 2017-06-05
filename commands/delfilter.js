@@ -1,5 +1,3 @@
-const request = require('request');
-
 exports.run = (message, bot, send) => {
     
 }
@@ -8,8 +6,8 @@ exports.conf = {
   userPerm:[],
   botPerm:["SEND_MESSAGES"],
   coolDown:0,
-  dm:true,
+  dm:false,
   category:"Filter",
-  help:"",
+  help:"Delete a filter - Coming Soon",
   args:"",
 }

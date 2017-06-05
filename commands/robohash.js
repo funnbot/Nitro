@@ -8,7 +8,7 @@ exports.conf = {
   botPerm:["SEND_MESSAGES"],
   coolDown:0,
   dm:true,
-  category:"Random",
+  category:"Fun",
   help:"Generate a robohash with provided text.",
   args:"",
 }

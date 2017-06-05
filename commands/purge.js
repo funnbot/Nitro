@@ -111,7 +111,7 @@ exports.conf = {
   botPerm: ["SEND_MESSAGES", "MANAGE_MESSAGES"],
   coolDown: 0,
   dm: false,
-  category: "Utility",
+  category: "Moderation",
   help: "Purge messages in a channel.",
   args: "<int/@mention/all/search> <if(@mention)int/if(search)<phrase>>",
 }

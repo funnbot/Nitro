@@ -44,7 +44,7 @@ exports.conf = {
     botPerm: ["SEND_MESSAGES"],
     coolDown: 0,
     dm: true,
-    category: "Random",
+    category: "Fun",
     help: "Emojify a message",
     args: "",
 }
