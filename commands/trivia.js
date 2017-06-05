@@ -22,7 +22,7 @@ exports.run = (message, bot, send) => {
                 "value": quiz[0].category.title
             }, {
                 "name": "Question",
-                "value": quiz[0].question
+                "value": quiz[0].question ? quiz[0].question : "Api Error"
             }]
         };
         message.channel.send("", {
