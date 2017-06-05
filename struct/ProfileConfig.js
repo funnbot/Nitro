@@ -12,6 +12,24 @@ class ProfileConfig {
 
         this.conn = data.connection
 
+        r.table('profile').changes().run(this.conn, (err, change) => {
+
+            if (err) return console.log(err)
+
+            change.each((err, row) => {
+
+                if (err) return console.log(err)
+
+                console.log(row)
+
+                if (!row.new_val) return
+                
+                this.profiles[row.new_val.id] = row.new_val.data
+
+            })
+
+        })
+
     }
 
     update(id) {
@@ -24,6 +42,8 @@ class ProfileConfig {
             if (err) console.log(err)
         })
     }
+
+
 
     Get(id, name, def) {
         if (this.profiles[id] && this.profiles[id][name]) return this.profiles[id][name]
