@@ -4,6 +4,7 @@ exports.run = (message, bot) => {
     if (!message.args[0] || num === false) return message.channel.send("You can lockdown a channel with:\n" + prefix + "lockdown <seconds>");
     message.channel.send("**This channel has been locked down for " + num + " seconds.**\nYou can end lockdown by typing `unlock` in chat or by waiting the alloted time.").then((m) => {
         let before = m.channel.permissionOverwrites.get(message.guild.id);
+        if (!before) before = null
         if (before.allow & 1 << 11) before = true
         else if (before.deny & 1 << 11) before = false
         else before = null
