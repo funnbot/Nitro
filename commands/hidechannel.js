@@ -4,9 +4,11 @@ exports.run = (message, bot) => {
     if (!message.args[0] || num === false) return message.channel.send("You can hide a channel with:\n" + prefix + "hidechannel <seconds>");
     message.channel.send("**This channel has been hidden for " + num + " seconds.**\nYou can end hiding by typing `unlock` in chat or by waiting the alloted time.").then((m) => {
         let before = m.channel.permissionOverwrites.get(message.guild.id);
-        if (before.allow & 1 << 10) before = true
-        else if (before.deny & 1 << 10) before = false
-        else before = null
+        if (before) {
+            if (before.allow & 1 << 10) before = true
+            else if (before.deny & 1 << 10) before = false
+            else before = null
+        } else before = null
         message.channel.overwritePermissions(message.guild.id, {
             READ_MESSAGES: false
         }).then(() => {
