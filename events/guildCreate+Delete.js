@@ -8,12 +8,14 @@ bot.on('guildCreate', (g) => {
     g.defaultChannel.send("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**\nSupport Server: <https://discordapp.com/invite/aZ2PYhn>")
     dBots()
     carbon()
+    discordBots()
 })
 
 bot.on('guildDelete', (g) => {
     bot.config.guildLeave(g.id);
     dBots()
     carbon()
+    discordBots()
 })
 
 function dBots() {
@@ -25,9 +27,27 @@ function dBots() {
             "Authorization": auth.dbots
         },
         body: {
+            "shard_id": bot.shard.id,
+            "shard_count": bot.shard.count,
             "server_count": bot.guilds.size
         }
     }, function (error, response, body) {});
+}
+
+function discordBots() {
+    request({
+        url: "https://discordbots.org/api/bots/264087705124601856/stats",
+        method: "POST",
+        json: true,
+        headers: {
+            Authorization: auth.discordbots
+        },
+        body: {
+            "shard_id": bot.shard.id,
+            "shard_count": bot.shard.count,
+            "server_count": bot.guilds.size
+        }
+    })
 }
 
 function carbon() {
