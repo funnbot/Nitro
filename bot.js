@@ -8,6 +8,8 @@ Bot().then(bot => {
 
     require('./events/message')
 
+    require('./events/messageEdit')
+
     require('./events/guildCreate+Delete')
 
     require('./events/guildMemberAdd')
