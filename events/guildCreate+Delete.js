@@ -2,13 +2,14 @@ const bot = require('../bot.js')
 const request = require('request');
 const auth = require('../config')
 const Mixpanel = require('mixpanel');
-//let mixpanel = Mixpanel.init("a4cd26822d32fdde282a60cb28c31253")
+let mixpanel = Mixpanel.init("a4cd26822d32fdde282a60cb28c31253")
 
 bot.on('guildCreate', (g) => {
     g.defaultChannel.send("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**\nSupport Server: <https://discordapp.com/invite/aZ2PYhn>")
     dBots()
     carbon()
     discordBots()
+    mixpanel.track("Guild Join", {a: 1})
 })
 
 bot.on('guildDelete', (g) => {
@@ -16,6 +17,7 @@ bot.on('guildDelete', (g) => {
     dBots()
     carbon()
     discordBots()
+    mixpanel.track("Guild Leave", {a: -1})
 })
 
 function dBots() {
