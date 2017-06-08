@@ -5,6 +5,7 @@ const cmds = require('../functions/loadCommands.js').getCmds()
 const help = require('../commands/help.js')
 const CustomCmds = require('../commands/ccmd')
 const Adblock = require('../functions/adblock')
+const Filter = require('../functions/filter')
 const store = require('../functions/storeMessages')
 const log = require('../functions/log')
 
@@ -15,6 +16,9 @@ bot.on('message', (message) => {
 
   //Adblock
   Adblock(message)
+
+  //Filter
+  Filter(message)
 
   if (message.author.bot) return;
 
