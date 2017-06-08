@@ -153,6 +153,14 @@ class GuildConfig {
     this.setObject(id, 'filter', filter)
   }
 
+  getJDM(id) {
+    return this.getString(id, 'joindm', false)
+  }
+
+  setJDM(id, JDM) {
+    this.setObject(id, "joindm", JDM)
+  }
+
 }
 
 module.exports = GuildConfig;

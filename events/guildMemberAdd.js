@@ -1,6 +1,8 @@
 const bot = require('../bot.js')
 
 bot.on('guildMemberAdd', (member) => {
+    let joindm = bot.config.getJDM(member.guild.id)
+    if (joindm) member.send(joindm)
     //Autorole
     let autorole = bot.config.getAuto(member.guild.id)
     if (autorole !== false) {

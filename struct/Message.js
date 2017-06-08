@@ -35,6 +35,8 @@ function Message(message) {
 
     message.guild.filter = bot.config.getFilter(id)
 
+    message.guild.joindm = bot.config.getJDM(id)
+
     let nopre = message.content.slice(message.guild.prefix.length)
 
     let split = nopre.split(" ")
