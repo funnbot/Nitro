@@ -68,8 +68,8 @@ exports.run = (message, bot) => {
             if (!ad.ex && !ad.ex.users && !ad.ex.roles) {
                 return message.send("**No exceptions have been added.**")
             }
-            let users = ad.ex.users
-            let roles = ad.ex.roles
+            let users = ad.ex.users ? ad.ex.users : {}
+            let roles = ad.ex.roles ? ad.ex.roles : {}
             let utext = [];
             let rtext = [];
             Object.keys(users).forEach(u => {
