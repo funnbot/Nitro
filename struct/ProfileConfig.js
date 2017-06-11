@@ -1,4 +1,5 @@
 const r = require('rethinkdb')
+const Discord = require('discord.js')
 
 class ProfileConfig {
 
@@ -126,6 +127,14 @@ class ProfileConfig {
 
     setBg(id, background) {
         this.Set(id, 'background', background)
+    }
+
+    getRep(id) {
+        return this.Get(id, 'rep', {})
+    }
+
+    setRep(id, rep) {
+        return this.Set(id, 'rep', rep)
     }
 
 }

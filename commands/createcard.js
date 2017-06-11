@@ -1,7 +1,7 @@
 const jimp = require('jimp');
 
 exports.run = (message, bot) => {
-    let prefix = message.prefix
+    let prefix = message.guild.prefix
     if (!message.args[0]) return message.channel.send("To create a card: " + prefix + "createcard This text is on the question card | this text is on the anwser card");
     let text = message.suffix.split("|");
     if (!text[1]) return message.channel.send("Please include text for the second card, and the delimeter `|`");
