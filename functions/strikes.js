@@ -13,19 +13,19 @@ module.exports = (guildid, userid) => {
     let user = bot.users.get(userid)
     if (kmax !== 0) {
         if (strikes.users[userid] === kmax - 1 && kmax !== 1) {
-            return user.send("**You are `1` strike away from being kicked from `" + guild.name + "` because of too many strikes**")
+            return user.send("**You are `1` strike away from being kicked from `" + guild.name + "`**")
         }
         if (strikes.users[user.id] === kmax) {
-            return user.send("**You have been kicked from `" + guild.name + "` because of too many strikes**").then(u => guild.member(userid).kick().catch())
+            return user.send("**You have been kicked from `" + guild.name + "`**").then(u => guild.member(userid).kick().catch())
         }
     }
 
     if (bmax !== 0) {
         if (strikes.users[userid] === bmax - 1 && bmax !== 1) {
-            return user.send("**You are `1` strike away from being banned from `" + guild.name + "` because of too many strikes**")
+            return user.send("**You are `1` strike away from being banned from `" + guild.name + "`**")
         }
         if (strikes.users[userid] === bmax) {
-            return user.send("**You have been banned from `" + guild.name + "` because of too many strikes**").then(u => guild.ban(userid).catch())
+            return user.send("**You have been banned from `" + guild.name + "`**").then(u => guild.ban(userid).catch())
         }
     }
 
