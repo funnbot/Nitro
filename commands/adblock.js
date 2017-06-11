@@ -1,6 +1,6 @@
 exports.run = (message, bot) => {
     if (!message.args[0]) {
-        return message.channel.send(nu.getSpecialHelp("adblock"));
+        return message.channel.send(nu.getSpecialHelp("adblock", message.guild.prefix));
     }
     let ad = message.guild.adblock
     let prefix = message.guild.prefix
@@ -97,6 +97,15 @@ exports.run = (message, bot) => {
             }
         } else {
             message.send("**Only the server owner can activate AdBlock notify.**")
+        }
+    } else if (message.args[0] === "strikes") {
+        let strikes = message.guild.strikes
+        if (ad.strikes) {
+            message.send("**Disabling advertisment strikes**")
+            delete ad.strikes
+        } else {
+            message.send("**Enabling advertisment strikes**")
+            ad.strikes = true
         }
     }
     bot.config.setAd(message.guild.id, ad);

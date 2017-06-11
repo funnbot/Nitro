@@ -1,3 +1,5 @@
+const strikes = require('../functions/strikes')
+
 exports.run = (message, bot, send) => {
     if (!message.args[0]) {
         let pre = message.guild.prefix
@@ -19,10 +21,11 @@ exports.run = (message, bot, send) => {
     }
     bot.users.get(user.id).send("", {
         embed
-    }).then(send(message.mentions.users.first().username + " **Has been warned.**")).catch(err => {
+    }).then(send(message.mentions.users.first().username + " **Has been warned and given a strike.**")).catch(err => {
         console.log(err)
         send("**This user has Direct Messages disabled.**")
     })
+    strikes(message.guild.id, user.id, 1)
 }
 
 exports.conf = {

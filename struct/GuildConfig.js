@@ -161,6 +161,14 @@ class GuildConfig {
     this.setObject(id, "joindm", JDM)
   }
 
+  getStrike(id) {
+    return this.getString(id, "strike", {})
+  }
+
+  setStrike(id, strike) {
+    this.setObject(id, "strike", strike)
+  }
+
 }
 
 module.exports = GuildConfig;

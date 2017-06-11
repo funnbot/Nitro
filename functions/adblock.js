@@ -1,4 +1,5 @@
 const bot = require('../bot')
+const strikes = require('./strikes')
 
 module.exports = (message) => {
 
@@ -20,7 +21,8 @@ module.exports = (message) => {
                     if (notEx) {
                         if (message.author.id !== message.guild.owner.user.id) {
                             message.delete();
-                            message.author.send("**AdBlock**: " + message.author + ", Please Do Not Advertise.").then(m => m.delete(3000)).catch()
+                            message.author.send("**AdBlock**: " + message.author + ", Please Do Not Advertise.").catch()
+                            strikes(message.guild.id, message.author.id)
                             if (!!ad.notify) {
                                 bot.users.get(message.guild.owner.id).send("*The user:* **" + message.author.username + "** *Has Advertised in the channel:* **" + message.channel.name + "** *of the server* **" + message.guild.name + "** *With the message:* \n`" + message.content + "`")
                             }

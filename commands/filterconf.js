@@ -1,6 +1,6 @@
 exports.run = (message, bot, send) => {
 
-  if (!message.args[0]) return send("**The available subcommands are:**\n**info** - Get info about the current keyword config\n**exception** - Add/Remove exceptions from filtering\n**notify** - Toggles notification when a message is filtered\n**msg** - Change the message DM'd to the user when the message is filtered")
+  if (!message.args[0]) return send("**The available subcommands are:**\n**info** - Get info about the current keyword config\n**exception** - Add/Remove exceptions from filtering\n**notify** - Toggles notification when a message is filtered\n**msg** - Change the message DM'd to the user when the message is filtered\n**strikes** - Enable or Disable strikes from using restricted keywords, see `" + message.guild.prefix + "pconf` for more info")
   let filters = message.guild.filter
   let sub = message.args[0]
   if (sub === "info") {
@@ -18,15 +18,27 @@ exports.run = (message, bot, send) => {
     embed.setTitle("Filter Info")
     embed.addField("# Of Filters", num, true)
     embed.addField("Notify", filters.notify ? "true" : "false", true)
+    embed.addField("Strikes", filters.strikes ? "true" : "false", true)
     embed.addField("Exceptions", ex)
     embed.addField("Message", filters.msg ? filters.msg : "**Your message was deleted because it contained a restricted word**")
-    send("", {
+    return send("", {
       embed
     })
 
   } else if (sub === "exception") {
 
     return send("Coming Soon!")
+
+  } else if (sub === "strikes") {
+
+    let strikes = message.guild.strikes
+    if (filters.strikes) {
+      message.send("**Disabling keyword strikes**")
+      delete filters.strikes
+    } else {
+      message.send("**Enabling keyword strikes**")
+      filters.strikes = true
+    }
 
   } else if (sub === "notify") {
 
@@ -39,6 +51,7 @@ exports.run = (message, bot, send) => {
   } else {
     send("**The available subcommands are:**\n**info** - Get info about the current keyword config\n**exception** - Add/Remove exceptions from filtering\n**notify** - Toggles notification when a message is filtered\n**msg** - Change the message sent when a message is filtered")
   }
+  bot.config.setFilter(message.guild.id, filters)
 
 }
 

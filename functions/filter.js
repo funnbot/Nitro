@@ -1,4 +1,5 @@
 const bot = require('../bot')
+const strike = require('./strikes')
 
 module.exports = (message) => {
 
@@ -11,9 +12,10 @@ module.exports = (message) => {
     if (message.member && message.member.hasPermission("ADMINISTRATOR")) return 
     let low = message.content.toLowerCase()
     if (keys.some(word => ~low.indexOf(word.toLowerCase()))) {
+        message.delete()
         let w
         keys.forEach(k => low.includes(k.toLowerCase()) ? w = k : 0)
-        message.delete()
+        strike(message.guild.id, message.author.id)
         message.author.send(filters.msg ? filters.msg : "**Your message was deleted because it contained a restricted keyword: **"+w)
     }
 
