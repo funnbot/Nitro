@@ -39,6 +39,8 @@ function Message(message) {
 
     message.guild.strikes = bot.config.getStrike(id)
 
+    message.guild.deletem = bot.config.getDeletem(id)
+
     let nopre = message.content.slice(message.guild.prefix.length)
 
     let split = nopre.split(" ")

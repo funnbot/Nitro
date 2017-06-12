@@ -68,6 +68,10 @@ bot.on('message', (message) => {
 
       }
 
+      //delete command
+      let delcc = message.guild.deletem
+      if (delcc) message.delete()
+
       if (custom[message.command].type === "shortcut") {
         let saved = message.args.slice(0)
         let cmsg = custom[message.command].msg
@@ -86,10 +90,16 @@ bot.on('message', (message) => {
   }
   if (!cmds.hasOwnProperty(message.command)) return;
 
+  //delete command
+  let del = message.guild.deletem
+  if (del) message.delete()
+
   //log
   if (message.channel.type === "dm") log.dm(message)
   else log.g(message)
-  mixpanel.track(message.command, {b: 5})
+  mixpanel.track(message.command, {
+    b: 5
+  })
 
   //if (suffix.includes("<") && suffix.includes(">")) message.channel.send("*It looks like you are using the characters < and > in your command. Remember, these are only for refrence on what type of text goes there, not to actually include them.*")
   if (message.channel.type !== "text" && cmds[message.command].conf.dm === false) return message.channel.send('This command does not work in Direct Messages.');

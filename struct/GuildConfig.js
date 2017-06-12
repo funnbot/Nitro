@@ -169,6 +169,14 @@ class GuildConfig {
     this.setObject(id, "strike", strike)
   }
 
+  getDeletem(id) {
+    return this.getString(id, 'deletem', false)
+  }
+
+  setDeletem(id, del) {
+    this.setObject(id, 'deletem', del)
+  }
+
 }
 
 module.exports = GuildConfig;
