@@ -4,7 +4,7 @@ exports.run = (message, bot, send) => {
   let user = message.mentions.users.first()
   if (!user) return send("**Mention a user to rep- them**")
   if (user.id === message.author.id) return send("**You can't rep yourself**")
-  let msg = message.args[1] ? message.suffix.slice(1) : false
+  let msg = message.args[1] ? message.args.slice(1).join(" ") : false
   let auth = message.author
   let type = 2
   let tag = auth.tag
