@@ -5,7 +5,7 @@ const t = new Trello(config.trelloKey, config.trelloToken)
 const listid = "593619639c37afba108f097e"
 const web = new Discord.WebhookClient("323966823890419712", "Wx2Rmm0A6CCTP8_lSCBpvMbl6XIs0irrSzxJHqre5A_XTO5SLDPFOGqvpOOxuPp3FXud")
 
-exports.run = (message, bot) => {
+exports.run = (message, bot, send) => {
     if (!message.args[0]) return send("**Suggest a new command or feature**")
     if (!message.args[1]) return send("**I'll need more information than that**")
 
