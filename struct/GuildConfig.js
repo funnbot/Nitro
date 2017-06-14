@@ -11,6 +11,22 @@ class GuildConfig {
 
     this.conn = n.connection;
 
+    r.table('config').changes().run(this.conn, (err, change) => {
+
+            if (err) return console.log(err)
+
+            change.each((err, row) => {
+
+                if (err) return console.log(err)
+
+                if (!row.new_val) return
+                
+                this.guild[row.new_val.id] = row.new_val.data
+
+            })
+
+        })
+
   }
 
   update(id) {
@@ -177,6 +193,13 @@ class GuildConfig {
     this.setObject(id, 'deletem', del)
   }
 
+  getAPIToken(id) {
+    return this.getString(id, 'apitoken', false)
+  }
+
+  setAPIToken(id, apitoken) {
+    this.setObject(id, 'apitoken', apitoken)
+  }
 }
 
 module.exports = GuildConfig;

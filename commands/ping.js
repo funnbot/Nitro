@@ -1,5 +1,5 @@
 exports.run = (message, bot) => {
-  message.send("Pong! "+bot.ping+"ms")
+  message.send("Pong! "+bot.ping.toFixed()+"ms")
 }
 
 exports.conf = {
