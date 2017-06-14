@@ -125,7 +125,7 @@ class GuildPlayer {
                         playlist.push(song)
 
                         this.playlist.push(song)
-                        
+
                         if (this.playlist.length > config.playlistLength) return reject("The queue length is limited to 200 songs")
 
                     })
@@ -184,7 +184,7 @@ class GuildPlayer {
                         requester
                     })
 
-                    
+
 
                     this.playlist.push(song)
 
@@ -275,23 +275,17 @@ class GuildPlayer {
 
             id = id.path.slice(15)
 
-            try {
+            request.get(`https://www.youtube.com/list_ajax?style=json&action_get_list=1&list=${id}`, (err, res, body) => {
 
-                request.get(`https://www.youtube.com/list_ajax?style=json&action_get_list=1&list=${id}`, (err, res, body) => {
+                if (err) return reject(err)
 
-                    if (!body) return reject("Bad id: "+id)
+                    if (!body) return reject("Bad id: " + id)
 
-                    body = JSON.parse(body)
+                body = JSON.parse(body)
 
-                    return resolve(body)
+                return resolve(body)
 
-                })
-
-            } catch (err) {
-
-                return reject(err)
-
-            }
+            })
 
         })
 
@@ -452,8 +446,8 @@ class GuildPlayer {
 
         let nowPlaying
         if (num === 1) {
-        nowPlaying = gen[0]
-        gen = gen.slice(1)
+            nowPlaying = gen[0]
+            gen = gen.slice(1)
         }
 
         let TotalTime = 0
@@ -461,11 +455,10 @@ class GuildPlayer {
         TotalTime = pretty(TotalTime)
 
         let embed = {
-            title: num === 1 ? "Now Playing: "+nowPlaying : "",
+            title: num === 1 ? "Now Playing: " + nowPlaying : "",
             description: gen.join("\n"),
             color: 0x173fc4,
-            fields: [
-                {
+            fields: [{
                     name: "Queue Size",
                     value: this.playlist.length,
                     inline: true
@@ -478,7 +471,9 @@ class GuildPlayer {
             ]
         }
 
-        message.channel.createMessage({embed})
+        message.channel.createMessage({
+            embed
+        })
 
     }
 

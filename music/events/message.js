@@ -22,7 +22,6 @@ bot.on('messageCreate', message => {
     let cmds = Commands.getCmds()
     if (!cmds.hasOwnProperty(message.command)) return
     let check = checkPerm.Mcheck(message)
-    console.log("okey")
     if (check) return 
     
 
