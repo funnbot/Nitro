@@ -27,9 +27,9 @@ bot.on('message', (message) => {
   //Stored Messages
   //store.add(message, bot.user.id)
 
-  //let blocked = config.getBlocked();
-  //if (blocked.users[message.author.id]) return;
-  //if (message.channel.type === "text" && blocked.servers[message.guild.id]) return;
+  let blocked = bot.system.getBlocked()
+  if (blocked[message.author.id]) return
+  if (message.channel.type === 'text' && blocked[message.guild.id]) return
 
   //stat
   let lvl = bot.profile.getLvl(message.author.id);

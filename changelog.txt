@@ -1,16 +1,14 @@
 **In Progress**
+> Integrate with Discord.fm
+> Pet Sim
+> Ban and Kick cases with Reasons
+> Giveaway System
+**Finished**
+> Update Squad
 > More Modlog Events
 > Dm message on Join
 > Strike System
-> Ban and Kick cases with Reasons
-> Giveaway System
 > Reputation System
-> Remaking the money System
-**Finished**
 > Chat Filter
-> Remove from queue by index command
-> Music is now better
-> Custom Command Shortcut System
-> Customizable Permission System for each command and custom command
 Do you want to decide what shows up here? Join our server: <https://discordapp.com/invite/aZ2PYhn>
 Or help pay for the server to keep Nitro alive: <https://www.patreon.com/user?u=4661783>

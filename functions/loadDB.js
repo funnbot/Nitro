@@ -28,13 +28,21 @@ module.exports = () => {
 
                     if (err) return reject(err)
 
-                    return resolve({
-                        connection,
-                        config,
-                        profile
+                    loadSystem(connection, (err, system) => {
+
+                        if (err) return reject(err)
+
+                        return resolve({
+                            connection,
+                            config,
+                            profile,
+                            system
+                        })
+
                     })
 
                 })
+
             })
 
         }).catch(err => reject(err));
@@ -71,4 +79,20 @@ function loadProfile(connection, callback) {
 
         })
     })
+}
+
+function loadSystem(connection, callback) {
+
+    r.table('system').run(connection, (err, res) => {
+
+        if (err) return callback(err, false)
+
+        res.toArray((err, data) => {
+
+            return callback(false, data)
+
+        })
+
+    })
+
 }

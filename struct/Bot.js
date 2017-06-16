@@ -9,6 +9,8 @@ const GuildConfig = require('../struct/GuildConfig')
 
 const ProfileConfig  = require('../struct/ProfileConfig')
 
+const SystemConfig = require('../struct/SystemConfig')
+
 const Framework = require('../functions/framework')(Discord)
 
 const Bot = () => {
@@ -27,6 +29,8 @@ const Bot = () => {
             bot.config = new GuildConfig(data)
 
             bot.profile = new ProfileConfig(data)
+
+            bot.system = new SystemConfig(data)
 
             bot.embed = Discord.RichEmbed
 

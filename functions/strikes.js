@@ -24,7 +24,7 @@ module.exports = (guildid, userid) => {
         if (strikes.users[userid] === bmax - 1 && bmax !== 1) {
             return user.send("**You are `1` strike away from being banned from `" + guild.name + "`**")
         }
-        if (strikes.users[userid] === bmax) {
+        if (strikes.users[userid] >= bmax) {
             return user.send("**You have been banned from `" + guild.name + "`**").then(u => guild.ban(userid).catch())
         }
     }
