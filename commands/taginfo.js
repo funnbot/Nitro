@@ -16,7 +16,6 @@ exports.run = (message, bot, send) => {
   embed.setColor(0xfe8507)
   message.channel.send("", {embed})
 
-
 }
 
 exports.conf = {
@@ -25,6 +24,6 @@ exports.conf = {
   coolDown: 0,
   dm: false,
   category: "Tag",
-  help: "Get a tag or edit current tags.",
+  help: "Get info about a tag",
   args: "",
 }
