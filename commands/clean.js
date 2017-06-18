@@ -1,6 +1,5 @@
 exports.run = (message, bot, send) => {
     let num = (!!message.args[0]) ? parseInt(message.args[0]) || 20 : 20;
-    //console.log(num)
     message.channel.fetchMessages({limit:num}).then(msgs => {
       let ms = msgs.filter(m => m.author.id === bot.user.id);
       if (ms.size === 1) { ms.first().delete(); return send("**Cleaning up Nitro's messages**") }

@@ -13,7 +13,7 @@ exports.run = (message, bot, send) => {
         Object.keys(update).forEach(key => {
             bot.fetchUser(key).then(user => {
                 user.send({embed})
-            })
+            }).catch()
         })
 
     })

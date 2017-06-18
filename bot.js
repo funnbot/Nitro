@@ -24,6 +24,8 @@ Bot().then(bot => {
 
     require('./functions/specialHelp')
 
+    require('./functions/apiServer')
+
     bot.login(config.token)
 
 }).catch(err => console.log(err));

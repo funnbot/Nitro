@@ -14,6 +14,7 @@
     "canvas": "^1.6.3",
     "discord.js": "^11.1.0",
     "erlpack": "github:hammerandchisel/erlpack",
+    "express": "^4.15.3",
     "ffmpeg": "0.0.4",
     "is-var-name": "^1.0.0",
     "jimp": "^0.2.27",

@@ -34,8 +34,6 @@ const Bot = () => {
 
             bot.embed = Discord.RichEmbed
 
-            console.log("Its still not starting")
-
             bot.on('ready', () => {
 
                 console.log("Bloop took: " + ((new Date).getTime() - start) + "MS")
