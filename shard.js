@@ -5,7 +5,7 @@ Manager.spawn();
 
 //Guild Api
 const express = require('express')
-const bot = require('../bot')
+const bot = require('./bot')
 
 const app = express()
 const port = process.env.PORT || 2904
