@@ -31,7 +31,7 @@ app.use('/api/inguild', (req, res, next) => {
     } else {
         res.send("Provide guild ID in header")
     }
-
+    next()
 })
 
 app.listen(port, () => {
