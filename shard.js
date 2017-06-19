@@ -14,7 +14,7 @@ app.use('/api/inguild', (req, res, next) => {
     if (req.headers.guildid) {
         let id = req.headers.guildid
         Manager.broadcastEval(`
-            bot.guilds.has("${id}")
+            this.guilds.has("${id}")
         `).then(results => {
             let bool = false
             results.forEach(r => bool = r)
@@ -27,7 +27,7 @@ app.use('/api/inguild', (req, res, next) => {
                     has: false
                 }))
             }
-        })
+        }).catch(console.log)
     } else {
         res.send("Provide guild ID in header")
     }
