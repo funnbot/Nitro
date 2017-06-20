@@ -19,7 +19,7 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.use('/api/inguild', (req, res, next) => {
+router.use('/api/inguild', (req, res) => {
     if (req.headers.guildid) {
         let id = req.headers.guildid
         Manager.broadcastEval(`
