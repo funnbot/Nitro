@@ -40,7 +40,6 @@ router.use('/api/inguild', (req, res, next) => {
     } else {
         return res.send("Provide guild ID in header")
     }
-    next()
 })
 
 app.use("/", router);
