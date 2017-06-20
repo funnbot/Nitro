@@ -22,19 +22,12 @@ router.use(function (req, res, next) {
 router.use('/api/inguild', (req, res) => {
     if (req.headers.guildid) {
         let id = req.headers.guildid
-        Manager.broadcastEval(`
-            this.guilds.has("${id}")
-        `).then(results => {
-            let bool = false
-            results.forEach(r => bool = r)
+        Manager.broadcastEval(`this.guilds.has("${id}")`).then(results => {
+            bool = results.indexOf(true) > -1 ? true : false
             if (bool) {
-                return res.send(JSON.stringify({
-                    has: true
-                }))
+                return res.send(JSON.stringify({has: true}))
             } else {
-                return res.send(JSON.stringify({
-                    has: false
-                }))
+                return res.send(JSON.stringify({has: false}))
             }
         }).catch(console.log)
     } else {
