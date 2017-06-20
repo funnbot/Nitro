@@ -28,17 +28,17 @@ router.use('/api/inguild', (req, res, next) => {
             let bool = false
             results.forEach(r => bool = r)
             if (bool) {
-                res.send(JSON.stringify({
+                return res.send(JSON.stringify({
                     has: true
                 }))
             } else {
-                res.send(JSON.stringify({
+                return res.send(JSON.stringify({
                     has: false
                 }))
             }
         }).catch(console.log)
     } else {
-        res.send("Provide guild ID in header")
+        return res.send("Provide guild ID in header")
     }
     next()
 })
