@@ -1,6 +1,9 @@
 const config = require('./config.js')
 const Discord = require('discord.js');
-const Manager = new Discord.ShardingManager('./bot.js', {totalShards: "auto", token: config.token});
+const Manager = new Discord.ShardingManager('./bot.js', {
+    totalShards: "auto",
+    token: config.token
+});
 Manager.spawn();
 
 //Guild Api
@@ -8,9 +11,15 @@ const express = require('express')
 const bot = require('./bot')
 
 const app = express()
+const router = express.Router()
 const port = process.env.PORT || 2904
 
-app.use('/api/inguild', (req, res, next) => {
+router.use(function (req, res, next) {
+    console.log(req.url);
+    next();
+});
+
+router.use('/api/inguild', (req, res, next) => {
     if (req.headers.guildid) {
         let id = req.headers.guildid
         Manager.broadcastEval(`
@@ -33,6 +42,8 @@ app.use('/api/inguild', (req, res, next) => {
     }
     next()
 })
+
+app.use("/", router);
 
 app.listen(port, () => {
     console.log("inguild listening on port " + port)
