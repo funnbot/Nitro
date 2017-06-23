@@ -59,7 +59,8 @@ function carbon() {
         json: true,
         body: {
             key: auth.carbon,
-            servercount: bot.guilds.size
+            servercount: bot.guilds.size,
+            shardcount: bot.shard.count
         }
     }, (error, res, body) => {})
 }
