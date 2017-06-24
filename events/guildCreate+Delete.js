@@ -52,15 +52,22 @@ function discordBots() {
     })
 }
 
-function carbon() {
+async function carbon() {
+    let guildcount = await fetchGuildCount()
     request({
         url: "https://www.carbonitex.net/discord/data/botdata.php",
         method: "POST",
         json: true,
         body: {
             key: auth.carbon,
-            servercount: bot.guilds.size,
+            servercount: guildcount,
             shardcount: bot.shard.count
         }
     }, (error, res, body) => {})
+}
+
+async function fetchGuildCount() {
+    let results = await bot.shard.fetchClientValues('guilds.size')
+    results = results.reduce((prev, val) => prev + val, 0)
+    return results
 }
