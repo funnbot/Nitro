@@ -1,5 +1,5 @@
 exports.run = (message, bot, send) => {
-    send("Nitr's Dashboard can be found at http://nitro.ws/dashboard")
+    send("Nitro's Dashboard can be found at http://nitro.ws/dashboard")
 }
 
 exports.conf = {
