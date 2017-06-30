@@ -11,12 +11,15 @@ exports.run = (message, bot, send) => {
 
     voiceChannel = message.member.voiceState.channelID
 
+    
+
     bot.joinVoiceChannel(voiceChannel).then(connection => {
 
         player = bot.music.registry.createGuildPlayer(connection, message, bot)
 
         queue(message, player)
-    })
+
+    }).catch(console.log)
 
 
 }

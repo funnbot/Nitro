@@ -28,6 +28,10 @@ class YouTubeSong {
 
                 let stream = ytdl(this.stream, {audioonly: true})
 
+                stream.on('error', (err) => {
+                    console.log(error)
+                })
+
                 return resolve(stream)
 
             } catch(err) {
