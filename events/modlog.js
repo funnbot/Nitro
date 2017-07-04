@@ -2,6 +2,7 @@ const bot = require('../bot')
 const moment = require('moment')
 
 exports.fire = (text, guild) => {
+    if (!guild.channels) return
     let channel = guild.channels.find(c => c.topic === 'nitro-modlog')
     if (!channel) return
     let time = `**\`[${moment().format("M/D/YY - hh:mm")}]\`** `
