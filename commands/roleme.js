@@ -77,7 +77,7 @@ exports.run = (message, bot) => {
     return;
   }
   if (roles.indexOf(role) === -1) {
-    return message.send("**The Available roles are:**\n` " + (roles.length !== 0 ? roles.join(", ") : "\u200B ")+"`\n\n*Admins:*\n**You can add or remove an option from roleme with:**\n`" + prefix + "roleme add <role>` *or* `" + prefix + "roleme remove <role>`");
+    return message.send("**The Available roles are:**\n` " + (roles.length !== 0 ? roles.join(", ") : "\u200B ")+"`you can add a role with: `"+prefix+"roleme <roleName>`\n\n*Admins:*\n**You can add or remove an option from roleme with:**\n`" + prefix + "roleme add <role>` *or* `" + prefix + "roleme remove <role>`");
   }
   if (message.guild.member(bot.user).highestRole.position > message.guild.roles.find('name', role).position) {
     message.member.addRole(message.guild.roles.find('name', role));
