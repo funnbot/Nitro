@@ -13,7 +13,7 @@ exports.fire = (text, guild) => {
 
 bot.on('messageDelete', msg => {
     if (msg.channel.type !== "text") return
-    exports.fire(`**#${msg.channel.name} | ${msg.author.tag} deleted their message:** \`${msg.content}\``, msg.guild)
+    exports.fire(`**#${msg.channel.name} | ${msg.author.tag}'s message was deleted:** \`${msg.content}\``, msg.guild)
 })
 
 bot.on('messageUpdate', (msg, newMsg) => {
