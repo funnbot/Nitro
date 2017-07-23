@@ -11,7 +11,7 @@ const ProfileConfig  = require('../struct/ProfileConfig')
 
 const SystemConfig = require('../struct/SystemConfig')
 
-const Framework = require('../functions/framework')(Discord)
+const Framework = require('../functions/framework')
 
 const Bot = () => {
 
@@ -23,7 +23,7 @@ const Bot = () => {
 
                 disabledEvents: ['TYPING_START'],
                 fetchAllMembers: true
-                
+
             })
 
             bot.config = new GuildConfig(data)
@@ -37,16 +37,17 @@ const Bot = () => {
             bot.on('ready', () => {
 
                 console.log("Bloop took: " + ((new Date).getTime() - start) + "MS")
+                Framework.start(bot)
 
                 if (bot.shard) {
-                    
+
                     console.log("Shard #"+bot.shard.id+" active with "+bot.guilds.size+" guilds")
                     bot.user.setGame("@Nitro help | Shard " + (bot.shard.id + 1) + "/" + bot.shard.count)
                 } else {
                     console.log("Shard #0 active with "+bot.guilds.size+" guilds")
                     bot.user.setGame("@Nitro help | "+bot.guilds.size+" guilds")
                 }
-                
+
             })
 
             return resolve(bot);
