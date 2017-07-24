@@ -6,7 +6,7 @@ exports.run = (message, bot, send) => {
 }
 
 exports.conf = {
-  userPerm:[],
+  userPerm:[], 
   botPerm:["SEND_MESSAGES"],
   coolDown:0,
   dm:true,
