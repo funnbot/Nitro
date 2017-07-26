@@ -1,12 +1,12 @@
 exports.run = (message, bot, send) => {
   let embed = new bot.embed()
-  embed.setDescription("**[YouTuber // Active Virtual Addiction Member // Crionic Owner]()**")
+  embed.setDescription("**[YouTuber // Active Virtual Addiction Member // Crionic Owner // Xenforo Designer // CEO of The Gaming Hub]()**")
   embed.setColor("#790505")
   send("", {embed})
 }
 
 exports.conf = {
-  userPerm:[], 
+  userPerm:[],
   botPerm:["SEND_MESSAGES"],
   coolDown:0,
   dm:true,

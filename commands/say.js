@@ -1,4 +1,5 @@
 exports.run = (message, bot) => {
+    message.delete().catch()
     message.channel.send(message.suffix, {disableEveryone:true})
 }
 
