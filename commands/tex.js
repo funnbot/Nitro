@@ -1,5 +1,5 @@
 exports.run = (message, bot, send) => {
-  send("", {files: ["http://oi53.tinypic.com/qyv588.jpg"]})
+  send("", {files: ["http://oi53.tinypic.com/qyv588.gif"]})
 }
 
 exports.conf = {
