@@ -12,7 +12,7 @@ class Registry {
 
         if (!connection && !message) throw new Error("(!connection || !message)")
 
-        if (this.GuildPlayers[message.channel.guild.id]) return this.GuildPlayers[message.channel.guild.id]
+        if (this.GuildPlayers[message.channel.guild.id] && this.GuildPlayers[message.channel.guild.id].killing) return this.GuildPlayers[message.channel.guild.id]
 
         return this.GuildPlayers[message.channel.guild.id] = new GuildPlayer(connection, message, bot), this.GuildPlayers[message.channel.guild.id]
 

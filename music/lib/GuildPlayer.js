@@ -343,7 +343,8 @@ class GuildPlayer {
 
         //this.nextSong(current)
 
-        this.bot.getChannel(this.textChannel).createMessage("Now playing: " + current.title + " - " + current.owner)
+        let channel = this.bot.getChannel(this.textChannel)
+        if (channel) channel.createMessage("Now playing: " + current.title + " - " + current.owner)
 
         current.getStream().then(stream => {
 
