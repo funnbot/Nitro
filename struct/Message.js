@@ -4,7 +4,7 @@ function Message(message) {
 
     let id;
 
-    if (message.channel.type === "text" && !message.guild) id = message.guild.id
+    if (message.channel.type === "text" && message.guild) id = message.guild.id
     else {
         let fakeGuild = {}
         id = message.author.id
