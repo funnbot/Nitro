@@ -5,12 +5,14 @@ function Message(message) {
     let id;
 
     if (message.channel.type === "text" && message.guild) id = message.guild.id
-    else {
+    else if (!message.guild) {
         let fakeGuild = {}
         id = message.author.id
         Object.defineProperty(message, 'guild', {
             get: () => fakeGuild
         })
+    } else {
+        id = message.author.id
     }
 
     message.guild.prefix = bot.config.getPrefix(id)
