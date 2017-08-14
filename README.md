@@ -1,4 +1,4 @@
-#The Ultimate Discord Bot!
+## The Ultimate Discord Bot!
 Add it Now!
 <https://bot.discord.io/nitro>
 
