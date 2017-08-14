@@ -13,7 +13,7 @@ module.exports = (message) => {
                     let notEx = true;
                     if (roles.length > 0) {
                         roles.forEach(r => {
-                            if (message.member.roles.has(r)) {
+                            if (message.member && message.member.roles.has(r)) {
                                 notEx = false;
                             }
                         })
