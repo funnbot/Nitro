@@ -5,7 +5,10 @@ const Mixpanel = require('mixpanel');
 let mixpanel = Mixpanel.init("a4cd26822d32fdde282a60cb28c31253")
 
 bot.on('guildCreate', (g) => {
-    g.defaultChannel.send("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**\nSupport Server: discord.gg/aZ2PYhn")
+    let channels = g.channels
+    channels = channels.filter(c => c.type === "text")
+    let defaultChannel = channels.first()
+    if (defaultChannel && defaultChannel.send) defaultChannel.send("**Hello I Am Nitro, Your helpful Server Management Bot**\n\n**Use `n!help` to get started.**\nSupport Server: discord.gg/aZ2PYhn")
     dBots()
     carbon()
     discordBots()
