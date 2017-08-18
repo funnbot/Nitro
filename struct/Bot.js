@@ -22,7 +22,7 @@ const Bot = () => {
             let bot = new Discord.Client({
 
                 disabledEvents: ['TYPING_START'],
-                fetchAllMembers: true
+                messageCacheMaxSize: 150
 
             })
 
