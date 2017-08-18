@@ -5,7 +5,7 @@ exports.run = (message, bot) => {
 
         let text = "Nitro has gone through a Major Rewrite, including his Database.\nThis means that the prefix was reset to `n!` and all other settings aswell.\nBesides this, downtimes should become non-existant, and new features are on their way."
 
-        g.defaultChannel.send(text)
+        //g.defaultChannel.send(text)
 
       }
 
