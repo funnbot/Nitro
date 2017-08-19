@@ -1,9 +1,9 @@
 const bot = require('../bot.js')
 
 bot.on('guildMemberAdd', (member) => {
-  joindm();
-  autorole();
-  welcome();
+  joindm(member);
+  autorole(member);
+  welcome(member);
 })
 
 let welcome = member => {
