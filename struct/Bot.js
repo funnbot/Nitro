@@ -42,10 +42,10 @@ const Bot = () => {
                 if (bot.shard) {
 
                     console.log("Shard #"+bot.shard.id+" active with "+bot.guilds.size+" guilds")
-                    bot.user.setGame({ game: { name: "@Nitro help | Shard " + (bot.shard.id + 1) + "/" + bot.shard.count, type: 0 } })
+                    bot.user.setPresence({ game: { name: "@Nitro help | Shard " + (bot.shard.id + 1) + "/" + bot.shard.count, type: 0 } })
                 } else {
                     console.log("Shard #0 active with "+bot.guilds.size+" guilds")
-                    bot.user.setGame({ game: { name: "@Nitro help | "+bot.guilds.size+" guilds", type: 0 } })
+                    bot.user.setPresence({ game: { name: "@Nitro help | "+bot.guilds.size+" guilds", type: 0 } })
                 }
 
             })
