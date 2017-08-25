@@ -15,8 +15,8 @@ exports.run = (message, bot) => {
         let user = (!message.mentions.users.first()) ? message.author : message.mentions.users.first();
         if (user.bot) return gen.edit("**Bots do not have profiles**")
         let lvl = prof.getLvl(id);
-        let rank = prof.getRank(id);
-        let sent = prof.getSent(id);
+        let rank = prof.getRank(id) || 0;
+        let sent = prof.getSent(id) || 0;
         let taco = prof.getMoney(id);
         let shout = prof.getShout(id, message.guild.prefix);
         let get = prof.getBg(id)
@@ -66,6 +66,8 @@ exports.run = (message, bot) => {
                         ctx.fillText(user.username, 55, 985);
 
                         //Sent
+                        console.log("Profile For " + id)
+                        console.log("Sent: " + sent)
                         sent = snumber(sent)
                         ctx.font = "bold 120px Helvetica";
                         ctx.textAlign = "center";
@@ -73,6 +75,7 @@ exports.run = (message, bot) => {
 
                         //Global Rank
                         ctx.font = "bold 100px Helvetica";
+                        console.log("Rank: " + rank)
                         rank = snumber(rank)
                         ctx.fillText(rank, 1756, 1390);
 
