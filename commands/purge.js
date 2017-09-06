@@ -79,8 +79,6 @@ function filter(message, msgs) {
 
     msgs = msgs.filter(m => {
 
-        if (m.id === message.id) return false
-
         let fail = true
 
         if (message.content.includes(" -b") && !m.author.bot) return false
