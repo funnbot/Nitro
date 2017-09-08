@@ -26,7 +26,7 @@ exports.run = (message, bot) => {
     embed.setDescription("\nNitro is the next best thing in Server Managment\nIt can handle any type of server, with loads of customization to spare")
     embed.setTitle("`[ Stats ]`")
     embed.setColor(0x4DD0D9)
-    embed.addField("Creator", "Funnbot#4695", true)
+    embed.addField("Creator", "Funnbot#8830 Yes Jason It's Me...", true)
     embed.addField("Uptime", uptime, true)
     getSharded(bot).then((res) => {
 
