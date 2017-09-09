@@ -17,7 +17,7 @@ const Bot = () => {
 
     return new Promise((resolve, reject) => {
 
-        loadDB().then((data) => {
+        loadDB().then((data) => { 
 
             let bot = new Discord.Client({
 
