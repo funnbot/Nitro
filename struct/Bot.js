@@ -22,7 +22,8 @@ const Bot = () => {
             let bot = new Discord.Client({
 
                 disabledEvents: ['TYPING_START'],
-                messageCacheMaxSize: 150
+                messageCacheMaxSize: 150,
+                messageCacheLifetime: 3600
 
             })
 
