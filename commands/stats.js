@@ -25,8 +25,8 @@ exports.run = (message, bot) => {
     let embed = new bot.embed()
     embed.setDescription("\nNitro is the next best thing in Server Managment\nIt can handle any type of server, with loads of customization to spare")
     embed.setTitle("`[ Stats ]`")
-    embed.setColor(0x4DD0D9)
-    embed.addField("Creator", "Funnbot#8830 Yes Jason It's Me...", true)
+    embed.setColor("#4DD0D9")
+    embed.addField("Creator", "Funnbot#8830", true)
     embed.addField("Uptime", uptime, true)
     getSharded(bot).then((res) => {
 
@@ -37,7 +37,7 @@ exports.run = (message, bot) => {
         embed.addField("Framework", "Discord.js V11.1", true)
         message.channel.send("", {
             embed
-        });
+        }).catch(console.error);
 
     })
     
