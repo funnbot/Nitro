@@ -14,7 +14,7 @@ exports.conf = {
   userPerm:["MANAGE_GUILD"],
   botPerm:["SEND_MESSAGES"],
   coolDown:0,
-  dm:true,
+  dm:false,
   category:"Utility",
   help:"Toggle level up messages in your server",
   args:"",
