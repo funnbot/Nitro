@@ -66,9 +66,11 @@ exports.run = (message, bot) => {
                         ctx.fillText(user.username, 55, 985);
 
                         //Sent
-                        console.log("Profile For " + id)
-                        console.log("Sent: " + sent)
-                        sent = snumber(sent)
+                        try {
+                            sent = snumber(sent);
+                        } catch(e)  {
+                            sent = 0;
+                        }
                         ctx.font = "bold 120px Helvetica";
                         ctx.textAlign = "center";
                         ctx.fillText(sent, 311, 1415);
