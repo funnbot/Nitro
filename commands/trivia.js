@@ -13,11 +13,12 @@ exports.run = (message, bot, send) => {
       return
     }
     let quiz = JSON.parse(body)
-    if (!quiz[0] || !quiz[0].question) {
+    if (!quiz[0] || !quiz[0].question || !quiz[0].answer) {
       delete cur[message.channel.id]
       send("**Api Error**")
       return
     }
+    quiz[0].answer = quiz[0].answer.replace(/<\/?i>/g, "");
     let embed = {
       "title": "`Random Trivia`",
       "color": 0x50FF38,
