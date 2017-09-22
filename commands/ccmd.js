@@ -18,6 +18,9 @@ exports.run = (message, bot, send) => {
         else if (m.content === "cancel") {m.channel.send("Cancelled"); collect1.stop(); delete dure[m.author.id];}
         else m.channel.send("**InvalidArgument: try `add`, `remove`, `list`, or `cancel`**")
     })
+    collect1.on("end", () => {
+        delete dure[m.author.id]
+    })
     send("**Welcome to the Custom Command Wizard**,\nCustom commands give you almost direct access to the JS environment and the discord.js library.\nType the following options below: `add`, `remove`, or `list` to start an action.\nYou can exit the wizard at anytime with `cancel`.");
 
 }
@@ -50,6 +53,9 @@ function addCmd(message) {
         else if (m.content === "cancel") {m.channel.send("Cancelled"); collect2.stop(); delete dure[m.author.id];}
         else m.channel.send("**InvalidArgument: try `simple`, `image`, `advanced`, `shortcut`,or `cancel`**")
     });
+    collect2.on("end", () => {
+        delete dure[m.author.id]
+    })
     message.channel.send("**What type of command do you want to create**\n`simple` - Simple commands are just plain text, nothing else,\n`image` - Image commands will upload a provided image,\n`advanced` - Advanced commands allow you to utilitize the full extent of Nitro's custom commands.\n`shortcut` - Shortcut's allow you to assign alias's for existing commands, and include arguments.");
 }
 
@@ -71,6 +77,9 @@ function removeCmd(message) {
             }
         }
     });
+    collect.on("end", () => {
+        delete dure[m.author.id]
+    })
     let custom = bot.config.getCustom(message.guild.id);
     let cu = Object.keys(custom);
     message.channel.send("**The commands you can remove are:**\n```md\n"+cu.join(", ")+"```\nWrite one below or `cancel`", {split:{prepend:"```md\n", append:"```"}})
@@ -99,6 +108,9 @@ function trigger(message, type) {
             }
         }
     })
+    collect.on("end", () => {
+        delete dure[m.author.id]
+    })
     message.channel.send("**Choose the trigger (AKA command name) for the custom command**\nWrite the trigger for this custom command below, without the bot's prefix.\nI'll make sure it does not conflict with an existing command.")
 }
 
@@ -115,6 +127,9 @@ function simpleCmd(message, trig) {
             collect.stop()
             delete dure[m.author.id]
         }
+    })
+    collect.on("end", () => {
+        delete dure[m.author.id]
     })
     message.channel.send("**The command name was set to `"+trig+"`**\nNext, write the message the bot will respond with when this command is triggered.\nOr `cancel` to exit.")
 }
@@ -165,6 +180,9 @@ function imageCmd(message, trig) {
             }
         }
     })
+    collect.on("end", () => {
+        delete dure[m.author.id]
+    })
     message.channel.send("**The command name was set to `"+trig+"`**\nNext, upload an image or send an image url.\nOr `cancel` to exit.")
 }
 
@@ -181,6 +199,9 @@ function advancedCmd(message, trig) {
             collect.stop()
             delete dure[m.author.id]
         }
+    })
+    collect.on("end", () => {
+        delete dure[m.author.id]
     })
     message.channel.send("**The command name was set to `"+trig+"`**\nNext, write the message the bot will respond with when this command is triggered including any functions and variables you wish.\nRefer to the Advanced Command docs here: <https://github.com/funnbot/Nitro-Public/wiki/Advanced-Custom-Commands>.\nOr `cancel` to exit.")
 }
@@ -200,6 +221,9 @@ function shortcutCmd(message, trig) {
             collect.stop()
             delete dure[m.author.id]
         }
+    })
+    collect.on("end", () => {
+        delete dure[m.author.id]
     })
     delete dure[message.author.id];
     message.channel.send('**The command name was set to `'+trig+'`**\nNext, write the command and arguments this shortcut is for.');
