@@ -279,7 +279,7 @@ class GuildPlayer {
 
                 if (err) return reject(err)
 
-                    if (!body) return reject("Bad id: " + id)
+                if (!body) return reject("Bad id: " + id)
 
                 body = JSON.parse(body)
 
@@ -295,13 +295,19 @@ class GuildPlayer {
 
         return new Promise((res, reject) => {
 
-            resolve(config.soundCloudID, url, (err, json, stream) => {
+            try {
 
-                if (err) return reject('Failed to resolve soundcloud link.');
+                resolve(config.soundCloudID, url, (err, json, stream) => {
 
-                return res(json);
+                    if (err) return reject('Failed to resolve soundcloud link.');
 
-            });
+                    return res(json);
+
+                });
+
+            } catch (e) {
+                reject('Failed to resolve soundcloud link.')
+            }
 
         })
 
