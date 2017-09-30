@@ -41,7 +41,6 @@ const Bot = () => {
                 Framework.start(bot)
 
                 if (bot.shard) {
-
                     console.log("Shard #"+bot.shard.id+" active with "+bot.guilds.size+" guilds")
                     bot.user.setPresence({ game: { name: "@Nitro help | Shard " + (bot.shard.id + 1) + "/" + bot.shard.count, type: 0 } })
                 } else {
@@ -50,6 +49,9 @@ const Bot = () => {
                 }
 
             })
+
+            bot.on("debug", console.log);
+            bot.on("error", console.error)
 
             return resolve(bot);
 
