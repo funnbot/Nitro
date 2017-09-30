@@ -50,7 +50,9 @@ const Bot = () => {
 
             })
 
-            bot.on("debug", console.log);
+            bot.on("debug", msg => {
+                if (!/heartbeat/i.test(msg)) console.log(msg);
+            });
             bot.on("error", console.error)
 
             return resolve(bot);
