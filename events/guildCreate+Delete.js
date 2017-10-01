@@ -14,7 +14,7 @@ bot.on('guildCreate', (g) => {
     discordBots()
     mixpanel.track("Guild Join", {a: 1})
 })
-
+ 
 bot.on('guildDelete', (g) => {
     bot.config.guildLeave(g.id);
     dBots()
