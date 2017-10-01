@@ -14,6 +14,7 @@
     "canvas": "^1.6.7",
     "cows": "^1.1.0",
     "discord.js": "^11.2.1",
+    "eris": "^0.7.2",
     "erlpack": "github:hammerandchisel/erlpack",
     "express": "^4.15.3",
     "ffmpeg": "0.0.4",
@@ -23,7 +24,7 @@
     "mathjs": "^3.8.1",
     "mixpanel": "^0.7.0",
     "moment": "^2.17.1",
-    "node-opus": "^0.2.4",
+    "node-opus": "^0.2.7",
     "node-trello": "^1.2.1",
     "paginate": "^0.2.0",
     "pretty-ms": "^2.1.0",
@@ -45,6 +46,7 @@
     "youtube-api": "^2.0.6",
     "youtube-dl": "^1.11.1",
     "youtube-info": "^1.1.1",
+    "youtube-playlist-info": "^0.1.0",
     "youtube-search": "^1.0.7",
     "ytdl-core": "^0.7.24"
   }

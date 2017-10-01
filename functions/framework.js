@@ -29,7 +29,7 @@ let start = async (bot) => {
     }
     embed.setColor("#1E88E5")
     embed.setTitle("NitroMain")
-    embed.setTimestamp(Date.now())
+    embed.setTimestamp(new Date())
     return webhook.send("", {embeds: [embed]})
   }
 }

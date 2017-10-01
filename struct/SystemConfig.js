@@ -69,6 +69,14 @@ class SystemConfig {
         this.S('update', update)
     }
 
+    getPatrons() {
+        return this.G("patrons")
+    }
+
+    setPatrons(patrons) {
+        this.S("patrons", patrons)
+    }
+
 }
 
 module.exports = SystemConfig

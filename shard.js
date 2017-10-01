@@ -8,7 +8,6 @@ Manager.spawn();
 
 //Guild Api
 const express = require('express')
-const bot = require('./bot')
 
 const app = express()
 const router = express.Router()
