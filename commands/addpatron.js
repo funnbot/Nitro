@@ -16,7 +16,7 @@ exports.conf = {
   botPerm:["SEND_MESSAGES"],
   coolDown:0,
   dm:true,
-  category:"Dev",
+  category:"DevOnly",
   help:"Add a patron.",
   args:"",
 }
