@@ -74,7 +74,7 @@ var speak = function (text, o) {
 
 
     var cmd = [
-        'echo', '-e', '' + text + '',
+        'echo', '-e', '"' + text + '"',
         '|',
         'espeak',
         '--stdin',
