@@ -12,7 +12,7 @@ var spawn = require('child_process').spawn,
  *
  * @param {String}    text              text to speak
  *
- * @param {Object}    o
+ * @param {Object}    o 
  * @param {String}   [o.lang='en']      language to use. ex: en, fr, es, pt...
  * @param {String}   [o.format='mp3']   format. can be either mp3 or ogg.
  *
