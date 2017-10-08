@@ -38,6 +38,7 @@
     "soundcloud-audio": "^1.1.0",
     "soundcloud-resolve": "^1.0.2",
     "soundcloudr": "^1.1.0",
+    "stream-buffers": "^3.0.1",
     "string-similarity": "^1.2.0",
     "threads": "^0.7.2",
     "urban": "^0.3.1",
