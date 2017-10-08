@@ -104,6 +104,7 @@ var speak = function (text, o) {
     cmd.push('-');
     cmd = cmd.join(' ');
 
+
     //console.log(cmd);
 
     var child = spawn('bash', ['-c', cmd], {
@@ -116,10 +117,10 @@ var speak = function (text, o) {
 
     child.stderr.on('data', function (data) {
         if (o.cb) {
-            return o.cb(data, null);
+            return o.cb(data.toString(), null);
         } else {
             throw data;
-        }
+        }   
     });
 
     child.on('exit', function (code) {

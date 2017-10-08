@@ -13,8 +13,8 @@ exports.run = async(message, bot, send) => {
     } catch (e) {
         return send("**Something went wrong.**");
     }
-    txt = txt.replace(/[^a-z0-9]/g, "")
-    if (txt.replace(/\s/g, "").length < 18) return send("The text was too short.")
+    txt = txt.replace(/[^a-z0-9\s]/g, "")
+    if (txt.replace(/\s/g, "").length < 16) return send("The text was too short.")
     if (txt.length > 500) return send("The text must be less than 500 characters.")
     let member = message.member;
     if (!member.voiceChannel) return send("**You must be in a voice channel for this command.**")
