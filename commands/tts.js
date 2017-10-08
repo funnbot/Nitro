@@ -14,7 +14,7 @@ exports.run = async(message, bot, send) => {
         return send("**Something went wrong.**");
     }
     txt = txt.replace(/[^a-zA-Z0-9\s]/g, "")
-    txt = txt.replace("\n", "");
+    txt = txt.replace(/\n/g, "");
     if (txt.replace(/\s/g, "").length < 16) return send("The text was too short.")
     if (txt.length > 500) return send("The text must be less than 500 characters.")
     let member = message.member;
