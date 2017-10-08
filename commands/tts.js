@@ -26,6 +26,7 @@ exports.run = async(message, bot, send) => {
             buffer: true,
             cb: function(err, buffer) {
                 if (err) {
+                    console.log(err)
                     send("**An error occured**");
                     return voiceConnection.disconnect(); 
                 }
