@@ -25,7 +25,7 @@ exports.conf = {
     botPerm: ["SEND_MESSAGES"],
     coolDown: 0,
     dm: false,
-    category: "Secret",
+    category: "Special",
     help: "Plays a secret message in VC. Donators only.",
     args: "",
 }
