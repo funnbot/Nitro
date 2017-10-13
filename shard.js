@@ -6,6 +6,11 @@ const Manager = new Discord.ShardingManager('./bot.js', {
 });
 Manager.spawn();
 
+setTimeout(() => {
+    console.log("restarting")
+    process.exit()
+}, 5184e5)
+
 //Guild Api
 const express = require('express')
 
