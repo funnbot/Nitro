@@ -9,7 +9,7 @@ Manager.spawn();
 setTimeout(() => {
     console.log("restarting")
     process.exit()
-}, 5184e5)
+}, 5184e5);
 
 //Guild Api
 const express = require('express')
