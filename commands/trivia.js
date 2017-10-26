@@ -28,7 +28,7 @@ exports.run = (message, bot, send) => {
         "icon_url": message.guild.iconURL
       },
       "fields": [{
-        "name": "Catagory",
+        "name": "Category",
         "value": quiz[0].category.title
       }, {
         "name": "Question",
