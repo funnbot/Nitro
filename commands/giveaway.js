@@ -10,7 +10,7 @@ On Sunday morning (PST) I will be picking one or more random upvoters, depending
 *You must be in the official discord server to be picked: <https://discord.gg/aZ2PYhn>*.
 
 **Good Luck!!**`
-
+ 
 exports.run = (message, bot, send) => {
     bot.shard.broadcastEval(`
     for (let guild of this.guilds.values()) {
