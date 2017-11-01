@@ -1,12 +1,13 @@
 const msg = `
-**Hello wonderful people, Im doing a giveaway!!**
-The winner of this giveaway will be given access to **patron only commands** (current ones and future ones) up to the next giveaway.
+**Hello wonderful people, I'm doing a giveaway!!**
+The winner of this giveaway will be given access to **patron only commands** (current ones and future ones) up untill the next giveaway.
 
 **How to enter:**
-go to <https://discordbots.org>
-Click the big login button and as long as you have a discord account, it's really easy to get logged in.
-Finally go to <https://discordbots.org/bot/264087705124601856> and upvote the bot.
-On Sunday morning (PST) I will be picking a random a random upvoter *you must be in the official discord server <https://discord.gg/aZ2PYhn>*.
+Go to <https://discordbots.org>
+Click the big login button in the top right, where you can safely login using your discord account.
+Finally go to <https://discordbots.org/bot/nitro> and click the upvote button.
+On Sunday morning (PST) I will be picking one or more random upvoters, depending on the total entries. 
+*You must be in the official discord server to be picked: <https://discord.gg/aZ2PYhn>*.
 
 **GoodLuck!!**`
 
