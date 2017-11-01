@@ -19,7 +19,7 @@ exports.run = (message, bot, send) => {
         if (!conf.channel) continue;
         let chan = guild.channels.get(conf.channel);
         if (!chan) continue;
-        chan.send(msg)
+        chan.send("${msg}")
             .then(r => console.log("Sent to " + guild.id))
             .catch(e => console.log("Failed " + guild.id))
     }
