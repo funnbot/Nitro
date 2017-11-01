@@ -1,6 +1,6 @@
 const msg = `
 **Hello wonderful people, I'm doing a giveaway!!**
-The winner of this giveaway will be given access to **patron only commands** (current ones and future ones) up untill the next giveaway.
+The winner of this giveaway will be given access to **patron only commands** (current ones and future ones) up until the next giveaway.
 
 **How to enter:**
 Go to <https://discordbots.org>
@@ -9,7 +9,7 @@ Finally go to <https://discordbots.org/bot/nitro> and click the upvote button.
 On Sunday morning (PST) I will be picking one or more random upvoters, depending on the total entries. 
 *You must be in the official discord server to be picked: <https://discord.gg/aZ2PYhn>*.
 
-**GoodLuck!!**`
+**Good Luck!!**`
 
 exports.run = (message, bot, send) => {
     bot.shard.broadcastEval(`
