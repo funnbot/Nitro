@@ -10,7 +10,7 @@ On Sunday morning (PST) I will be picking one or more random upvoters, depending
 *You must be in the official discord server to be picked: <https://discord.gg/aZ2PYhn>*.
 
 **Good Luck!!**`
- 
+
 exports.run = (message, bot, send) => {
     bot.shard.broadcastEval(`
     for (let guild of this.guilds.values()) {
@@ -19,9 +19,9 @@ exports.run = (message, bot, send) => {
         if (!conf.channel) continue;
         let chan = guild.channels.get(conf.channel);
         if (!chan) continue;
-        chan.send("${msg}")
-            .then(r => console.log("Sent to " + guild.id))
-            .catch(e => console.log("Failed " + guild.id))
+        chan.send(\`${msg}\`)
+            .then(() => console.log("Sent: " + guild.id))
+            .catch(() => console.log("Failed: " + guild.id));
     }
     `).then(console.log).catch(console.log);
 }
