@@ -1,3 +1,4 @@
+[![Discord Bots](https://discordbots.org/api/widget/servers/264087705124601856.png)](https://discordbots.org/bot/264087705124601856)
 ## The Ultimate Discord Bot!
 Add it Now!
 <https://bot.discord.io/nitro>
