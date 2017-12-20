@@ -1,14 +1,14 @@
 const config = require('./config.js')
 const Discord = require('discord.js');
 const Manager = new Discord.ShardingManager('./bot.js', {
-    totalShards: 4,
+    totalShards: 5,
     token: config.token
 });
 Manager.spawn();
 
 setTimeout(() => {
     console.log("restarting")
-    process.exit()
+    Manager.broadcastEval("process.exit()");
 }, 5184e5);
 
 //Guild Api

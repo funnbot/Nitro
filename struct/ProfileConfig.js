@@ -137,6 +137,14 @@ class ProfileConfig {
         return this.Set(id, 'rep', rep)
     }
 
+    getAge(id) {
+        return this.Get(id, "age", null)
+    }
+
+    setAge(id, age) {
+        return this.Set(id, "age", age);
+    }
+
 }
 
 module.exports = ProfileConfig

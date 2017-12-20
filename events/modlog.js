@@ -3,16 +3,17 @@ const moment = require('moment')
 
 exports.fire = (text, guild) => {
     if (!guild.channels) return
-    let channel = guild.channels.find(c => c.topic === 'nitro-modlog')
+    let channel = guild.channels.find(c => c.topic && c.topic.includes("nitro-modlog"));
     if (!channel) return
     let time = `**\`[${moment().format("M/D/YY - hh:mm")}]\`** `
     channel.send(time + text, {
         split: true
-    })
+    }).catch(console.log);
 }
 
 bot.on('messageDelete', msg => {
     if (msg.channel.type !== "text") return
+    if (msg.channel.topic && msg.channel.topic.includes("nitro-modlog")) return;
     exports.fire(`**#${msg.channel.name} | ${msg.author.tag}'s message was deleted:** \`${msg.content}\``, msg.guild)
 })
 

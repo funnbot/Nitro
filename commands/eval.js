@@ -1,5 +1,6 @@
 const util = require('util');
-const config = require("../config.js")
+const config = require("../config.js");
+const snekfetch = require("snekfetch");
 const r = require("rethinkdbdash")({
   db: "Nitro",
   password: config.rethink
@@ -22,6 +23,7 @@ exports.run = async(message, bot, send) => {
     txt = clean(txt)
     return send(txt)
   } catch (e) {
+    console.log(e);
     processtime = (new Date()).getTime() - start
     let txt = evalTxt(message.suffix, "Error", processtime, e)
     txt = clean(txt)

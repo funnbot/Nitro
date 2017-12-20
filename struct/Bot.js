@@ -2,15 +2,11 @@ console.log("Blooping...")
 let start = (new Date()).getTime()
 
 const Discord = require('discord.js')
-
+const brain = require("brain.js");
 const loadDB = require('../functions/loadDB')
-
 const GuildConfig = require('../struct/GuildConfig')
-
 const ProfileConfig  = require('../struct/ProfileConfig')
-
 const SystemConfig = require('../struct/SystemConfig')
-
 const Framework = require('../functions/framework')
 
 const Bot = () => {
@@ -20,23 +16,19 @@ const Bot = () => {
         loadDB().then((data) => { 
 
             let bot = new Discord.Client({
-
                 disabledEvents: ['TYPING_START'],
                 messageCacheMaxSize: 150,
                 messageCacheLifetime: 3600
-
             })
 
+            bot.net = new brain.NeuralNetwork();
+
             bot.config = new GuildConfig(data)
-
             bot.profile = new ProfileConfig(data)
-
             bot.system = new SystemConfig(data)
-
             bot.embed = Discord.RichEmbed
 
             bot.on('ready', () => {
-
                 console.log("Bloop took: " + ((new Date).getTime() - start) + "MS")
                 Framework.start(bot)
 
@@ -47,16 +39,13 @@ const Bot = () => {
                     console.log("Shard #0 active with "+bot.guilds.size+" guilds")
                     bot.user.setPresence({ game: { name: "@Nitro help | "+bot.guilds.size+" guilds", type: 0 } })
                 }
-
             })
 
-            bot.on("debug", msg => {
+            /*bot.on("debug", msg => {
                 if (!/heartbeat/i.test(msg)) console.log(msg);
-            });
+            });*/
             bot.on("error", console.error)
-
             return resolve(bot);
-
         }).catch(err => reject(err))
 
     })
