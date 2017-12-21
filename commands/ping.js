@@ -1,10 +1,5 @@
-exports.run = async (message, bot, send) => {
-  const m = await send("Testing Ping...");
-  const ping = m.createdTimestamp - Date.now();
-  const ws = bot.ping.toFixed();
-
-  await m.edit(`**Pong!** Latency: ${ping}MS Websocket: ${ws}MS`);
-  return;
+exports.run = (message, bot) => {
+  send("Pong!");
 }
 
 exports.conf = {
