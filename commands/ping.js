@@ -1,4 +1,4 @@
-exports.run = (message, bot, send) => {
+exports.run = async (message, bot, send) => {
   const m = await send("Testing Ping...");
   const ping = m.createdTimestamp - Date.now();
   const ws = bot.ping.toFixed();
