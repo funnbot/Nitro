@@ -2,7 +2,6 @@ console.log("Blooping...")
 let start = (new Date()).getTime()
 
 const Discord = require('discord.js')
-const brain = require("brain.js");
 const loadDB = require('../functions/loadDB')
 const GuildConfig = require('../struct/GuildConfig')
 const ProfileConfig  = require('../struct/ProfileConfig')
@@ -20,8 +19,6 @@ const Bot = () => {
                 messageCacheMaxSize: 150,
                 messageCacheLifetime: 3600
             })
-
-            bot.net = new brain.NeuralNetwork();
 
             bot.config = new GuildConfig(data)
             bot.profile = new ProfileConfig(data)
