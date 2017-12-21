@@ -1,4 +1,4 @@
-exports.run = (message, bot) => {
+exports.run = (message, bot, send) => {
   send("Pong!");
 }
 
