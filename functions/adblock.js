@@ -5,7 +5,7 @@ const inviteRegex = /discord\.gg\/\w+/gim;
 module.exports = message => {
     if (message.channel.type !== "text") return;
     if (message.author.id === bot.user.id) return;
-    if (message.author.id === message.guild.owner.user.id) return;
+    if (message.author.id === message.guild.ownerID) return;
     let ad = message.guild.adblock;
     if (!ad.on) return;
     if (ad.ex && ad.ex.users && ad.ex.users[message.author.id]) return;
