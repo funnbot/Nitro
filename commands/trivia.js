@@ -86,13 +86,17 @@ async function play(message, bot, send, trivia) {
   incorrect_answers = incorrect_answers.map(s => h2p(s));
   incorrect_answers.push(correct_answer);
   incorrect_answers = shuffle(incorrect_answers);
+  let answers = {};
+  for (let i=0;i<answers.length;i++) {
+    answers[i+1] = incorrect_answers[i];
+  }
   let embed = new bot.embed()
   embed.title = "`Trivia`"
-  embed.addField("Question", h2p(question))
-    .addField("Category", category)
+  embed.addField("Category", category)
     .addField("Difficulty", difficulty)
     .addField("Reward", worth + ":dollar:")
-    .addField("Choices", "**" + incorrect_answers.join(", ") + "**")
+    .addField("Question", h2p(question))
+    .addField("Choices", "**" + Object.entries(answers).map(([k, p]) => k + ". " + p).join(" - ") + "**")
     .setFooter("You have 20 seconds to answer.")
     .setColor("#4DD0D9")
     .setAuthor(message.guild.name, message.guild.iconURL)
@@ -103,9 +107,11 @@ async function play(message, bot, send, trivia) {
   let guessed = {};
   let collector = message.channel.createMessageCollector(m => {
     if (m.author.bot) return false
+    let guess = parseInt(m.content);
+    if (guess === null) return false;
     if (guessed[m.author.id]) return false;
     guessed[m.author.id] = true;
-    if (checkAnswer(correct_answer, m.content)) {
+    if (checkAnswer(correct_answer, answers, guess)) {
       collector.stop("WINNED")
       win(bot, message, m.author, worth)
     }
@@ -146,11 +152,11 @@ function shuffle (array) {
   return array;
 }
 
-function checkAnswer(correct, input) {
-  let c = correct.toLowerCase()
-  let i = input.toLowerCase()
-  if (stringSim.compareTwoStrings(c, i) > .7) return true
-  else return false
+function checkAnswer(correct, answers, input) {
+  let a = answers[input + 1];
+  if (!a) return false;
+  return a === correct;
+
 }
 
 function genUrl(d, c) {
