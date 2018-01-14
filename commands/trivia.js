@@ -77,19 +77,23 @@ async function play(message, bot, send, trivia) {
   let {
     question,
     correct_answer,
+    incorrect_answers,
     difficulty,
     category,
     worth
   } = trivia
   correct_answer = h2p(correct_answer)
-
+  incorrect_answers = incorrect_answers.map(s => h2p(s));
+  incorrect_answers.push(correct_answer);
+  incorrect_answers = shuffle(incorrect_answers);
   let embed = new bot.embed()
   embed.title = "`Trivia`"
   embed.addField("Question", h2p(question))
     .addField("Category", category)
     .addField("Difficulty", difficulty)
     .addField("Reward", worth + ":dollar:")
-    .setFooter("You have 30 seconds to answer.")
+    .addField("Choices", "**" + incorrect_answers.join(", ") + "**")
+    .setFooter("You have 10 seconds to answer.")
     .setColor("#4DD0D9")
     .setAuthor(message.guild.name, message.guild.iconURL)
 
@@ -102,16 +106,21 @@ async function play(message, bot, send, trivia) {
     if (checkAnswer(correct_answer, m.content)) {
       collector.stop("WINNED")
       win(bot, message, m.author, worth)
+    } else {
+      collector.stop("wrong");
     }
     return false
   }, {
-    time: 30000
+    time: 10000
   })
 
   collector.on("end", (c, reason) => {
     delete cur[message.channel.id]
     if (reason === "time") {
       return send("**Noone guessed in time, the correct answer was: " + correct_answer + "**");
+    }
+    if (reason === "wrong") {
+      return send("**Wrong! The correct answer was: " + correct_answer + "**");
     }
   })
 }
@@ -120,6 +129,19 @@ function win(bot, message, user, worth) {
   delete cur[message.channel.id]
   message.send(`**${user.tag} answered the question correctly, here is your reward.**`)
   bot.profile.addMoney(user.id, worth);
+}
+
+function shuffle (array) {
+  var i = 0
+    , j = 0
+    , temp = null
+
+  for (i = array.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1))
+    temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
 }
 
 function checkAnswer(correct, input) {
