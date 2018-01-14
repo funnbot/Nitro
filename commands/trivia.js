@@ -93,7 +93,7 @@ async function play(message, bot, send, trivia) {
     .addField("Reward", worth + ":dollar:")
     .addField("Question", h2p(question))
     .addField("Choices", "**" + incorrect_answers.map((k, i) => (i+1) + ". " + k).join(" - ") + "**")
-    .setFooter("You have 20 seconds to answer.")
+    .setFooter("You have 20 seconds to answer. Answer using the corresponding number, you get one try.")
     .setColor("#4DD0D9")
     .setAuthor(message.guild.name, message.guild.iconURL)
 
