@@ -28,8 +28,4 @@ module.exports = (guildid, userid) => {
             return user.send("**You have been banned from `" + guild.name + "`**").then(u => guild.ban(userid).catch())
         }
     }
-
-
-
-
 }

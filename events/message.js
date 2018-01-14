@@ -8,8 +8,8 @@ const Adblock = require('../functions/adblock')
 const Filter = require('../functions/filter')
 const store = require('../functions/storeMessages')
 const log = require('../functions/log')
-const Mixpanel = require('mixpanel');
-let mixpanel = Mixpanel.init("a4cd26822d32fdde282a60cb28c31253")
+/*const Mixpanel = require('mixpanel');
+let mixpanel = Mixpanel.init("a4cd26822d32fdde282a60cb28c31253")*/
 
 bot.on('message', (message) => {
 
@@ -97,9 +97,9 @@ bot.on('message', (message) => {
   //log
   if (message.channel.type === "dm") log.dm(message)
   else log.g(message)
-  mixpanel.track(message.command, {
+  /*mixpanel.track(message.command, {
     b: 5
-  })
+  })*/
 
   //if (suffix.includes("<") && suffix.includes(">")) message.channel.send("*It looks like you are using the characters < and > in your command. Remember, these are only for refrence on what type of text goes there, not to actually include them.*")
   if (message.channel.type !== "text" && cmds[message.command].conf.dm === false) return message.channel.send('This command does not work in Direct Messages.');

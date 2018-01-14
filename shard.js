@@ -8,11 +8,11 @@ Manager.spawn();
 
 setTimeout(() => {
     console.log("restarting")
-    Manager.broadcastEval("process.exit()");
+    procss.exit(1);
 }, 5184e5);
 
 //Guild Api
-const express = require('express')
+/*const express = require('express')
 
 const app = express()
 const router = express.Router()
@@ -43,4 +43,4 @@ app.use("/", router);
 
 app.listen(port, () => {
     console.log("inguild listening on port " + port)
-})
+})*/
