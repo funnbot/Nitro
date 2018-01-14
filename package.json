@@ -18,6 +18,7 @@
     "erlpack": "github:hammerandchisel/erlpack",
     "express": "^4.15.3",
     "ffmpeg": "0.0.4",
+    "html2plaintext": "^2.0.1",
     "imgflipper": "^1.0.1",
     "is-var-name": "^1.0.0",
     "jimp": "^0.2.27",
