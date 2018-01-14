@@ -66,7 +66,7 @@ exports.conf = {
   coolDown: 0,
   dm: false,
   category: "Fun",
-  help: "I'll ask a trivia question in chat. Options `n!trivia <diff> <category>` diff = easy, medium, hard, random - category = see category list with `n!trivia categories`",
+  help: "`n!trivia <diff> <category>` diff: easy, medium, hard, random - category:`n!trivia categories`",
   args: "",
 }
 

@@ -139,7 +139,6 @@ function addQueue(link, id, channel, voiceChannel, cb) {
 
 function play(ID, host) {
     if (!sessions[ID].isPlaying) {
-        console.log("run")
         sessions[ID].isPlaying = true;
         if (!sessions[ID].host) sessions[ID].host = host;
         bot.channels.get(sessions[ID].voiceChannel).join().then(connection => {
