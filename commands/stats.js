@@ -28,17 +28,17 @@ exports.run = (message, bot) => {
     embed.setColor("#4DD0D9")
     embed.addField("Creator", "Funnbot#8830", true)
     embed.addField("Uptime", uptime, true)
+    embed.addField("Memory", Math.round(process.memoryUsage().rss / 1024 / 1024) + "MB", true)
+    embed.addField("CPU", Math.ceil(cpu[1] * 100) / 10 + "%", true)
+    embed.addField("Framework", "Discord.js V11.3", true)
+    embed.addField("On Shard " + (bot.shard.id + 1) + "/" + bot.shard.count, "**Guilds: **" + bot.guilds.size + " | **Channels: **" + bot.channels.size + " | **Users: **" + bot.users.size, true)
     getSharded(bot).then((res) => {
-
-        embed.addField("On Shard " + (bot.shard.id + 1) + "/" + bot.shard.count, "**Guilds: **" + bot.guilds.size + " | **Channels: **" + bot.channels.size + " | **Users: **" + bot.users.size, true)
         embed.addField("On All Shards", "**Guilds: **" + res[0] + " | **Channels: **" + res[1] + " | **Users: **" + res[2], true)
-        embed.addField("Memory", Math.round(process.memoryUsage().rss / 1024 / 1024) + "MB", true)
-        embed.addField("CPU", Math.ceil(cpu[1] * 100) / 10 + "%", true)
-        embed.addField("Framework", "Discord.js V11.1", true)
         message.channel.send("", {
             embed
         }).catch(console.error);
-
+    }).catch(() => {
+        message.channel.send("", {embed}).catch(console.error);
     })
     
 }
