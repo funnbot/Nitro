@@ -8,7 +8,13 @@ function go() {
     let store = lot;
     if (lot) {
         let members = Object.keys(lot.members);
-        if (members.length === 0) return;
+        if (members.length === 0) {
+            lot = {};
+            lot.members = {};
+            lot.started = (new Date).getTime();
+            lot.jackpot = 0;
+            return;
+        }
         let all = [];
         members.forEach(m => {
             let mem = store.members[m];
