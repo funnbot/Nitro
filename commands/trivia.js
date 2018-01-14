@@ -93,25 +93,25 @@ async function play(message, bot, send, trivia) {
     .addField("Difficulty", difficulty)
     .addField("Reward", worth + ":dollar:")
     .addField("Choices", "**" + incorrect_answers.join(", ") + "**")
-    .setFooter("You have 10 seconds to answer.")
+    .setFooter("You have 20 seconds to answer.")
     .setColor("#4DD0D9")
     .setAuthor(message.guild.name, message.guild.iconURL)
 
   send({
     embed
   })
-
+  let guessed = {};
   let collector = message.channel.createMessageCollector(m => {
     if (m.author.bot) return false
+    if (guessed[m.author.id]) return false;
+    guessed[m.author.id] = true;
     if (checkAnswer(correct_answer, m.content)) {
       collector.stop("WINNED")
       win(bot, message, m.author, worth)
-    } else {
-      collector.stop("wrong");
     }
     return false
   }, {
-    time: 10000
+    time: 20000
   })
 
   collector.on("end", (c, reason) => {
