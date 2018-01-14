@@ -88,7 +88,7 @@ async function play(message, bot, send, trivia) {
     .addField("Reward", worth + ":dollar:")
     .setFooter("You have 30 seconds to answer.")
     .setColor("#4DD0D9")
-    .setAuthor(message.guild.name, message.guild.iconURL())
+    .setAuthor(message.guild.name, message.guild.iconURL)
 
   send({
     embed
