@@ -104,7 +104,7 @@ async function play(message, bot, send, trivia) {
   let collector = message.channel.createMessageCollector(m => {
     if (m.author.bot) return false
     let guess = parseInt(m.content);
-    if (guess === null) return false;
+    if (guess === NaN) return false;
     if (guessed[m.author.id]) return false;
     guessed[m.author.id] = true;
     if (checkAnswer(correct_answer, incorrect_answers, guess)) {
