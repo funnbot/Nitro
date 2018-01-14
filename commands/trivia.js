@@ -31,6 +31,9 @@ let categories = {
 }
 
 exports.run = (message, bot, send) => {
+  if (message.suffix === "categories") {
+    return send("**Available Categories:**\n" + Object.keys(categories).join(", "))
+  }
   let diff = message.args[0] || "random"
   let cat = message.args[1] || "random"
 
@@ -63,7 +66,7 @@ exports.conf = {
   coolDown: 0,
   dm: false,
   category: "Fun",
-  help: "I'll ask a trivia question in chat. Options `n!trivia <diff> <category>` diff = easy, medium, hard, random - category = " + Object.keys(categories).join(", "),
+  help: "I'll ask a trivia question in chat. Options `n!trivia <diff> <category>` diff = easy, medium, hard, random - category = see category list with `n!trivia categories`",
   args: "",
 }
 
