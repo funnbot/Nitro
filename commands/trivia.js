@@ -149,7 +149,7 @@ function shuffle (array) {
 }
 
 function checkAnswer(correct, answers, input) {
-  let a = answers[input + 1];
+  let a = answers[input - 1];
   if (!a) return false;
   return a === correct;
 }
