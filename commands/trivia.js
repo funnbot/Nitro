@@ -160,5 +160,5 @@ function genUrl(d, c) {
   if (!categories[c]) c = "random";
   let diff = d === "random" ? "" : "&difficulty=" + d
   let cat = c === "random" ? "" : "&category=" + (categories[c])
-  return `https://opentdb.com/api.php?amount=1${cat}${diff}&type=multiple`
+  return `https://opentdb.com/api.php?amount=1${cat}${diff}`
 }
