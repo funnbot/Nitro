@@ -3,7 +3,6 @@ exports.run = (message, bot) => {
     let ment = message.mentions.users;
     let text = []
     ment.forEach(m => {
-        console.log(m)
         if (!message.guild.member(m).bannable) {
             message.channel.send("Something went wrong when softbanning: "+m.username);          
         } else {
