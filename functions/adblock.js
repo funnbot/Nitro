@@ -11,7 +11,7 @@ module.exports = message => {
     if (ad.ex && ad.ex.users && ad.ex.users[message.author.id]) return;
     if (ad.ex && ad.ex.channels && ad.ex.channels[message.channel.id]) return;
     if (message.content.length < 10) return;
-    if (inviteRegex.test(message.content));
+    if (!inviteRegex.test(message.content)) return;
     const roles = (ad.ex && ad.ex.roles) ? Object.keys(ad.ex.roles) : null;
     let notEx = true;
     if (roles) {
