@@ -86,17 +86,13 @@ async function play(message, bot, send, trivia) {
   incorrect_answers = incorrect_answers.map(s => h2p(s));
   incorrect_answers.push(correct_answer);
   incorrect_answers = shuffle(incorrect_answers);
-  let answers = {};
-  for (let i=0;i<answers.length;i++) {
-    answers[i+1] = incorrect_answers[i];
-  }
   let embed = new bot.embed()
   embed.title = "`Trivia`"
   embed.addField("Category", category)
     .addField("Difficulty", difficulty)
     .addField("Reward", worth + ":dollar:")
     .addField("Question", h2p(question))
-    .addField("Choices", "**" + Object.entries(answers).map(([k, p]) => k + ". " + p).join(" - ") + "**")
+    .addField("Choices", "**" + incorrect_answers.map((k, i) => (i+1) + ". " + k).join(" - ") + "**")
     .setFooter("You have 20 seconds to answer.")
     .setColor("#4DD0D9")
     .setAuthor(message.guild.name, message.guild.iconURL)
