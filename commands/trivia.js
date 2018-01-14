@@ -111,7 +111,7 @@ async function play(message, bot, send, trivia) {
     if (guess === null) return false;
     if (guessed[m.author.id]) return false;
     guessed[m.author.id] = true;
-    if (checkAnswer(correct_answer, answers, guess)) {
+    if (checkAnswer(correct_answer, incorrect_answers, guess)) {
       collector.stop("WINNED")
       win(bot, message, m.author, worth)
     }
@@ -156,7 +156,6 @@ function checkAnswer(correct, answers, input) {
   let a = answers[input + 1];
   if (!a) return false;
   return a === correct;
-
 }
 
 function genUrl(d, c) {
