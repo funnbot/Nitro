@@ -14,7 +14,7 @@ let welcome = member => {
   let msg = acc.welcome;
   msg = msg.replace(/{member}/g, member);
   msg = msg.replace(/{name}/g, member.user.username);
-  msg = msg.replace(/{total}/g, member.guild.members.size);
+  msg = msg.replace(/{total}/g, member.guild.memberCount);
   bot.channels.get(acc.channel).send(msg, {
     split: true
   }).catch(err => console.log(err));
