@@ -16,8 +16,9 @@ const Bot = () => {
 
             let bot = new Discord.Client({
                 disabledEvents: ['TYPING_START'],
-                messageCacheMaxSize: 150,
-                messageCacheLifetime: 3600
+                messageCacheMaxSize: 50,
+                messageCacheLifetime: 300,
+                messageSweepInterval: 300
             })
 
             bot.config = new GuildConfig(data)
