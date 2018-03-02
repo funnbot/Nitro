@@ -1,5 +1,7 @@
 exports.run = (message, bot) => {
     let num = parseInt(message.args[0]) || false;
+    if (num > 3600) return message.channel.send("Channel hiding must last less than an hour.");
+    if (num <= 1) return message.channel.send("Channel hide time too short.");
     let prefix = bot.config.getPrefix(message.guild.id);
     if (!message.args[0] || num === false) return message.channel.send("You can hide a channel with:\n" + prefix + "hidechannel <seconds>");
     message.channel.send("**This channel has been hidden for " + num + " seconds.**\nYou can end hiding by typing `unlock` in chat or by waiting the alloted time.").then((m) => {
@@ -12,13 +14,6 @@ exports.run = (message, bot) => {
         message.channel.overwritePermissions(message.guild.id, {
             READ_MESSAGES: false
         }).then(() => {
-            let timer = setTimeout(function () {
-                m.channel.overwritePermissions(message.guild.id, {
-                    READ_MESSAGES: before
-                }).then(() => {
-                    m.channel.send("**The hiding has ended**");
-                });
-            }, num * 1000);
             let collect = message.channel.createCollector(ms => ms.author.id === message.author.id, {
                 time: num * 1000
             });
@@ -29,9 +24,18 @@ exports.run = (message, bot) => {
                     }).then(() => {
                         clearTimeout(timer);
                         m.channel.send("**The hiding has ended**");
+                        collect.stop();
                     });
                 }
             })
+            let timer = setTimeout(function () {
+                m.channel.overwritePermissions(message.guild.id, {
+                    READ_MESSAGES: before
+                }).then(() => {
+                    m.channel.send("**The hiding has ended**");
+                    collect.stop();
+                });
+            }, num * 1000);
         })
     });
 }
