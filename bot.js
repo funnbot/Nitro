@@ -1,17 +1,21 @@
-const Bot = require('./struct/Bot')
+const Discord = require('discord.js');
+const client = new Discord.Client();
 
-const config = require('./config')
+client.on('ready', () => {
+    console.log('I am ready!');
+});
 
-Bot().then(bot => {
-    module.exports = bot
-    require('./events/message')
-    require('./events/messageEdit')
-    require('./events/guildCreate+Delete')
-    require('./events/guildMemberAdd')
-    require('./events/guildMemberRemove')
-    require('./events/modlog')
-    require('./functions/loadCommands').load()
-    require('./util')
-    require('./functions/specialHelp')
-    bot.login(config.token)
-}).catch(err => console.log(err));
+client.on('message', message => {
+    if (message.content === 'ping') {
+    	message.channel.send('PONG!');
+  	}
+});
+
+client.on('message', message => {
+    if (message.content === 'bing') {
+    	message.reply('BONG!');
+  	}
+});
+
+// THIS  MUST  BE  THIS  WAY
+client.login(process.env.BOT_TOKEN);
