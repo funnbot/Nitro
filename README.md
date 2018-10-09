@@ -1,4 +1,4 @@
-#This is a very old version of the bot, The update code can be found at [https://github.com/NitroBots/Rewrite](https://github.com/NitroBots/Rewrite)
+# This is a very old version of the bot, The updated code can be found at [https://github.com/NitroBots/Rewrite](https://github.com/NitroBots/Rewrite)
 
 [![Discord Bots](https://discordbots.org/api/widget/264087705124601856.png)](https://discordbots.org/bot/264087705124601856)
 ## The Ultimate Discord Bot!
