@@ -16,7 +16,7 @@ module.exports = (message) => {
         let w
         keys.forEach(k => low.includes(k.toLowerCase()) ? w = k : 0)
         strike(message.guild.id, message.author.id)
-        message.author.send(filters.msg ? filters.msg : "**Your message was deleted because it contained a restricted keyword: **"+w)
+        message.author.send(filters.msg ? filters.msg : "**Your message was deleted because it contained a restricted keyword: **"+w).catch(e => e + "")
     }
 
 }

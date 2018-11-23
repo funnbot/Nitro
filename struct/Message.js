@@ -34,7 +34,7 @@ function Message(message) {
     split = split.slice(1)
     message.args = split
     message.suffix = split.join(" ")
-    message.send = message.channel.send.bind(message.channel)
+    message.send = (...args) => message.channel.send(...args);
     return message;
 }
 

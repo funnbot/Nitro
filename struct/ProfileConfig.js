@@ -1,4 +1,4 @@
-const r = require('rethinkdb')
+const r = require('rethinkdbdash')
 const Discord = require('discord.js')
 
 class ProfileConfig {
@@ -6,29 +6,10 @@ class ProfileConfig {
     constructor(data) {
 
         this.profiles = {}
-
         data.profile.forEach(d => {
             this.profiles[d.id] = d.data;
         })
-
         this.conn = data.connection
-
-        r.table('profile').changes().run(this.conn, (err, change) => {
-
-            if (err) return console.log(err)
-
-            change.each((err, row) => {
-
-                if (err) return console.log(err)
-
-                if (!row.new_val) return
-
-                this.profiles[row.new_val.id] = row.new_val.data
-
-            })
-
-        })
-
     }
 
     update(id) {

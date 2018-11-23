@@ -1,3 +1,8 @@
+const auth = require("../../config.js");
+const r = require("rethinkdbdash")({
+    db: "Nitro",
+    password: auth.rethink
+})
 const util = require('util')
 
 exports.run = (message, bot, send) => {

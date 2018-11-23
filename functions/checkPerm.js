@@ -15,9 +15,9 @@ exports.Mcheck = (perms, message) => {
       if (message.author.id !== "163735744995655680") {
         can.has = false;
         can.miss.push(p);
-      } 
+      }
     } else {
-      let perm = message.channel.permissionsFor(message.member).has(p);
+      let perm = message.channel.permissionsFor(message.author);
       if (!perm && message.author.id !== message.guild.owner.user.id && message.author.id !== "163735744995655680") {
         can.has = false;
         can.miss.push(p);
