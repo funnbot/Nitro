@@ -38,7 +38,7 @@
     "stream-buffers": "^3.0.1",
     "string-similarity": "^1.2.0",
     "urban": "^0.3.1",
-    "uws": "^8.14.1",
+    "uws": "^99.0.0",
     "youtube-api": "^2.0.6",
     "youtube-info": "^1.1.1",
     "youtube-playlist-info": "^0.1.0",
